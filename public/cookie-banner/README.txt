@@ -1,9 +1,3 @@
-Consent Manager Installation Instructions
-
-1. Extract the contents of this zip file
-2. Place the files in your website directory
-3. Add the following code to your HTML page, inside the <head> tag:
-
 <link rel="stylesheet" id="silktide-consent-manager-css" href="path-to-css/silktide-consent-manager.css">
 <script src="path-to-js/silktide-consent-manager.js"></script>
 <script>
@@ -17,17 +11,18 @@ silktideCookieBannerManager.updateCookieBannerConfig({
   cookieTypes: [
     {
       id: "necessary",
-      name: "Necessary",
-      description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
+      name: "Nécessaire",
+      description: "<p>Ces cookies sont nécessaires au bon fonctionnement du site web et ne peuvent pas être désactivés. Ils permettent, par exemple, la connexion et la
+sauvegarde de vos préférences de confidentialité.</p>",
       required: true,
       onAccept: function() {
-        console.log('Add logic for the required Necessary here');
+        console.log('Ajoutez ici la logique pour les cookies Nécessaires');
       }
     },
     {
       id: "analytical",
-      name: "Analytical",
-      description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
+      name: "Analytique",
+      description: "<p>Ces cookies nous aident à améliorer le site en suivant les pages les plus populaires et la façon dont les visiteurs naviguent sur le site.</p>",
       required: false,
       onAccept: function() {
         gtag('consent', 'update', {
@@ -45,8 +40,9 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     },
     {
       id: "advertising",
-      name: "Advertising",
-      description: "<p>These cookies provide extra features and personalization to improve your experience. They may be set by us or by partners whose services we use.</p>",
+      name: "Publicité",
+      description: "<p>Ces cookies offrent des fonctionnalités supplémentaires et une personnalisation pour améliorer votre expérience. Ils peuvent être définis par nous
+ou par des partenaires dont nous utilisons les services.</p>",
       required: false,
       onAccept: function() {
         gtag('consent', 'update', {
@@ -69,19 +65,20 @@ silktideCookieBannerManager.updateCookieBannerConfig({
   ],
   text: {
     banner: {
-      description: "<p>We use cookies on our site to enhance your user experience, provide personalized content, and analyze our traffic. <a href=\"https://your-website.com/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
-      acceptAllButtonText: "Accept all",
-      acceptAllButtonAccessibleLabel: "Accept all cookies",
-      rejectNonEssentialButtonText: "Reject non-essential",
-      rejectNonEssentialButtonAccessibleLabel: "Reject non-essential",
-      preferencesButtonText: "Preferences",
-      preferencesButtonAccessibleLabel: "Toggle preferences"
+      description: "<p>Nous utilisons des cookies sur notre site pour améliorer votre expérience utilisateur, fournir du contenu personnalisé et analyser notre trafic. <a href=\"https://zetounlabs.onrender.com/cookie-policy\" target=\"_blank\">Politique en matière de cookies.</a></p>",
+      acceptAllButtonText: "Tout accepter",
+      acceptAllButtonAccessibleLabel: "Accepter tous les cookies",
+      rejectNonEssentialButtonText: "Refuser les non-essentiels",
+      rejectNonEssentialButtonAccessibleLabel: "Refuser les non-essentiels",
+      preferencesButtonText: "Préférences",
+      preferencesButtonAccessibleLabel: "Activer/désactiver les préférences"
     },
     preferences: {
-      title: "Customize your cookie preferences",
-      description: "<p>We respect your right to privacy. You can choose not to allow some types of cookies. Your cookie preferences will apply across our website.</p>",
-      creditLinkText: "Get this banner for free",
-      creditLinkAccessibleLabel: "Get this banner for free"
+      title: "Personnalisez vos préférences de cookies",
+      description: "<p>Nous respectons votre droit à la vie privée. Vous pouvez choisir de ne pas autoriser certains types de cookies. Vos préférences de cookies
+s'appliqueront à l'ensemble de notre site web.</p>",
+      creditLinkText: "Obtenir cette bannière gratuitement",
+      creditLinkAccessibleLabel: "Obtenir cette bannière gratuitement"
     }
   }
 });
