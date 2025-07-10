@@ -1,14 +1,14 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 export const ENDPOINTS = {
     AUTH: {
-        SIGNUP: '/api/auth/signup',
-        LOGIN: '/api/auth/login',
-        PROFILE: '/api/auth/profile',
-        VERIFY_EMAIL: '/api/auth/verify-email', // Ajout du nouvel endpoint de vérification d'email
+        SIGNUP: `${API_BASE_URL}/api/auth/signup`,
+        LOGIN: `${API_BASE_URL}/api/auth/login`,
+        PROFILE: `${API_BASE_URL}/api/auth/profile`,
     },
 
-    FORMATIONS: '/api/formations',
+    FORMATIONS: `${API_BASE_URL}/api/formations`,
 
-    TELECOM_OPINIONS: '/api/telecom-opinions',
+    TELECOM_OPINIONS: `${API_BASE_URL}/api/telecom-opinions`,
 
-    ENROLLMENTS: '/api/enrollments',
+    ENROLLMENTS: `${API_BASE_URL}/api/enrollments`,
 };
