@@ -12,14 +12,13 @@ import { useToast } from '@/hooks/use-toast';
 import PageLayout from '@/components/PageLayout';
 import SEO from '@/components/SEO';
 import { motion } from "framer-motion";
+import { ENDPOINTS } from '@/config/api.config';
 
-// Constants for the SignUp component
 const TEXT_CONSTANTS = {
   LOADING_PROGRESS_INTERVAL_MS: 200,
   INITIAL_LOADING_PROGRESS_STEP: 5,
   MAX_LOADING_PROGRESS: 95,
-  SIGNUP_DELAY_MS: 700, // Simule un délai de chargement de 700ms pour l'inscription
-  API_SIGNUP_ENDPOINT: "/api/auth/signup",
+  SIGNUP_DELAY_MS: 700,
   NAV_CALENDAR_FORM: '/add/calendar-form',
   NAV_LOGIN: '/login',
 
@@ -102,7 +101,7 @@ const SignUp = () => {
     try {
       await new Promise(resolve => setTimeout(resolve, TEXT_CONSTANTS.SIGNUP_DELAY_MS));
 
-      const response = await fetch(TEXT_CONSTANTS.API_SIGNUP_ENDPOINT, {
+      const response = await fetch(ENDPOINTS.AUTH.SIGNUP, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
