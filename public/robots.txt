@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zetounlabs.com/sitemap.xml
+Sitemap: https://zetounlabs.onrender.com/sitemap.xml
