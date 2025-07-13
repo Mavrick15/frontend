@@ -4,8 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-    <!-- Pages principales du site -->
     <url>
         <loc>https://zetounlabs.onrender.com/</loc>
         <lastmod>2025-07-12</lastmod>
@@ -36,8 +34,6 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
-    <!-- Pages des services -->
     <url>
         <loc>https://zetounlabs.onrender.com/services/network-engineering</loc>
         <lastmod>2025-07-12</lastmod>
@@ -74,8 +70,6 @@
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
-
-    <!-- Pages des formations -->
     <url>
         <loc>https://zetounlabs.onrender.com/formations/linux-administration</loc>
         <lastmod>2025-07-12</lastmod>
@@ -106,8 +100,6 @@
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
-
-    <!-- Nouvelles pages de projets / réalisations -->
     <url>
         <loc>https://zetounlabs.onrender.com/projects/realisations/police-judiciaire</loc>
         <lastmod>2025-07-12</lastmod>
@@ -126,5 +118,4 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
-
 </urlset>
