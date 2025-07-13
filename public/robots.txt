@@ -4,6 +4,6 @@ Disallow: /pages/add/ContactNous
 Disallow: /pages/add/CalendarForm
 Disallow: /SignUp
 Disallow: /Login
-Sitemap: https://zetounlabs.onrender.com/sitemap.xml
+Sitemap: https://zetounlabs.onrender.com/public/sitemap.xml
 User-agent: Bingbot
 Crawl-delay: 10
