@@ -11,7 +11,7 @@ const TEXT_CONSTANTS = {
   CONTACT_US_HEADING: "Contactez-nous",
   ADDRESS_LINE_1: "6284 1st Street",
   ADDRESS_LINE_2: "Matete, Kinshasa DRCongo",
-  EMAIL_ADDRESS: "zetouncontacts@gmail.com",
+  EMAIL_ADDRESS: "contacts@zetounlabs.com",
   PHONE_NUMBER: "+243 812 583 947",
   LINKEDIN_URL: "https://www.linkedin.com/company/zetounlabs/",
   WHATSAPP_URL: "https://wa.me/243812583947",
