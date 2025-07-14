@@ -1,119 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://zetounlabs.onrender.com/</loc>
+        <loc>https://www.zetounlabs.com/</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/about</loc>
+        <loc>https://www.zetounlabs.com/about</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/development-process</loc>
+        <loc>https://www.zetounlabs.com/development-process</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/privacy-policy</loc>
+        <loc>https://www.zetounlabs.com/privacy-policy</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/blog</loc>
+        <loc>https://www.zetounlabs.com/blog</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/services/network-engineering</loc>
+        <loc>https://www.zetounlabs.com/services/network-engineering</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/services/video-surveillance</loc>
+        <loc>https://www.zetounlabs.com/services/video-surveillance</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/services/web-development</loc>
+        <loc>https://www.zetounlabs.com/services/web-development</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/services/it-management</loc>
+        <loc>https://www.zetounlabs.com/services/it-management</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/services/technical-support</loc>
+        <loc>https://www.zetounlabs.com/services/technical-support</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/services/installation-solaire</loc>
+        <loc>https://www.zetounlabs.com/services/installation-solaire</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/formations/linux-administration</loc>
+        <loc>https://www.zetounlabs.com/formations/linux-administration</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/formations/windows-administration</loc>
+        <loc>https://www.zetounlabs.com/formations/windows-administration</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/formations/virtualization-training</loc>
+        <loc>https://www.zetounlabs.com/formations/virtualization-training</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/formations/network-administration</loc>
+        <loc>https://www.zetounlabs.com/formations/network-administration</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/formations/computer-maintenance</loc>
+        <loc>https://www.zetounlabs.com/formations/computer-maintenance</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/projects/realisations/police-judiciaire</loc>
+        <loc>https://www.zetounlabs.com/projects/realisations/police-judiciaire</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/projects/realisations/eyano-security</loc>
+        <loc>https://www.zetounlabs.com/projects/realisations/eyano-security</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://zetounlabs.onrender.com/projects/realisations/credit-shop-africa</loc>
+        <loc>https://www.zetounlabs.com/projects/realisations/credit-shop-africa</loc>
         <lastmod>2025-07-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
