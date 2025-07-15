@@ -1,17 +1,13 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import PageLayout from '@/components/PageLayout';
 import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 
-// Constantes pour le composant PrivacyPolicy
 const TEXT_CONSTANTS = {
-  LOADING_PROGRESS_INTERVAL_MS: 200,
-  INITIAL_LOADING_PROGRESS_STEP: 5,
-  MAX_LOADING_PROGRESS: 95,
   HOME_PATH: "/",
-  CONTACT_EMAIL: "support@zetounlabs.cd",
+  CONTACT_EMAIL: "contacts@zetounlabs.com",
   LAST_UPDATED_DATE: "Mardi le, 06 05 2025 à 16h 15' UTC+1",
 
   PRIVACY_MESSAGES: {
@@ -56,25 +52,11 @@ const TEXT_CONSTANTS = {
     DESCRIPTION: "Consultez notre politique de confidentialité pour comprendre comment nous collectons, utilisons et protégeons vos informations personnelles.",
     KEYWORDS: ["politique de confidentialité", "vie privée", "protection des données", "Zetoun Labs"],
   },
-  LOADING_SPINNER_ALT: "Animation de chargement",
 };
 
 const PrivacyPolicy = () => {
-  const [loadingProgress, setLoadingProgress] = useState(0);
-
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    const interval = setInterval(() => {
-      setLoadingProgress((prevProgress) => {
-        if (prevProgress < TEXT_CONSTANTS.MAX_LOADING_PROGRESS) {
-          return prevProgress + TEXT_CONSTANTS.INITIAL_LOADING_PROGRESS_STEP;
-        }
-        return prevProgress;
-      });
-    }, TEXT_CONSTANTS.LOADING_PROGRESS_INTERVAL_MS);
-
-    return () => clearInterval(interval);
   }, []);
 
   const pageVariants = {
@@ -90,127 +72,107 @@ const PrivacyPolicy = () => {
   };
 
   return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="relative w-28 h-28">
-          <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-          <div className="absolute inset-0 rounded-full border-4 border-t-gray-800 border-b-gray-800 border-l-gray-400 border-r-gray-400 animate-spin"></div>
-          <div
-            className="absolute inset-2 rounded-full bg-gray-50 flex items-center justify-center"
-            style={{
-              clipPath: `inset(${100 - loadingProgress}% 0 0 0)`,
-              backgroundColor: 'rgba(0, 0, 0, 0.05)',
-              transition: 'clip-path 0.2s ease-out'
-            }}
-          ></div>
-          <div className="absolute inset-0 flex items-center justify-center text-gray-900 text-2xl font-bold">
-            {loadingProgress}%
-          </div>
-        </div>
-      </div>
-    }>
-      <PageLayout>
-        <SEO
-          title={TEXT_CONSTANTS.SEO_METADATA.TITLE}
-          description={TEXT_CONSTANTS.SEO_METADATA.DESCRIPTION}
-          keywords={TEXT_CONSTANTS.SEO_METADATA.KEYWORDS}
-        />
-        <motion.section
-          variants={pageVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          className="pt-24 pb-16 px-4 sm:px-6 lg:px-8"
+    <PageLayout>
+      <SEO
+        title={TEXT_CONSTANTS.SEO_METADATA.TITLE}
+        description={TEXT_CONSTANTS.SEO_METADATA.DESCRIPTION}
+        keywords={TEXT_CONSTANTS.SEO_METADATA.KEYWORDS}
+      />
+      <motion.section
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className="pt-24 pb-16 px-4 sm:px-6 lg:px-8"
+      >
+        <motion.div
+          variants={contentVariants}
+          className="container mx-auto"
         >
-          <motion.div
-            variants={contentVariants}
-            className="container mx-auto"
-          >
-            <div className="max-w-4xl mx-auto">
-              <Link
-                to={TEXT_CONSTANTS.HOME_PATH}
-                className="inline-flex items-center text-gray-500 hover:text-gray-700 mb-6 transition-colors"
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                {TEXT_CONSTANTS.PRIVACY_MESSAGES.RETURN_HOME}
-              </Link>
+          <div className="max-w-4xl mx-auto">
+            <Link
+              to={TEXT_CONSTANTS.HOME_PATH}
+              className="inline-flex items-center text-gray-500 hover:text-gray-700 mb-6 transition-colors"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              {TEXT_CONSTANTS.PRIVACY_MESSAGES.RETURN_HOME}
+            </Link>
 
-              <h1 className="text-4xl font-bold mb-8">{TEXT_CONSTANTS.PRIVACY_MESSAGES.PAGE_TITLE}</h1>
+            <h1 className="text-4xl font-bold mb-8">{TEXT_CONSTANTS.PRIVACY_MESSAGES.PAGE_TITLE}</h1>
 
-              <div className="prose prose-lg max-w-none">
-                <p className="text-gray-600 mb-6">{TEXT_CONSTANTS.PRIVACY_MESSAGES.LAST_UPDATED} {TEXT_CONSTANTS.LAST_UPDATED_DATE}</p>
+            <div className="prose prose-lg max-w-none">
+              <p className="text-gray-600 mb-6">{TEXT_CONSTANTS.PRIVACY_MESSAGES.LAST_UPDATED} {TEXT_CONSTANTS.LAST_UPDATED_DATE}</p>
 
-                <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.INTRO_HEADING}</h2>
-                <p className="text-gray-600 mb-4">
-                  {TEXT_CONSTANTS.PRIVACY_MESSAGES.INTRO_PARA}
-                </p>
+              <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.INTRO_HEADING}</h2>
+              <p className="text-gray-600 mb-4">
+                {TEXT_CONSTANTS.PRIVACY_MESSAGES.INTRO_PARA}
+              </p>
 
-                <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_HEADING}</h2>
-                <p className="text-gray-600 mb-4">
-                  {TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_PARA}
-                </p>
-                <ul className="list-disc pl-6 mb-4 text-gray-600">
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_LIST_ITEM_1}</li>
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_LIST_ITEM_2}</li>
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_LIST_ITEM_3}</li>
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_LIST_ITEM_4}</li>
-                </ul>
-                <p className="text-gray-600 mb-4">
-                  {TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_PARA_2}
-                </p>
+              <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_HEADING}</h2>
+              <p className="text-gray-600 mb-4">
+                {TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_PARA}
+              </p>
+              <ul className="list-disc pl-6 mb-4 text-gray-600">
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_LIST_ITEM_1}</li>
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_LIST_ITEM_2}</li>
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_LIST_ITEM_3}</li>
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_LIST_ITEM_4}</li>
+              </ul>
+              <p className="text-gray-600 mb-4">
+                {TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_COLLECTION_PARA_2}
+              </p>
 
-                <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_HEADING}</h2>
-                <p className="text-gray-600 mb-4">
-                  {TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_PARA}
-                </p>
-                <ul className="list-disc pl-6 mb-4 text-gray-600">
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_1}</li>
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_2}</li>
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_3}</li>
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_4}</li>
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_5}</li>
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_6}</li>
-                  <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_7}</li>
-                </ul>
+              <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_HEADING}</h2>
+              <p className="text-gray-600 mb-4">
+                {TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_PARA}
+              </p>
+              <ul className="list-disc pl-6 mb-4 text-gray-600">
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_1}</li>
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_2}</li>
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_3}</li>
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_4}</li>
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_5}</li>
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_6}</li>
+                <li>{TEXT_CONSTANTS.PRIVACY_MESSAGES.INFO_USAGE_LIST_ITEM_7}</li>
+              </ul>
 
-                <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.COOKIES_HEADING}</h2>
-                <p className="text-gray-600 mb-4">
-                  {TEXT_CONSTANTS.PRIVACY_MESSAGES.COOKIES_PARA}
-                </p>
+              <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.COOKIES_HEADING}</h2>
+              <p className="text-gray-600 mb-4">
+                {TEXT_CONSTANTS.PRIVACY_MESSAGES.COOKIES_PARA}
+              </p>
 
-                <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.THIRD_PARTY_HEADING}</h2>
-                <p className="text-gray-600 mb-4">
-                  {TEXT_CONSTANTS.PRIVACY_MESSAGES.THIRD_PARTY_PARA}
-                </p>
+              <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.THIRD_PARTY_HEADING}</h2>
+              <p className="text-gray-600 mb-4">
+                {TEXT_CONSTANTS.PRIVACY_MESSAGES.THIRD_PARTY_PARA}
+              </p>
 
-                <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.DATA_RETENTION_HEADING}</h2>
-                <p className="text-gray-600 mb-4">
-                  {TEXT_CONSTANTS.PRIVACY_MESSAGES.DATA_RETENTION_PARA}
-                </p>
+              <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.DATA_RETENTION_HEADING}</h2>
+              <p className="text-gray-600 mb-4">
+                {TEXT_CONSTANTS.PRIVACY_MESSAGES.DATA_RETENTION_PARA}
+              </p>
 
-                <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.SECURITY_HEADING}</h2>
-                <p className="text-gray-600 mb-4">
-                  {TEXT_CONSTANTS.PRIVACY_MESSAGES.SECURITY_PARA}
-                </p>
+              <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.SECURITY_HEADING}</h2>
+              <p className="text-gray-600 mb-4">
+                {TEXT_CONSTANTS.PRIVACY_MESSAGES.SECURITY_PARA}
+              </p>
 
-                <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.YOUR_RIGHTS_HEADING}</h2>
-                <p className="text-gray-600 mb-4">
-                  {TEXT_CONSTANTS.PRIVACY_MESSAGES.YOUR_RIGHTS_PARA}
-                </p>
+              <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.YOUR_RIGHTS_HEADING}</h2>
+              <p className="text-gray-600 mb-4">
+                {TEXT_CONSTANTS.PRIVACY_MESSAGES.YOUR_RIGHTS_PARA}
+              </p>
 
-                <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.CHANGES_HEADING}</h2>
-                <p className="text-gray-600 mb-4">
-                  {TEXT_CONSTANTS.PRIVACY_MESSAGES.CHANGES_PARA}
-                </p>
+              <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.CHANGES_HEADING}</h2>
+              <p className="text-gray-600 mb-4">
+                {TEXT_CONSTANTS.PRIVACY_MESSAGES.CHANGES_PARA}
+              </p>
 
-                <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.CONTACT_HEADING}</h2>
-                <p className="text-gray-600 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.CONTACT_PARA} <a href={`mailto:${TEXT_CONSTANTS.CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{TEXT_CONSTANTS.CONTACT_EMAIL}</a></p>
-              </div>
+              <h2 className="text-2xl font-semibold mt-8 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.CONTACT_HEADING}</h2>
+              <p className="text-gray-600 mb-4">{TEXT_CONSTANTS.PRIVACY_MESSAGES.CONTACT_PARA} <a href={`mailto:${TEXT_CONSTANTS.CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{TEXT_CONSTANTS.CONTACT_EMAIL}</a></p>
             </div>
-          </motion.div>
-        </motion.section>
-      </PageLayout>
-    </Suspense>
+          </div>
+        </motion.div>
+      </motion.section>
+    </PageLayout>
   );
 };
 

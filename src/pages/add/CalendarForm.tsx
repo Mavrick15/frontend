@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -60,7 +60,6 @@ const TEXT_CONSTANTS = {
   ADD_TO_CART_BUTTON: "+",
   ADD_TO_CART_ICON_ALT: "Ajouter au panier",
   IMAGE_PLACEHOLDER_ALT: "Image de remplacement pour la formation",
-  LOADING_SPINNER_ALT: "Animation de chargement",
 };
 
 const CalendarForm = () => {
@@ -125,260 +124,248 @@ const CalendarForm = () => {
   };
 
   return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="relative w-28 h-28">
-          <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-          <div className="absolute inset-0 rounded-full border-4 border-t-gray-800 border-b-gray-800 border-l-gray-400 border-r-gray-400 animate-spin"></div>
-          <div className="absolute inset-0 flex items-center justify-center text-gray-900 text-2xl font-bold">
-            {TEXT_CONSTANTS.LOADING_TEXT}
-          </div>
-        </div>
-      </div>
-    }>
-      <PageLayout>
-        <SEO
-          title={TEXT_CONSTANTS.SEO_TITLE}
-          description={TEXT_CONSTANTS.SEO_DESCRIPTION}
-        />
-        <CartProvider allFormations={formations}>
-          <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-            <div className="container mx-auto">
-              <div className="max-w-6xl mx-auto">
-                <Link to="/" className="inline-flex items-center text-gray-500 hover:text-gray-700 mb-6 transition-colors">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  {TEXT_CONSTANTS.BACK_TO_HOME}
-                </Link>
+    <PageLayout>
+      <SEO
+        title={TEXT_CONSTANTS.SEO_TITLE}
+        description={TEXT_CONSTANTS.SEO_DESCRIPTION}
+      />
+      <CartProvider allFormations={formations}>
+        <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto">
+            <div className="max-w-6xl mx-auto">
+              <Link to="/" className="inline-flex items-center text-gray-500 hover:text-gray-700 mb-6 transition-colors">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                {TEXT_CONSTANTS.BACK_TO_HOME}
+              </Link>
 
-                <motion.div
-                  initial="initial"
-                  animate="animate"
-                  variants={containerVariants}
-                  className="text-center mb-8"
+              <motion.div
+                initial="initial"
+                animate="animate"
+                variants={containerVariants}
+                className="text-center mb-8"
+              >
+                <motion.h1
+                  variants={textVariants}
+                  className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 font-space"
                 >
-                  <motion.h1
-                    variants={textVariants}
-                    className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 font-space"
-                  >
-                    {TEXT_CONSTANTS.CALENDAR_TITLE}
-                  </motion.h1>
-                  <motion.p
-                    variants={textVariants}
-                    className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto"
-                  >
-                    {TEXT_CONSTANTS.CALENDAR_SUBTITLE}
-                  </motion.p>
-                </motion.div>
+                  {TEXT_CONSTANTS.CALENDAR_TITLE}
+                </motion.h1>
+                <motion.p
+                  variants={textVariants}
+                  className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto"
+                >
+                  {TEXT_CONSTANTS.CALENDAR_SUBTITLE}
+                </motion.p>
+              </motion.div>
 
-                <div className="mb-8">
-                  <div className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100">
-                    <div className="relative w-full sm:max-w-md">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
-                      <Input
-                        placeholder={TEXT_CONSTANTS.SEARCH_PLACEHOLDER}
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-10 pr-4 py-2 border-gray-200 focus:border-blue-500 rounded-lg w-full"
-                      />
-                    </div>
-                    <div className="flex items-center gap-2 self-end sm:self-auto">
-                      <span className="text-sm text-gray-500 hidden sm:inline">
-                        {pagination?.total} {TEXT_CONSTANTS.FORMATIONS_AVAILABLE_TEXT}
-                      </span>
-                    </div>
+              <div className="mb-8">
+                <div className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100">
+                  <div className="relative w-full sm:max-w-md">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+                    <Input
+                      placeholder={TEXT_CONSTANTS.SEARCH_PLACEHOLDER}
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10 pr-4 py-2 border-gray-200 focus:border-blue-500 rounded-lg w-full"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 self-end sm:self-auto">
+                    <span className="text-sm text-gray-500 hidden sm:inline">
+                      {pagination?.total} {TEXT_CONSTANTS.FORMATIONS_AVAILABLE_TEXT}
+                    </span>
                   </div>
                 </div>
+              </div>
 
-                <FloatingCart allFormations={formations} />
+              <FloatingCart allFormations={formations} />
 
-                <AnimatePresence mode="wait">
-                  {loading ? (
-                    <motion.div
-                      key="loading-skeletons"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.4 }}
-                      className="grid grid-cols-1 gap-8 mb-8"
-                    >
-                      {renderSkeletons()}
-                    </motion.div>
-                  ) : error ? (
-                    <motion.div
-                      key="error-message"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.4 }}
-                      className="text-center py-12 bg-white rounded-xl shadow-sm border border-gray-100 mb-8"
-                    >
-                      <AlertCircle className="h-12 w-12 mx-auto text-red-400 mb-3" />
-                      <h3 className="text-xl font-medium text-gray-900 mb-2">{TEXT_CONSTANTS.ERROR_STATE_TITLE}</h3>
-                      <p className="text-gray-600">{error}</p>
-                      <Button
-                        variant="outline"
-                        onClick={refetch}
-                        className="mt-4"
-                      >
-                        {TEXT_CONSTANTS.ERROR_STATE_BUTTON_TEXT}
-                      </Button>
-                    </motion.div>
-                  ) : formations?.length === 0 ? (
-                    <motion.div
-                      key="empty-state"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.4 }}
-                      className="text-center py-12 bg-white rounded-xl shadow-sm border border-gray-100"
-                    >
-                      <Filter className="h-12 w-12 mx-auto text-gray-400 mb-3" />
-                      <h3 className="text-xl font-medium text-gray-900 mb-2">{TEXT_CONSTANTS.EMPTY_STATE_TITLE}</h3>
-                      <p className="text-gray-600">{TEXT_CONSTANTS.EMPTY_STATE_DESCRIPTION}</p>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="formations-list"
-                      initial="initial"
-                      animate="animate"
-                      variants={containerVariants}
-                      className="grid grid-cols-1 gap-8 mb-8"
-                    >
-                      {formations.map((course, index) => (
-                        <FormationCard key={course._id} course={course} index={index} />
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {!loading && !error && formations?.length > 0 && pagination?.pages > 1 && (
-                  <Pagination className="my-8">
-                    <PaginationContent className="flex flex-wrap justify-center gap-2">
-                      <PaginationItem>
-                        <PaginationPrevious
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            if (pagination.offset > 0) {
-                              const prevPage = Math.floor(pagination.offset / pagination.limit);
-                              goToPage(prevPage);
-                            }
-                          }}
-                          className={pagination.offset === 0 ? 'pointer-events-none opacity-50' : ''}
-                        />
-                      </PaginationItem>
-
-                      <div className="hidden sm:flex flex-wrap justify-center gap-2">
-                        {Array.from({ length: pagination.pages }, (_, i) => (
-                          <PaginationItem key={i + 1}>
-                            <PaginationLink
-                              href="#"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                goToPage(i + 1);
-                              }}
-                              isActive={Math.floor(pagination.offset / pagination.limit) + 1 === i + 1}
-                            >
-                              {i + 1}
-                            </PaginationLink>
-                          </PaginationItem>
-                        ))}
-                      </div>
-
-                      {pagination.pages > 1 && (
-                        <div className="flex sm:hidden flex-wrap justify-center gap-2">
-                            <PaginationItem>
-                                <PaginationLink
-                                href="#"
-                                onClick={(e) => { e.preventDefault(); goToPage(1); }}
-                                isActive={Math.floor(pagination.offset / pagination.limit) + 1 === 1}
-                                >
-                                1
-                                </PaginationLink>
-                            </PaginationItem>
-
-                            {Math.floor(pagination.offset / pagination.limit) + 1 > 2 && (
-                                <PaginationItem>
-                                <span className="px-3 py-1.5 text-gray-500">...</span>
-                                </PaginationItem>
-                            )}
-
-                            {Math.floor(pagination.offset / pagination.limit) + 1 !== 1 &&
-                            Math.floor(pagination.offset / pagination.limit) + 1 !== pagination.pages && (
-                                <PaginationItem>
-                                <PaginationLink
-                                    href="#"
-                                    onClick={(e) => { e.preventDefault(); goToPage(Math.floor(pagination.offset / pagination.limit) + 1); }}
-                                    isActive={true}
-                                >
-                                    {Math.floor(pagination.offset / pagination.limit) + 1}
-                                </PaginationLink>
-                                </PaginationItem>
-                            )}
-
-                            {Math.floor(pagination.offset / pagination.limit) + 1 < pagination.pages - 1 && (
-                                <PaginationItem>
-                                <span className="px-3 py-1.5 text-gray-500">...</span>
-                                </PaginationItem>
-                            )}
-
-                            {pagination.pages > 1 && (
-                                <PaginationItem>
-                                <PaginationLink
-                                    href="#"
-                                    onClick={(e) => { e.preventDefault(); goToPage(pagination.pages); }}
-                                    isActive={Math.floor(pagination.offset / pagination.limit) + 1 === pagination.pages}
-                                >
-                                    {pagination.pages}
-                                </PaginationLink>
-                                </PaginationItem>
-                            )}
-                        </div>
-                      )}
-
-
-                      <PaginationItem>
-                        <PaginationNext
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const currentPage = Math.floor(pagination.offset / pagination.limit) + 1;
-                            if (currentPage < pagination.pages) {
-                              goToPage(currentPage + 1);
-                            }
-                          }}
-                          className={Math.floor(pagination.offset / pagination.limit) + 1 >= pagination.pages ? 'pointer-events-none opacity-50' : ''}
-                        />
-                      </PaginationItem>
-                    </PaginationContent>
-                  </Pagination>
-                )}
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-xl text-center shadow-sm"
-                >
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-4">{TEXT_CONSTANTS.CUSTOM_FORMATION_SECTION_TITLE}</h2>
-                  <p className="text-lg text-gray-600 mb-6 max-w-3xl mx-auto">
-                    {TEXT_CONSTANTS.CUSTOM_FORMATION_SECTION_DESCRIPTION}
-                  </p>
-                  <Link to={TEXT_CONSTANTS.CUSTOM_FORMATION_SECTION_LINK}>
+              <AnimatePresence mode="wait">
+                {loading ? (
+                  <motion.div
+                    key="loading-skeletons"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                    className="grid grid-cols-1 gap-8 mb-8"
+                  >
+                    {renderSkeletons()}
+                  </motion.div>
+                ) : error ? (
+                  <motion.div
+                    key="error-message"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                    className="text-center py-12 bg-white rounded-xl shadow-sm border border-gray-100 mb-8"
+                  >
+                    <AlertCircle className="h-12 w-12 mx-auto text-red-400 mb-3" />
+                    <h3 className="text-xl font-medium text-gray-900 mb-2">{TEXT_CONSTANTS.ERROR_STATE_TITLE}</h3>
+                    <p className="text-gray-600">{error}</p>
                     <Button
                       variant="outline"
-                      className="bg-white hover:bg-blue-50 w-full sm:w-auto text-sm sm:text-base"
+                      onClick={refetch}
+                      className="mt-4"
                     >
-                      {TEXT_CONSTANTS.CUSTOM_FORMATION_SECTION_BUTTON_TEXT}
+                      {TEXT_CONSTANTS.ERROR_STATE_BUTTON_TEXT}
                     </Button>
-                  </Link>
-                </motion.div>
-              </div>
+                  </motion.div>
+                ) : formations?.length === 0 ? (
+                  <motion.div
+                    key="empty-state"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                    className="text-center py-12 bg-white rounded-xl shadow-sm border border-gray-100"
+                  >
+                    <Filter className="h-12 w-12 mx-auto text-gray-400 mb-3" />
+                    <h3 className="text-xl font-medium text-gray-900 mb-2">{TEXT_CONSTANTS.EMPTY_STATE_TITLE}</h3>
+                    <p className="text-gray-600">{TEXT_CONSTANTS.EMPTY_STATE_DESCRIPTION}</p>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="formations-list"
+                    initial="initial"
+                    animate="animate"
+                    variants={containerVariants}
+                    className="grid grid-cols-1 gap-8 mb-8"
+                  >
+                    {formations.map((course, index) => (
+                      <FormationCard key={course._id} course={course} index={index} />
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {!loading && !error && formations?.length > 0 && pagination?.pages > 1 && (
+                <Pagination className="my-8">
+                  <PaginationContent className="flex flex-wrap justify-center gap-2">
+                    <PaginationItem>
+                      <PaginationPrevious
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (pagination.offset > 0) {
+                            const prevPage = Math.floor(pagination.offset / pagination.limit);
+                            goToPage(prevPage);
+                          }
+                        }}
+                        className={pagination.offset === 0 ? 'pointer-events-none opacity-50' : ''}
+                      />
+                    </PaginationItem>
+
+                    <div className="hidden sm:flex flex-wrap justify-center gap-2">
+                      {Array.from({ length: pagination.pages }, (_, i) => (
+                        <PaginationItem key={i + 1}>
+                          <PaginationLink
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              goToPage(i + 1);
+                            }}
+                            isActive={Math.floor(pagination.offset / pagination.limit) + 1 === i + 1}
+                          >
+                            {i + 1}
+                          </PaginationLink>
+                        </PaginationItem>
+                      ))}
+                    </div>
+
+                    {pagination.pages > 1 && (
+                      <div className="flex sm:hidden flex-wrap justify-center gap-2">
+                          <PaginationItem>
+                              <PaginationLink
+                              href="#"
+                              onClick={(e) => { e.preventDefault(); goToPage(1); }}
+                              isActive={Math.floor(pagination.offset / pagination.limit) + 1 === 1}
+                              >
+                              1
+                              </PaginationLink>
+                          </PaginationItem>
+
+                          {Math.floor(pagination.offset / pagination.limit) + 1 > 2 && (
+                              <PaginationItem>
+                              <span className="px-3 py-1.5 text-gray-500">...</span>
+                              </PaginationItem>
+                          )}
+
+                          {Math.floor(pagination.offset / pagination.limit) + 1 !== 1 &&
+                          Math.floor(pagination.offset / pagination.limit) + 1 !== pagination.pages && (
+                              <PaginationItem>
+                              <PaginationLink
+                                  href="#"
+                                  onClick={(e) => { e.preventDefault(); goToPage(Math.floor(pagination.offset / pagination.limit) + 1); }}
+                                  isActive={true}
+                              >
+                                  {Math.floor(pagination.offset / pagination.limit) + 1}
+                              </PaginationLink>
+                              </PaginationItem>
+                          )}
+
+                          {Math.floor(pagination.offset / pagination.limit) + 1 < pagination.pages - 1 && (
+                              <PaginationItem>
+                              <span className="px-3 py-1.5 text-gray-500">...</span>
+                              </PaginationItem>
+                          )}
+
+                          {pagination.pages > 1 && (
+                              <PaginationItem>
+                              <PaginationLink
+                                  href="#"
+                                  onClick={(e) => { e.preventDefault(); goToPage(pagination.pages); }}
+                                  isActive={Math.floor(pagination.offset / pagination.limit) + 1 === pagination.pages}
+                              >
+                                  {pagination.pages}
+                              </PaginationLink>
+                              </PaginationItem>
+                          )}
+                      </div>
+                    )}
+
+
+                    <PaginationItem>
+                      <PaginationNext
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const currentPage = Math.floor(pagination.offset / pagination.limit) + 1;
+                          if (currentPage < pagination.pages) {
+                            goToPage(currentPage + 1);
+                          }
+                        }}
+                        className={Math.floor(pagination.offset / pagination.limit) + 1 >= pagination.pages ? 'pointer-events-none opacity-50' : ''}
+                      />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              )}
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-xl text-center shadow-sm"
+              >
+                <h2 className="text-2xl font-semibold text-gray-900 mb-4">{TEXT_CONSTANTS.CUSTOM_FORMATION_SECTION_TITLE}</h2>
+                <p className="text-lg text-gray-600 mb-6 max-w-3xl mx-auto">
+                  {TEXT_CONSTANTS.CUSTOM_FORMATION_SECTION_DESCRIPTION}
+                </p>
+                <Link to={TEXT_CONSTANTS.CUSTOM_FORMATION_SECTION_LINK}>
+                  <Button
+                    variant="outline"
+                    className="bg-white hover:bg-blue-50 w-full sm:w-auto text-sm sm:text-base"
+                  >
+                    {TEXT_CONSTANTS.CUSTOM_FORMATION_SECTION_BUTTON_TEXT}
+                  </Button>
+                </Link>
+              </motion.div>
             </div>
-          </section>
-        </CartProvider>
-      </PageLayout>
-    </Suspense>
+          </div>
+        </section>
+      </CartProvider>
+    </PageLayout>
   );
 };
 

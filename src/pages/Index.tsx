@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from 'react';
+import React, { useEffect, useState, lazy } from 'react'; // Removed Suspense from import
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -37,6 +37,7 @@ const TEXT_CONSTANTS = {
 };
 
 const Index = () => {
+  // loadingProgress state is now redundant without Suspense fallback, but kept for context if needed elsewhere.
   const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const Index = () => {
       contactElements[1].id = TEXT_CONSTANTS.CONTACT_FOOTER_ID;
     }
 
-    // Interval for simulating loading progress
+    // Interval for simulating loading progress (can be removed if no longer needed)
     const interval = setInterval(() => {
       setLoadingProgress((prevProgress) => {
         if (prevProgress < TEXT_CONSTANTS.MAX_LOADING_PROGRESS) {
@@ -68,46 +69,26 @@ const Index = () => {
   };
 
   return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="relative w-28 h-28">
-          <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-          <div className="absolute inset-0 rounded-full border-4 border-t-gray-800 border-b-gray-800 border-l-gray-400 border-r-gray-400 animate-spin"></div>
-          <div
-            className="absolute inset-2 rounded-full bg-gray-50 flex items-center justify-center"
-            style={{
-              clipPath: `inset(${100 - loadingProgress}% 0 0 0)`,
-              backgroundColor: 'rgba(0, 0, 0, 0.05)',
-              transition: 'clip-path 0.2s ease-out'
-            }}
-          ></div>
-          <div className="absolute inset-0 flex items-center justify-center text-gray-900 text-2xl font-bold">
-            {loadingProgress}%
-          </div>
-        </div>
-      </div>
-    }>
-      <PageLayout>
-        <SEO
-          title={TEXT_CONSTANTS.SEO_METADATA.TITLE}
-          description={TEXT_CONSTANTS.SEO_METADATA.DESCRIPTION}
-          keywords={TEXT_CONSTANTS.SEO_METADATA.KEYWORDS}
-        />
-        <motion.div
-          variants={pageVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
-          {/* Lazy-loaded components for the main page content */}
-          <Hero />
-          <Features />
-          <WhyWrlds />
-          <Projects />
-          <BlogPreview />
-        </motion.div>
-      </PageLayout>
-    </Suspense>
+    <PageLayout>
+      <SEO
+        title={TEXT_CONSTANTS.SEO_METADATA.TITLE}
+        description={TEXT_CONSTANTS.SEO_METADATA.DESCRIPTION}
+        keywords={TEXT_CONSTANTS.SEO_METADATA.KEYWORDS}
+      />
+      <motion.div
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        {/* Lazy-loaded components for the main page content */}
+        <Hero />
+        <Features />
+        <WhyWrlds />
+        <Projects />
+        <BlogPreview />
+      </motion.div>
+    </PageLayout>
   );
 };
 

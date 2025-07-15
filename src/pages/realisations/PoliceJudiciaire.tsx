@@ -1,14 +1,12 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Network, Repeat, TrendingUp, ShieldCheck } from 'lucide-react';
 import { motion } from "framer-motion";
 import ProjectPageLayout from '@/components/ProjectPageLayout';
 import SEO from '@/components/SEO';
 
 const PoliceJudiciaire = () => {
-  const [loadingProgress, setLoadingProgress] = useState(0);
-  const [isMobile, setIsMobile] = useState(false); // New state for mobile detection
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Constants for text content
   const TEXT_CONSTANTS = {
     FULL_TITLE: "Réhabilitation de l’infrastructure IT de la Police judiciaire",
     MOBILE_TITLE: "Police judiciaire",
@@ -56,33 +54,22 @@ const PoliceJudiciaire = () => {
     ADVANTAGE5_DESC: "Une infrastructure modernisée, plus stable et plus simple à administrer, réduisant les interventions techniques répétées.",
     RESULTS_TITLE: "Résultat",
     RESULTS_PARAGRAPH: "La réhabilitation du réseau informatique du commissariat avait permis d’atteindre un niveau de performance et de fiabilité nettement supérieur. Grâce à une infrastructure modernisée, sécurisée et évolutive, le commissariat avait disposé d’un environnement numérique stable, capable de soutenir efficacement ses missions critiques, avec une réduction notable des interruptions de service et une meilleure gestion des flux d’informations sensibles.",
-    LOADING_SPINNER_ALT: "Animation de chargement",
     MAIN_IMAGE_ALT: "[Image de l'infrastructure IT de la Police judiciaire]",
+    SEO_IMAGE_URL: "/lovable-uploads/img/police.jpg",
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // Function to check if the screen is mobile size
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // You can adjust this breakpoint as needed
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    checkMobile(); // Set initial mobile state
-    window.addEventListener('resize', checkMobile); // Add resize listener
-
-    const interval = setInterval(() => {
-      setLoadingProgress((prevProgress) => {
-        if (prevProgress < 95) {
-          return prevProgress + 5;
-        }
-        return prevProgress;
-      });
-    }, 200);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
     return () => {
-      clearInterval(interval);
-      window.removeEventListener('resize', checkMobile); // Clean up resize listener
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
@@ -92,212 +79,188 @@ const PoliceJudiciaire = () => {
   };
 
   return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="relative w-28 h-28">
-          <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-          <div className="absolute inset-0 rounded-full border-4 border-t-gray-800 border-b-gray-800 border-l-gray-400 border-r-gray-400 animate-spin"></div>
-          <div
-            className="absolute inset-2 rounded-full bg-gray-50 flex items-center justify-center"
-            style={{
-              clipPath: `inset(${100 - loadingProgress}% 0 0 0)`,
-              backgroundColor: 'rgba(0, 0, 0, 0.05)',
-              transition: 'clip-path 0.2s ease-out'
-            }}
-          ></div>
-          <div className="absolute inset-0 flex items-center justify-center text-gray-900 text-2xl font-bold">
-            {loadingProgress}%
-          </div>
-        </div>
-      </div>
-    }>
-      <ProjectPageLayout
-        title={isMobile ? TEXT_CONSTANTS.MOBILE_TITLE : TEXT_CONSTANTS.FULL_TITLE} // Conditional title
-        subtitle={TEXT_CONSTANTS.SUBTITLE}
-        imageUrl={TEXT_CONSTANTS.IMAGE_URL}
-        brandName={TEXT_CONSTANTS.BRAND_NAME}
-        darkMode={true}
-        imageOnError={(e) => {
-          e.currentTarget.onerror = null;
-          e.currentTarget.src = "https://placehold.co/1200x600/000000/FFFFFF?text=Police+Judiciaire";
-          e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
+    <ProjectPageLayout
+      title={isMobile ? TEXT_CONSTANTS.MOBILE_TITLE : TEXT_CONSTANTS.FULL_TITLE}
+      subtitle={TEXT_CONSTANTS.SUBTITLE}
+      imageUrl={TEXT_CONSTANTS.IMAGE_URL}
+      brandName={TEXT_CONSTANTS.BRAND_NAME}
+      darkMode={true}
+      imageOnError={(e) => {
+        e.currentTarget.onerror = null;
+        e.currentTarget.src = "https://placehold.co/1200x600/000000/FFFFFF?text=Police+Judiciaire";
+        e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
+      }}
+    >
+      <SEO
+        title={TEXT_CONSTANTS.SEO_TITLE}
+        description={TEXT_CONSTANTS.SEO_DESCRIPTION}
+        keywords={TEXT_CONSTANTS.SEO_KEYWORDS}
+        imageUrl={TEXT_CONSTANTS.SEO_IMAGE_URL}
+      />
+
+      <h2 className="text-3xl font-bold mb-6 text-gray-900">{TEXT_CONSTANTS.CASE_STUDY_TITLE}</h2>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="bg-gray-100 p-6 rounded-lg shadow-sm mb-8"
+      >
+        <h3 className="text-xl font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.CONTEXT_TITLE}</h3>
+        <p className="text-gray-700 text-justify">
+          {TEXT_CONSTANTS.CONTEXT_PARAGRAPH}
+        </p>
+      </motion.div>
+
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
+      >
+        {TEXT_CONSTANTS.CHALLENGE_TITLE}
+      </motion.h3>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="text-gray-700 text-justify"
+      >
+        {TEXT_CONSTANTS.CHALLENGE_PARAGRAPH}
+      </motion.p>
+
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
+      >
+        {TEXT_CONSTANTS.SOLUTION_TITLE}
+      </motion.h3>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="text-gray-700 text-justify"
+      >
+        {TEXT_CONSTANTS.SOLUTION_INTRO_PARAGRAPH}
+      </motion.p>
+
+      <motion.div
+        className="grid md:grid-cols-2 gap-6 my-8"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: { transition: { staggerChildren: 0.1 } }
         }}
       >
-        <SEO
-          title={TEXT_CONSTANTS.SEO_TITLE}
-          description={TEXT_CONSTANTS.SEO_DESCRIPTION}
-          keywords={TEXT_CONSTANTS.SEO_KEYWORDS}
-          imageUrl="/lovable-uploads/img/police.jpg" // This should probably also be a constant if it's a fixed image
-        />
-
-        <h2 className="text-3xl font-bold mb-6 text-gray-900">{TEXT_CONSTANTS.CASE_STUDY_TITLE}</h2>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-gray-100 p-6 rounded-lg shadow-sm mb-8"
-        >
-          <h3 className="text-xl font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.CONTEXT_TITLE}</h3>
-          <p className="text-gray-700 text-justify">
-            {TEXT_CONSTANTS.CONTEXT_PARAGRAPH}
-          </p>
+        <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start">
+          <Network className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
+          <div>
+            <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_REFONTE_TITLE}</h4>
+            <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_REFONTE_DESC}</p>
+          </div>
         </motion.div>
 
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
-        >
-          {TEXT_CONSTANTS.CHALLENGE_TITLE}
-        </motion.h3>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-gray-700 text-justify"
-        >
-          {TEXT_CONSTANTS.CHALLENGE_PARAGRAPH}
-        </motion.p>
-
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
-        >
-          {TEXT_CONSTANTS.SOLUTION_TITLE}
-        </motion.h3>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-gray-700 text-justify"
-        >
-          {TEXT_CONSTANTS.SOLUTION_INTRO_PARAGRAPH}
-        </motion.p>
-
-        <motion.div
-          className="grid md:grid-cols-2 gap-6 my-8"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.1 } }
-          }}
-        >
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
-          >
-            <Network className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_REFONTE_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_REFONTE_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
-          >
-            <ShieldCheck className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_SECURISATION_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_SECURISATION_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
-          >
-            <Repeat className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_HAUTE_DISPONIBILITE_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_HAUTE_DISPONIBILITE_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
-          >
-            <TrendingUp className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_EVOLUTIVITE_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_EVOLUTIVITE_DESC}</p>
-            </div>
-          </motion.div>
+        <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start">
+          <ShieldCheck className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
+          <div>
+            <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_SECURISATION_TITLE}</h4>
+            <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_SECURISATION_DESC}</p>
+          </div>
         </motion.div>
 
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
-        >
-          {TEXT_CONSTANTS.ADVANTAGES_TITLE}
-        </motion.h3>
-        <motion.div
-          className="space-y-6 mb-8"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.1 } }
-          }}
-        >
-          <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
-            <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
-            <div>
-              <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE1_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE1_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
-            <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
-            <div>
-              <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE2_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE2_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
-            <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
-            <div>
-              <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE3_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE3_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
-            <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
-            <div>
-              <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE4_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE4_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
-            <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
-            <div>
-              <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE5_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE5_DESC}</p>
-            </div>
-          </motion.div>
+        <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start">
+          <Repeat className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
+          <div>
+            <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_HAUTE_DISPONIBILITE_TITLE}</h4>
+            <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_HAUTE_DISPONIBILITE_DESC}</p>
+          </div>
         </motion.div>
 
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
-        >
-          {TEXT_CONSTANTS.RESULTS_TITLE}
-        </motion.h3>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-gray-700 text-justify"
-        >
-          {TEXT_CONSTANTS.RESULTS_PARAGRAPH}
-        </motion.p>
-      </ProjectPageLayout>
-    </Suspense>
+        <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start">
+          <TrendingUp className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
+          <div>
+            <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_EVOLUTIVITE_TITLE}</h4>
+            <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_EVOLUTIVITE_DESC}</p>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
+      >
+        {TEXT_CONSTANTS.ADVANTAGES_TITLE}
+      </motion.h3>
+      <motion.div
+        className="space-y-6 mb-8"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: { transition: { staggerChildren: 0.1 } }
+        }}
+      >
+        <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
+          <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
+          <div>
+            <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE1_TITLE}</h4>
+            <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE1_DESC}</p>
+          </div>
+        </motion.div>
+
+        <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
+          <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
+          <div>
+            <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE2_TITLE}</h4>
+            <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE2_DESC}</p>
+          </div>
+        </motion.div>
+
+        <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
+          <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
+          <div>
+            <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE3_TITLE}</h4>
+            <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE3_DESC}</p>
+          </div>
+        </motion.div>
+
+        <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
+          <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
+          <div>
+            <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE4_TITLE}</h4>
+            <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE4_DESC}</p>
+          </div>
+        </motion.div>
+
+        <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
+          <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
+          <div>
+            <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE5_TITLE}</h4>
+            <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE5_DESC}</p>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
+      >
+        {TEXT_CONSTANTS.RESULTS_TITLE}
+      </motion.h3>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.7 }}
+        className="text-gray-700 text-justify"
+      >
+        {TEXT_CONSTANTS.RESULTS_PARAGRAPH}
+      </motion.p>
+    </ProjectPageLayout>
   );
 };
 

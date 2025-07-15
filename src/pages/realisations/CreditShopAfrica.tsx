@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Camera, MapPin, ShieldCheck, HardDrive, Smartphone } from 'lucide-react';
 import { motion } from "framer-motion";
 import SEO from '@/components/SEO';
@@ -69,7 +69,6 @@ const CreditShopAfrica = () => {
     RESULTS_PARAGRAPH: "Grâce à l'installation de son nouveau système de vidéosurveillance par Zetoun Labs, Credit Shop Africa bénéficie désormais d'une infrastructure de sécurité moderne et fiable. Cette nouvelle installation a considérablement amélioré la capacité de Credit Shop Africa à surveiller ses locaux, à prévenir les risques et à réagir rapidement en cas de besoin, offrant ainsi un environnement de travail plus sûr pour son personnel et une meilleure protection de ses actifs.",
   };
 
-  const [loadingProgress, setLoadingProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -77,29 +76,19 @@ const CreditShopAfrica = () => {
     window.scrollTo(0, 0);
 
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // Assuming 768px as the breakpoint for mobile
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    checkMobile(); // Check on initial render
-    window.addEventListener('resize', checkMobile); // Add event listener for resize
-
-    const progressInterval = setInterval(() => {
-      setLoadingProgress((prevProgress) => {
-        if (prevProgress < 95) {
-          return prevProgress + 5;
-        }
-        return prevProgress;
-      });
-    }, 200);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
     const imageInterval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % TEXT_CONSTANTS.GALLERY_IMAGES.length);
     }, 300000);
 
     return () => {
-      clearInterval(progressInterval);
       clearInterval(imageInterval);
-      window.removeEventListener('resize', checkMobile); // Clean up event listener
+      window.removeEventListener('resize', checkMobile);
     };
   }, [TEXT_CONSTANTS.GALLERY_IMAGES.length]);
 
@@ -108,303 +97,298 @@ const CreditShopAfrica = () => {
     visible: { opacity: 1, y: 0 }
   };
 
+  const solutionItems = [
+    {
+      icon: <Camera className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />,
+      title: TEXT_CONSTANTS.SOLUTION_CAMERAS_TITLE,
+      description: TEXT_CONSTANTS.SOLUTION_CAMERAS_DESC
+    },
+    {
+      icon: <MapPin className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />,
+      title: TEXT_CONSTANTS.SOLUTION_COVERAGE_TITLE,
+      description: TEXT_CONSTANTS.SOLUTION_COVERAGE_DESC
+    },
+    {
+      icon: <ShieldCheck className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />,
+      title: TEXT_CONSTANTS.SOLUTION_MANAGEMENT_TITLE,
+      description: TEXT_CONSTANTS.SOLUTION_MANAGEMENT_DESC
+    },
+    {
+      icon: <HardDrive className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />,
+      title: TEXT_CONSTANTS.SOLUTION_RECORDING_TITLE,
+      description: TEXT_CONSTANTS.SOLUTION_RECORDING_DESC
+    }
+  ];
+
+  const technologyItems = [
+    {
+      icon: <Camera className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />,
+      title: TEXT_CONSTANTS.TECH_CPPLUS_CAMERAS_TITLE,
+      description: TEXT_CONSTANTS.TECH_CPPLUS_CAMERAS_DESC
+    },
+    {
+      icon: <HardDrive className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />,
+      title: TEXT_CONSTANTS.TECH_DVR_TITLE,
+      description: TEXT_CONSTANTS.TECH_DVR_DESC
+    },
+    {
+      icon: <Smartphone className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />,
+      title: TEXT_CONSTANTS.TECH_REMOTE_ACCESS_TITLE,
+      description: TEXT_CONSTANTS.TECH_REMOTE_ACCESS_DESC
+    }
+  ];
+
+  const advantageItems = [
+    {
+      title: TEXT_CONSTANTS.ADVANTAGE1_TITLE,
+      description: TEXT_CONSTANTS.ADVANTAGE1_DESC
+    },
+    {
+      title: TEXT_CONSTANTS.ADVANTAGE2_TITLE,
+      description: TEXT_CONSTANTS.ADVANTAGE2_DESC
+    },
+    {
+      title: TEXT_CONSTANTS.ADVANTAGE3_TITLE,
+      description: TEXT_CONSTANTS.ADVANTAGE3_DESC
+    },
+    {
+      title: TEXT_CONSTANTS.ADVANTAGE4_TITLE,
+      description: TEXT_CONSTANTS.ADVANTAGE4_DESC
+    },
+    {
+      title: TEXT_CONSTANTS.ADVANTAGE5_TITLE,
+      description: TEXT_CONSTANTS.ADVANTAGE5_DESC
+    }
+  ];
+
   const currentImage = TEXT_CONSTANTS.GALLERY_IMAGES?.[currentImageIndex];
   const nextImageIndex = (currentImageIndex + 1) % TEXT_CONSTANTS.GALLERY_IMAGES.length;
   const nextImage = TEXT_CONSTANTS.GALLERY_IMAGES?.[nextImageIndex];
 
   return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="relative w-28 h-28">
-          <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-          <div className="absolute inset-0 rounded-full border-4 border-t-gray-800 border-b-gray-800 border-l-gray-400 border-r-gray-400 animate-spin"></div>
-          <div
-            className="absolute inset-2 rounded-full bg-gray-50 flex items-center justify-center"
-            style={{
-              clipPath: `inset(${100 - loadingProgress}% 0 0 0)`,
-              backgroundColor: 'rgba(0, 0, 0, 0.05)',
-              transition: 'clip-path 0.2s ease-out'
-            }}
-          ></div>
-          <div className="absolute inset-0 flex items-center justify-center text-gray-900 text-2xl font-bold">
-            {loadingProgress}%
-          </div>
-        </div>
-      </div>
-    }>
-      <ProjectPageLayout
-        title={isMobile ? TEXT_CONSTANTS.MOBILE_TITLE : TEXT_CONSTANTS.FULL_TITLE.split(' - ')[0]}
-        subtitle={TEXT_CONSTANTS.SUBTITLE}
+    <ProjectPageLayout
+      title={isMobile ? TEXT_CONSTANTS.MOBILE_TITLE : TEXT_CONSTANTS.FULL_TITLE.split(' - ')[0]}
+      subtitle={TEXT_CONSTANTS.SUBTITLE}
+      imageUrl={TEXT_CONSTANTS.IMAGE_URL}
+      brandName={TEXT_CONSTANTS.BRAND_NAME}
+      darkMode={true}
+      imageOnError={(e) => {
+        e.currentTarget.onerror = null;
+        e.currentTarget.src = "https://placehold.co/1200x600/000000/FFFFFF?text=CreditShopAfrica";
+        e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
+      }}
+    >
+      <SEO
+        title={TEXT_CONSTANTS.FULL_TITLE}
+        description={TEXT_CONSTANTS.SEO_DESCRIPTION}
+        keywords={TEXT_CONSTANTS.SEO_KEYWORDS}
         imageUrl={TEXT_CONSTANTS.IMAGE_URL}
-        brandName={TEXT_CONSTANTS.BRAND_NAME}
-        darkMode={true}
-        imageOnError={(e) => {
-          e.currentTarget.onerror = null;
-          e.currentTarget.src = "https://placehold.co/1200x600/000000/FFFFFF?text=CreditShopAfrica";
-          e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
+      />
+
+      <h2 className="text-3xl font-bold mb-6 text-gray-900">{TEXT_CONSTANTS.CASE_STUDY_TITLE}</h2>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="bg-gray-100 p-6 rounded-lg shadow-sm mb-8"
+      >
+        <h3 className="text-xl font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.CONTEXT_TITLE}</h3>
+        <p className="text-gray-700 text-justify">
+          {TEXT_CONSTANTS.CONTEXT_PARAGRAPH}
+        </p>
+      </motion.div>
+
+      ---
+
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
+      >
+        {TEXT_CONSTANTS.CHALLENGE_TITLE}
+      </motion.h3>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="text-gray-700 text-justify"
+      >
+        {TEXT_CONSTANTS.CHALLENGE_PARAGRAPH}
+      </motion.p>
+
+      ---
+
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
+      >
+        {TEXT_CONSTANTS.SOLUTION_TITLE}
+      </motion.h3>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="text-gray-700 text-justify"
+      >
+        {TEXT_CONSTANTS.SOLUTION_INTRO_PARAGRAPH}
+      </motion.p>
+
+      <motion.div
+        className="grid md:grid-cols-2 gap-6 my-8"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: { transition: { staggerChildren: 0.1 } }
         }}
       >
-        <SEO
-          title={TEXT_CONSTANTS.FULL_TITLE}
-          description={TEXT_CONSTANTS.SEO_DESCRIPTION}
-          keywords={TEXT_CONSTANTS.SEO_KEYWORDS}
-          imageUrl={TEXT_CONSTANTS.IMAGE_URL}
-        />
+        {solutionItems.map((item, i) => (
+          <motion.div
+            key={i}
+            variants={listItemVariants}
+            transition={{ duration: 0.4 }}
+            className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
+          >
+            {item.icon}
+            <div>
+              <h4 className="text-lg font-semibold mb-2 text-gray-800">{item.title}</h4>
+              <p className="text-gray-700 text-justify">{item.description}</p>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
 
-        <h2 className="text-3xl font-bold mb-6 text-gray-900">{TEXT_CONSTANTS.CASE_STUDY_TITLE}</h2>
+      ---
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-gray-100 p-6 rounded-lg shadow-sm mb-8"
-        >
-          <h3 className="text-xl font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.CONTEXT_TITLE}</h3>
-          <p className="text-gray-700 text-justify">
-            {TEXT_CONSTANTS.CONTEXT_PARAGRAPH}
-          </p>
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
+      >
+        {TEXT_CONSTANTS.GALLERY_TITLE}
+      </motion.h3>
+      <motion.div
+        className="my-8 grid grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: { transition: { staggerChildren: 0.1 } }
+        }}
+      >
+        <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="w-full flex flex-col items-center">
+          <img
+            src={currentImage?.src}
+            alt={currentImage?.alt}
+            className="w-full max-w-xs h-auto rounded-lg shadow-md object-cover"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = "https://placehold.co/600x400/000000/FFFFFF?text=Image+indisponible";
+              e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
+            }}
+          />
+          <p className="text-center text-gray-600 text-sm mt-2">{currentImage?.description}</p>
         </motion.div>
 
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
-        >
-          {TEXT_CONSTANTS.CHALLENGE_TITLE}
-        </motion.h3>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-gray-700 text-justify"
-        >
-          {TEXT_CONSTANTS.CHALLENGE_PARAGRAPH}
-        </motion.p>
-
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
-        >
-          {TEXT_CONSTANTS.SOLUTION_TITLE}
-        </motion.h3>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-gray-700 text-justify"
-        >
-          {TEXT_CONSTANTS.SOLUTION_INTRO_PARAGRAPH}
-        </motion.p>
-
-        <motion.div
-          className="grid md:grid-cols-2 gap-6 my-8"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.1 } }
-          }}
-        >
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
-          >
-            <Camera className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_CAMERAS_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_CAMERAS_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
-          >
-            <MapPin className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_COVERAGE_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_COVERAGE_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
-          >
-            <ShieldCheck className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_MANAGEMENT_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_MANAGEMENT_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
-          >
-            <HardDrive className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.SOLUTION_RECORDING_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.SOLUTION_RECORDING_DESC}</p>
-            </div>
-          </motion.div>
+        <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="w-full flex flex-col items-center">
+          <img
+            src={nextImage?.src}
+            alt={nextImage?.alt}
+            className="w-full max-w-xs h-auto rounded-lg shadow-md object-cover"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = "https://placehold.co/600x400/000000/FFFFFF?text=Image+indisponible";
+              e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
+            }}
+          />
+          <p className="text-center text-gray-600 text-sm mt-2">{nextImage?.description}</p>
         </motion.div>
+      </motion.div>
 
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
-        >
-          {TEXT_CONSTANTS.GALLERY_TITLE}
-        </motion.h3>
-        <motion.div
-          className="my-8 grid grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.1 } }
-          }}
-        >
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="w-full flex flex-col items-center">
-            <img
-              src={currentImage?.src}
-              alt={currentImage?.alt}
-              className="w-full max-w-xs h-auto rounded-lg shadow-md object-cover"
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = "https://placehold.co/600x400/000000/FFFFFF?text=Image+indisponible";
-                e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
-              }}
-            />
-            <p className="text-center text-gray-600 text-sm mt-2">{currentImage?.description}</p>
-          </motion.div>
+      ---
 
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="w-full flex flex-col items-center">
-            <img
-              src={nextImage?.src}
-              alt={nextImage?.alt}
-              className="w-full max-w-xs h-auto rounded-lg shadow-md object-cover"
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = "https://placehold.co/600x400/000000/FFFFFF?text=Image+indisponible";
-                e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
-              }}
-            />
-            <p className="text-center text-gray-600 text-sm mt-2">{nextImage?.description}</p>
-          </motion.div>
-        </motion.div>
-
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
-        >
-          {TEXT_CONSTANTS.TECHNOLOGIES_TITLE}
-        </motion.h3>
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-8"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.1 } }
-          }}
-        >
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
+      >
+        {TEXT_CONSTANTS.TECHNOLOGIES_TITLE}
+      </motion.h3>
+      <motion.div
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-8"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: { transition: { staggerChildren: 0.1 } }
+        }}
+      >
+        {technologyItems.map((item, i) => (
+          <motion.div
+            key={i}
+            variants={listItemVariants}
+            transition={{ duration: 0.4 }}
+            className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
           >
-            <Camera className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
+            {item.icon}
             <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.TECH_CPPLUS_CAMERAS_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.TECH_CPPLUS_CAMERAS_DESC}</p>
+              <h4 className="text-lg font-semibold mb-2 text-gray-800">{item.title}</h4>
+              <p className="text-gray-700 text-justify">{item.description}</p>
             </div>
           </motion.div>
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
-          >
-            <HardDrive className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.TECH_DVR_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.TECH_DVR_DESC}</p>
-            </div>
-          </motion.div>
-          <motion.div variants={listItemVariants} transition={{ duration: 0.4 }} className="bg-gray-100 shadow-md rounded-lg p-6 border border-gray-200 flex items-start"
-          >
-            <Smartphone className="h-6 w-6 text-gray-800 mr-3 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{TEXT_CONSTANTS.TECH_REMOTE_ACCESS_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.TECH_REMOTE_ACCESS_DESC}</p>
-            </div>
-          </motion.div>
-        </motion.div>
+        ))}
+      </motion.div>
 
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
-        >
-          {TEXT_CONSTANTS.ADVANTAGES_TITLE}
-        </motion.h3>
-        <motion.div
-          className="space-y-6 mb-8"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.1 } }
-          }}
-        >
-          <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
+      ---
+
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
+      >
+        {TEXT_CONSTANTS.ADVANTAGES_TITLE}
+      </motion.h3>
+      <motion.div
+        className="space-y-6 mb-8"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: { transition: { staggerChildren: 0.1 } }
+        }}
+      >
+        {advantageItems.map((item, i) => (
+          <motion.div key={i} variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
             <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
             <div>
-              <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE1_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE1_DESC}</p>
+              <h4 className="font-semibold text-gray-800">{item.title}</h4>
+              <p className="text-gray-700 text-justify">{item.description}</p>
             </div>
           </motion.div>
+        ))}
+      </motion.div>
 
-          <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
-            <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
-            <div>
-              <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE2_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE2_DESC}</p>
-            </div>
-          </motion.div>
+      ---
 
-          <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
-            <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
-            <div>
-              <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE3_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE3_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
-            <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
-            <div>
-              <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE4_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE4_DESC}</p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={listItemVariants} transition={{ duration: 0.3 }} className="flex items-start">
-            <div className="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-3 mt-1 text-sm font-bold">✓</div>
-            <div>
-              <h4 className="font-semibold text-gray-800">{TEXT_CONSTANTS.ADVANTAGE5_TITLE}</h4>
-              <p className="text-gray-700 text-justify">{TEXT_CONSTANTS.ADVANTAGE5_DESC}</p>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
-        >
-          {TEXT_CONSTANTS.RESULTS_TITLE}
-        </motion.h3>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-gray-700 text-justify">
-          {TEXT_CONSTANTS.RESULTS_PARAGRAPH}
-        </motion.p>
-      </ProjectPageLayout>
-    </Suspense>
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.7 }}
+        className="text-2xl font-semibold mb-4 mt-8 text-gray-900"
+      >
+        {TEXT_CONSTANTS.RESULTS_TITLE}
+      </motion.h3>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        className="text-gray-700 text-justify">
+        {TEXT_CONSTANTS.RESULTS_PARAGRAPH}
+      </motion.p>
+    </ProjectPageLayout>
   );
 };
 
