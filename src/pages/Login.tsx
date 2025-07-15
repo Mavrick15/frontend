@@ -12,10 +12,10 @@ import { useToast } from '@/hooks/use-toast';
 import PageLayout from '@/components/PageLayout';
 import SEO from '@/components/SEO';
 import { motion } from "framer-motion";
+import { ENDPOINTS } from '@/config/api.config';
 
 const TEXT_CONSTANTS = {
   LOGIN_DELAY_MS: 700,
-  API_LOGIN_ENDPOINT: "/api/auth/login",
   NAV_CALENDAR_FORM: '/add/calendar-form',
   NAV_SIGNUP: '/signup',
 
@@ -67,7 +67,7 @@ const Login = () => {
     try {
       await new Promise(resolve => setTimeout(resolve, TEXT_CONSTANTS.LOGIN_DELAY_MS));
 
-      const response = await fetch(TEXT_CONSTANTS.API_LOGIN_ENDPOINT, {
+      const response = await fetch(ENDPOINTS.AUTH.LOGIN, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
