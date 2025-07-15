@@ -154,12 +154,12 @@ const Navbar = () => {
     window.scrollTo(0, 0);
   };
 
-  const linkClasses = (scrolled) => cn(
+  const linkClasses = (scrolled: boolean) => cn(
     navigationMenuTriggerStyle(),
     scrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800"
   );
 
-  const mobileLinkClasses = (scrolled) => cn(
+  const mobileLinkClasses = (scrolled: boolean) => cn(
     "block px-3 py-2 rounded-md",
     scrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-900"
   );

@@ -1,8 +1,13 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
+const COMMON_TEXTS = {
+  SECURITY_DESCRIPTION: (projectName: string) => `Comme pour ${projectName}, nous sommes dédiés à fournir des solutions de sécurité informatique sur mesure qui protègent vos actifs les plus précieux. Que vous soyez une entreprise ou une institution, nous avons l'expertise pour concevoir et déployer des systèmes de surveillance et de protection adaptés à vos besoins spécifiques.`,
+  FORMATION_CALL_TO_ACTION: "Contactez notre équipe des formateurs dès aujourd'hui pour obtenir plus d'informations sur les dates de formation, les tarifs et les modalités d'inscription. Nous sommes là pour vous accompagner.",
+};
+
 const TEXT_CONSTANTS = {
-  DEFAULT_TITLE: "Une question n'hésitez pas à nous contacter !",
+  DEFAULT_TITLE: "Une question, n'hésitez pas à nous contacter !",
   DEFAULT_TEXT: "Nous sommes là pour vous aider à chaque étape. Que ce soit pour un projet, une consultation ou simplement pour discuter de vos besoins, notre équipe est à votre écoute.",
   CONTACT_US_LABEL: "Contactez-nous",
   MAIN_HEADING: "Transformez vos idées en solutions concrètes",
@@ -12,7 +17,7 @@ const TEXT_CONSTANTS = {
   PATH_CONTENT_MAP: {
     '/projects/realisations/eyano-security': {
       title: "Votre Sécurité, Notre Engagement",
-      text: "Comme pour le Centre de Diagnostic EYANO, nous sommes dédiés à fournir des solutions de sécurité informatique sur mesure qui protègent vos actifs les plus précieux. Que vous soyez une entreprise ou une institution, nous avons l'expertise pour concevoir et déployer des systèmes de surveillance et de protection adaptés à vos besoins spécifiques.",
+      text: COMMON_TEXTS.SECURITY_DESCRIPTION("le Centre de Diagnostic EYANO"),
     },
     '/projects/realisations/police-judiciaire': {
       title: "Transformez Votre Infrastructure IT",
@@ -20,7 +25,7 @@ const TEXT_CONSTANTS = {
     },
     '/projects/realisations/credit-shop-africa': {
       title: "Votre sécurité, notre engagement",
-      text: "Comme pour Credit Shop Africa, nous sommes dédiés à fournir des solutions de sécurité informatique sur mesure qui protègent vos actifs les plus précieux. Que vous soyez une entreprise ou une institution, nous avons l'expertise pour concevoir et déployer des systèmes de surveillance et de protection adaptés à vos besoins spécifiques.",
+      text: COMMON_TEXTS.SECURITY_DESCRIPTION("Credit Shop Africa"),
     },
     '/services/network-engineering': {
       title: "Un réseau adapté à vos enjeux",
@@ -48,27 +53,27 @@ const TEXT_CONSTANTS = {
     },
     '/formations/linux-administration': {
       title: "Prêt à devenir un expert en administration système Linux ?",
-      text: "Contactez notre équipe dès aujourd'hui pour obtenir plus d'informations sur les dates de formation, les tarifs et les modalités d'inscription. Nous sommes là pour vous accompagner.",
+      text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
     '/formations/windows-administration': {
       title: "Prêt à devenir un expert en administration système Windows Server ?",
-      text: "Contactez notre équipe des formateurs dès aujourd'hui pour obtenir plus d'informations sur les dates de formation, les tarifs et les modalités d'inscription. Nous sommes là pour vous accompagner.",
+      text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
     '/formations/network-administration': {
       title: "Prêt à devenir un expert en administration réseau cisco ?",
-      text: "Contactez notre équipe des formateurs dès aujourd'hui pour obtenir plus d'informations sur les dates de formation, les tarifs et les modalités d'inscription. Nous sommes là pour vous accompagner.",
+      text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
     '/formations/computer-maintenance': {
       title: "Prêt à devenir un expert en maintenance informatique ?",
-      text: "Contactez notre équipe des formateurs dès aujourd'hui pour obtenir plus d'informations sur les dates de formation, les tarifs et les modalités d'inscription. Nous sommes là pour vous accompagner.",
+      text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
     '/formations/virtualization-training': {
       title: "Prêt à maîtriser la virtualisation pour des infrastructures agiles ?",
-      text: "Contactez notre équipe des formateurs dès aujourd'hui pour obtenir plus d'informations sur les dates de formation, les tarifs et les modalités d'inscription. Nous sommes là pour vous accompagner.",
+      text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
     '/formations/web-development-training': {
       title: "Prêt à devenir un expert en développement web ?",
-      text: "Contactez notre équipe des formateurs dès aujourd'hui pour obtenir plus d'informations sur les dates de formation, les tarifs et les modalités d'inscription. Nous sommes là pour vous accompagner.",
+      text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
   },
 };
