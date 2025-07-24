@@ -9,16 +9,19 @@ const CONSTANTS = {
   SEO_TITLE: "Vidéosurveillance & Sécurité | Installation Caméras - Zetoun Labs",
   SEO_DESCRIPTION: "Protégez vos locaux avec les solutions de vidéosurveillance de Zetoun Labs à Kinshasa : caméras HD, détection de mouvement, stockage sécurisé et intégration avec systèmes d'alarme.",
   SEO_KEYWORDS: [
-    'vidéosurveillance',
-    'sécurité',
-    'installation caméras',
-    'caméra HD',
-    'système d alarme',
-    'contrôle accès',
-    'détection mouvement',
-    'stockage vidéo cloud',
+    'vidéosurveillance Kinshasa',
+    'sécurité Kinshasa',
+    'installation caméras Kinshasa',
+    'caméra HD Kinshasa',
+    'système alarme RDC',
+    'contrôle accès biométrique',
+    'détection mouvement avancée',
+    'stockage vidéo cloud sécurisé',
     'Zetoun Labs Kinshasa',
-    'protection locaux'
+    'protection locaux entreprise',
+    'surveillance à distance',
+    'monitoring vidéo',
+    'systèmes de sécurité intégrés'
   ],
   IMAGE_PATHS: {
     MAIN_HERO: "../lovable-uploads/services/1a.png",
@@ -141,7 +144,7 @@ const VideoSurveillance = () => {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="bg-red-50 p-8 rounded-xl border border-red-100 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <h2 className="text-2xl font-semibold mb-4 text-red-700">{CONSTANTS.MESSAGES.APPROACH_TITLE}</h2>
+                  <h2 id="notre-approche" className="text-2xl font-semibold mb-4 text-red-700">{CONSTANTS.MESSAGES.APPROACH_TITLE}</h2>
                   <p className="text-gray-700 mb-4">
                     {CONSTANTS.MESSAGES.APPROACH_PARA1}
                   </p>
@@ -168,7 +171,7 @@ const VideoSurveillance = () => {
                   transition={{ duration: 0.6, delay: 0.5 }}
                   className="space-y-6"
                 >
-                  <h2 className="text-2xl font-semibold mb-4 text-red-700">{CONSTANTS.MESSAGES.SOLUTIONS_TITLE}</h2>
+                  <h2 id="nos-solutions" className="text-2xl font-semibold mb-4 text-red-700">{CONSTANTS.MESSAGES.SOLUTIONS_TITLE}</h2>
                   <ul className="space-y-4 text-lg">
                     <li className="flex items-start hover:-translate-y-1 transition-transform duration-300">
                       <span className="text-red-500 font-bold mr-3 text-xl">•</span>

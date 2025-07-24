@@ -113,7 +113,8 @@ const DevelopmentProcess = () => {
                 {TEXT_CONSTANTS.INTRO_PARAGRAPH}
               </p>
 
-              ---
+              {/* Remplacé les "---" par une balise <hr /> sémantique */}
+              <hr className="my-12 border-t-2 border-gray-200" />
 
               <div className="relative mt-12">
                 <div className="hidden md:block absolute top-0 left-1/2 w-0.5 h-full bg-gray-200 -translate-x-1/2"></div>
@@ -186,7 +187,8 @@ const DevelopmentProcess = () => {
                 </div>
               </div>
 
-              ---
+              {/* Remplacé les "---" par une balise <hr /> sémantique */}
+              <hr className="my-12 border-t-2 border-gray-200" />
 
               <div className="bg-gray-50 p-8 rounded-lg my-12 border border-gray-100">
                 <h3 className="text-xl font-semibold mb-4">{TEXT_CONSTANTS.DEVELOPMENT_PRINCIPLE_TITLE}</h3>

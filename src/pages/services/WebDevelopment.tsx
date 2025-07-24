@@ -142,7 +142,8 @@ const WebDevelopment = () => {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="space-y-6"
                 >
-                  <h2 className="text-2xl font-semibold mb-4 text-green-700">{CONSTANTS.MESSAGES.OFFER_TITLE}</h2>
+                  {/* Added id for potential sitelink */}
+                  <h2 id="notre-offre-web" className="text-2xl font-semibold mb-4 text-green-700">{CONSTANTS.MESSAGES.OFFER_TITLE}</h2>
                   <ul className="space-y-4 text-lg">
                     <li className="flex items-start hover:-translate-y-1 transition-transform duration-300">
                       <span className="text-green-500 font-bold mr-3 text-xl">•</span>
@@ -202,7 +203,8 @@ const WebDevelopment = () => {
                   className="flex flex-col space-y-8"
                 >
                   <div className="bg-green-50 p-8 rounded-xl border border-green-100 shadow-sm hover:shadow-md transition-shadow">
-                    <h2 className="text-2xl font-semibold mb-4 text-green-700">{CONSTANTS.MESSAGES.METHODOLOGY_TITLE}</h2>
+                    {/* Added id for potential sitelink */}
+                    <h2 id="notre-methodologie" className="text-2xl font-semibold mb-4 text-green-700">{CONSTANTS.MESSAGES.METHODOLOGY_TITLE}</h2>
                     <p className="text-gray-700 mb-4">
                       {CONSTANTS.MESSAGES.METHODOLOGY_PARA1}
                     </p>
@@ -231,6 +233,7 @@ const WebDevelopment = () => {
                 </motion.div>
               </div>
 
+              {/* These cards also represent distinct topics, implicitly supported by their h3 titles */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}

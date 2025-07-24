@@ -34,3 +34,4 @@ sh: ligne 1: vite : commande introuvable
 23:10:30 [vite] hmr update /src/pages/SignUp.tsx, /src/index.css
 23:12:10 [vite] hmr update /src/pages/SignUp.tsx, /src/index.css
 23:13:20 [vite] hmr update /src/pages/Login.tsx, /src/index.css
+23:26:12 [vite] hmr update /src/pages/Login.tsx, /src/index.css

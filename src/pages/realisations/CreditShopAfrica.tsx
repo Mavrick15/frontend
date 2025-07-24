@@ -34,7 +34,7 @@ const CreditShopAfrica = () => {
     CONTEXT_TITLE: "Contexte du projet",
     CONTEXT_PARAGRAPH: "Credit Shop Africa, dans le cadre de l'ouverture ou de la réorganisation de ses locaux, a exprimé le besoin de mettre en place un nouveau système de vidéosurveillance fiable. Contrairement à des projets d'extension, l'objectif ici était d'équiper un espace initial avec une solution de sécurité complète et performante, adaptée à une superficie plus réduite mais nécessitant une surveillance attentive des actifs et du personnel.",
     CHALLENGE_TITLE: "Défi à relever",
-    CHALLENGE_PARAGRAPH: "Le défi consistait à concevoir et à déployer un système de vidéosurveillance efficace pour une surface ciblée, couvrant des zones clés telles que les comptoirs d'accueil, les bureaux et les points d'accès. Il était impératif de garantir une couverture optimale malgré la taille plus petite de l'espace, en assurant une qualité d'image élevée, une capacité d'enregistrement adéquate et une facilité d'accès à la surveillance en temps réel.",
+    CHALLENGE_PARAGRAPH: "Le défi consistait à concevoir et à déployer un système de vidéosurveillance efficace pour une surface ciblée, couvrant des zones clés telles que les comptoirs d'accueil, les bureaux et les points d'accès. Il était impératif d'assurer une couverture optimale malgré la taille plus petite de l'espace, en assurant une qualité d'image élevée, une capacité d'enregistrement adéquate et une facilité d'accès à la surveillance en temps réel.",
     SOLUTION_TITLE: "Solution mise en œuvre",
     SOLUTION_INTRO_PARAGRAPH: "Notre équipe a mis en place une solution de vidéosurveillance sur mesure, en se concentrant sur l'efficacité et la simplicité pour Credit Shop Africa :",
     SOLUTION_CAMERAS_TITLE: "Installation de kits complets de caméras CP+ adaptées",
@@ -42,11 +42,11 @@ const CreditShopAfrica = () => {
     SOLUTION_COVERAGE_TITLE: "Couverture précise des zones clés",
     SOLUTION_COVERAGE_DESC: "Mise en place d'un système de caméras analogiques assurant une surveillance complète des zones les plus importantes, minimisant les angles morts et maximisant la sécurité pour la surface concernée.",
     SOLUTION_MANAGEMENT_TITLE: "Mise en place d'un nouveau système de gestion",
-    SOLUTION_MANAGEMENT_DESC: "Installation d'un système de gestion vidéo (VMS) neuf et intuitif, permettant une surveillance centralisée et une gestion simplifiée de l'ensemble du dispositif de sécurité.",
+    SOLUTION_MANAGEMENT_DESC: "Installation d'un système de gestion vidéo (VMS) neuf et intuitif, permettant une surveillance centralisée et une gestion simplifiée de l'ensemble du dispositif depuis un tableau de bord unique.",
     SOLUTION_RECORDING_TITLE: "Capacité d'enregistrement optimisée",
     SOLUTION_RECORDING_DESC: "Configuration des enregistreurs vidéo numériques (DVR) avec une capacité de stockage suffisante pour conserver les flux vidéo sur une période adaptée aux besoins de CreditShopAfrica.",
     GALLERY_TITLE: "Galerie de photos du projet",
-    GALLERY_IMAGE_PLACEHOLDER_ALT: "Image indisponible",
+    GALLERY_IMAGE_PLACEHOLDER_ALT: "Image indisponible", // Attribut alt plus générique pour le placeholder
     TECHNOLOGIES_TITLE: "Technologies clés utilisées",
     TECH_CPPLUS_CAMERAS_TITLE: "Caméras Analogiques CP+",
     TECH_CPPLUS_CAMERAS_DESC: "Solutions de vidéosurveillance de pointe de la marque CP+, reconnues pour leur qualité d'image et leur fiabilité.",
@@ -82,6 +82,8 @@ const CreditShopAfrica = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
+    // Interval for image gallery rotation (300 seconds = 5 minutes)
+    // Consider reducing this value if you want a faster image rotation, e.g., 5000 for 5 seconds.
     const imageInterval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % TEXT_CONSTANTS.GALLERY_IMAGES.length);
     }, 300000);
@@ -199,7 +201,8 @@ const CreditShopAfrica = () => {
         </p>
       </motion.div>
 
-      ---
+      {/* Remplacé les "---" par une balise <hr /> sémantique */}
+      <hr className="my-12 border-t-2 border-gray-200" />
 
       <motion.h3
         initial={{ opacity: 0, y: 20 }}
@@ -218,7 +221,8 @@ const CreditShopAfrica = () => {
         {TEXT_CONSTANTS.CHALLENGE_PARAGRAPH}
       </motion.p>
 
-      ---
+      {/* Remplacé les "---" par une balise <hr /> sémantique */}
+      <hr className="my-12 border-t-2 border-gray-200" />
 
       <motion.h3
         initial={{ opacity: 0, y: 20 }}
@@ -261,7 +265,8 @@ const CreditShopAfrica = () => {
         ))}
       </motion.div>
 
-      ---
+      {/* Remplacé les "---" par une balise <hr /> sémantique */}
+      <hr className="my-12 border-t-2 border-gray-200" />
 
       <motion.h3
         initial={{ opacity: 0, y: 20 }}
@@ -287,7 +292,7 @@ const CreditShopAfrica = () => {
             onError={(e) => {
               e.currentTarget.onerror = null;
               e.currentTarget.src = "https://placehold.co/600x400/000000/FFFFFF?text=Image+indisponible";
-              e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
+              e.currentTarget.alt = "[Image indisponible]"; // Attribut alt plus générique pour le placeholder
             }}
           />
           <p className="text-center text-gray-600 text-sm mt-2">{currentImage?.description}</p>
@@ -301,14 +306,15 @@ const CreditShopAfrica = () => {
             onError={(e) => {
               e.currentTarget.onerror = null;
               e.currentTarget.src = "https://placehold.co/600x400/000000/FFFFFF?text=Image+indisponible";
-              e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
+              e.currentTarget.alt = "[Image indisponible]"; // Attribut alt plus générique pour le placeholder
             }}
           />
           <p className="text-center text-gray-600 text-sm mt-2">{nextImage?.description}</p>
         </motion.div>
       </motion.div>
 
-      ---
+      {/* Remplacé les "---" par une balise <hr /> sémantique */}
+      <hr className="my-12 border-t-2 border-gray-200" />
 
       <motion.h3
         initial={{ opacity: 0, y: 20 }}
@@ -342,7 +348,8 @@ const CreditShopAfrica = () => {
         ))}
       </motion.div>
 
-      ---
+      {/* Remplacé les "---" par une balise <hr /> sémantique */}
+      <hr className="my-12 border-t-2 border-gray-200" />
 
       <motion.h3
         initial={{ opacity: 0, y: 20 }}
@@ -371,7 +378,8 @@ const CreditShopAfrica = () => {
         ))}
       </motion.div>
 
-      ---
+      {/* Remplacé les "---" par une balise <hr /> sémantique */}
+      <hr className="my-12 border-t-2 border-gray-200" />
 
       <motion.h3
         initial={{ opacity: 0, y: 20 }}
