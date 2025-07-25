@@ -54,3 +54,17 @@ sh: ligne 1: vite : commande introuvable
 10:33:20 [vite] hmr update /src/components/Hero.tsx, /src/index.css
 10:33:54 [vite] hmr update /src/components/Hero.tsx, /src/index.css
 10:35:33 [vite] hmr update /src/components/Hero.tsx, /src/index.css
+12:56:11 [vite] hmr update /src/App.tsx, /src/index.css
+12:56:36 [vite] hmr update /src/App.tsx, /src/index.css
+12:58:11 [vite] hmr update /src/App.tsx, /src/index.css
+13:12:23 [vite] hmr update /src/App.tsx, /src/index.css
+13:13:40 [vite] hmr update /src/App.tsx, /src/index.css
+13:23:53 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+13:23:59 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+13:33:06 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+13:33:10 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+13:33:13 [vite] hmr update /src/index.css, /src/App.tsx
+13:39:38 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+13:39:41 [vite] hmr update /src/index.css, /src/App.tsx
+14:27:26 [vite] hmr update /src/components/Navbar.tsx, /src/index.css
+14:28:43 [vite] hmr update /src/index.css, /src/components/PageLayout.tsx

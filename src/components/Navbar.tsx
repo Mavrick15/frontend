@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X, ChevronDown, Network, Shield, Globe, Server, HeadsetIcon, Sun } from "lucide-react";
+import { Menu, X, ChevronDown, Network, Shield, Globe, Server, HeadsetIcon, Sun, ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from './ui/navigation-menu';
 
-// Text Constants
 const NAV_LINKS = {
   HOME: { text: "Accueil", path: "/" },
   ABOUT: { text: "À propos", path: "/about" },
   NEWS: { text: "Nouveautés", path: "/blog" },
   CONTACT_US: { text: "Contactez-nous", path: "/add/contact-nous" },
+  CART: { text: "Panier", path: "/cart" },
 };
 
 const ACHIEVEMENTS_MENU = {
@@ -139,14 +139,12 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    // Close all sub-menus when the main menu is toggled
     setIsAchievementsOpen(false);
     setIsServicesOpen(false);
     setIsFormationsOpen(false);
   };
 
   const handleMobileNavLinkClick = () => {
-    // Close all menus and scroll to top on mobile navigation link click
     setIsMenuOpen(false);
     setIsAchievementsOpen(false);
     setIsServicesOpen(false);
@@ -196,7 +194,6 @@ const Navbar = () => {
           <div className="hidden md:block">
             <NavigationMenu className={cn(isScrolled ? "" : "text-white")}>
               <NavigationMenuList>
-                {/* Home */}
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
                     <Link to={NAV_LINKS.HOME.path} className={linkClasses(isScrolled)}>
@@ -205,7 +202,6 @@ const Navbar = () => {
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
-                {/* About */}
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
                     <Link to={NAV_LINKS.ABOUT.path} className={linkClasses(isScrolled)}>
@@ -214,7 +210,6 @@ const Navbar = () => {
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
-                {/* Achievements */}
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className={linkClasses(isScrolled)}>
                     {ACHIEVEMENTS_MENU.TITLE}
@@ -235,7 +230,6 @@ const Navbar = () => {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                {/* Services */}
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className={linkClasses(isScrolled)}>
                     {SERVICES_MENU.TITLE}
@@ -243,7 +237,7 @@ const Navbar = () => {
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-4 w-[400px]">
                       {SERVICES_MENU.ITEMS.map((item, index) => {
-                        const Icon = item.icon; // Get the icon component
+                        const Icon = item.icon;
                         return (
                           <li key={index}>
                             <NavigationMenuLink asChild className="flex items-center p-3 space-x-3 rounded-md hover:bg-gray-100 transition-all">
@@ -264,7 +258,6 @@ const Navbar = () => {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                {/* Formations */}
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className={linkClasses(isScrolled)}>
                     {FORMATIONS_MENU.TITLE}
@@ -285,7 +278,6 @@ const Navbar = () => {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                {/* News */}
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
                     <Link to={NAV_LINKS.NEWS.path} className={linkClasses(isScrolled)}>
@@ -293,13 +285,25 @@ const Navbar = () => {
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <Link to={NAV_LINKS.CART.path} className={cn(linkClasses(isScrolled), "relative")}>
+                      <ShoppingCart size={20} />
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+
               </NavigationMenuList>
               <div className={cn("h-6 w-px mx-4", isScrolled ? "bg-gray-300" : "bg-gray-600")}></div>
               <div className="flex items-center "> <UserMenu /> </div>
             </NavigationMenu>
           </div>
 
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-4">
+            <Link to={NAV_LINKS.CART.path} className={cn(isScrolled ? "text-gray-700" : "text-white", "relative")}>
+              <ShoppingCart size={24} />
+            </Link>
             <button onClick={toggleMenu} className={cn("focus:outline-none", isScrolled ? "text-gray-700" : "text-white")}>
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -307,20 +311,16 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div className={cn("md:hidden transition-all duration-300 overflow-hidden w-full", isMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0")}>
         <div className={cn("px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-sm", isScrolled ? "bg-white" : "bg-black")}>
-          {/* Home Mobile */}
           <Link to={NAV_LINKS.HOME.path} className={mobileLinkClasses(isScrolled)} onClick={handleMobileNavLinkClick}>
             {NAV_LINKS.HOME.text}
           </Link>
 
-          {/* About Mobile */}
           <Link to={NAV_LINKS.ABOUT.path} className={mobileLinkClasses(isScrolled)} onClick={handleMobileNavLinkClick}>
             {NAV_LINKS.ABOUT.text}
           </Link>
 
-          {/* Achievements Mobile */}
           <div className="block">
             <button
               onClick={(e) => {
@@ -343,7 +343,6 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Services Mobile */}
           <div className="block">
             <button
               onClick={(e) => {
@@ -366,7 +365,6 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Formations Mobile */}
           <div className="block">
             <button
               onClick={(e) => {
@@ -389,12 +387,15 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* News Mobile */}
           <Link to={NAV_LINKS.NEWS.path} className={mobileLinkClasses(isScrolled)} onClick={handleMobileNavLinkClick}>
             {NAV_LINKS.NEWS.text}
           </Link>
 
-          {/* Contact Us Mobile */}
+          <Link to={NAV_LINKS.CART.path} className={cn(mobileLinkClasses(isScrolled), "flex items-center")} onClick={handleMobileNavLinkClick}>
+            <ShoppingCart size={20} className="mr-2" />
+            {NAV_LINKS.CART.text}
+          </Link>
+
           <Link to={NAV_LINKS.CONTACT_US.path} className={cn("block w-full text-center px-3 py-2 rounded-md", isScrolled ? "text-gray-900 bg-gray-200 hover:bg-gray-300" : "text-white bg-gray-700 hover:bg-gray-600")} onClick={handleMobileNavLinkClick}>
             {NAV_LINKS.CONTACT_US.text}
           </Link>

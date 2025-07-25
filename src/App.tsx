@@ -5,7 +5,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Lazy load page components
 const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const PoliceJudiciaire = lazy(() => import("./pages/realisations/PoliceJudiciaire"));
@@ -32,8 +31,8 @@ const CalendarForm = lazy(() => import("./pages/add/CalendarForm"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const Login = lazy(() => import("./pages/Login"));
 const ProtectedRoute = lazy(() => import("./components/ProtectedRoute"));
+const Cart = lazy(() => import("./pages/Cart"));
 
-// Constants for ErrorBoundary and Suspense fallback messages
 const APP_MESSAGES = {
   ERROR_BOUNDARY_TITLE: "Oups ! Quelque chose s'est mal passé.",
   ERROR_BOUNDARY_P1: "Nous rencontrons un problème pour afficher cette partie de la page.",
@@ -44,27 +43,23 @@ const APP_MESSAGES = {
   MAX_LOADING_PROGRESS: 95,
 };
 
-// ErrorBoundary component to catch JavaScript errors in its child component tree
-class ErrorBoundary extends React.Component<any, { hasError: boolean; error: Error | null; errorInfo: React.ErrorInfo | null }> {
-  constructor(props: any) {
+class ErrorBoundary extends React.Component {
+  constructor(props) {
     super(props);
     this.state = { hasError: false, error: null, errorInfo: null };
   }
 
-  static getDerivedStateFromError(error: Error) {
-    // Update state so the next render will show the fallback UI.
+  static getDerivedStateFromError(error) {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // You can also log the error to an error reporting service
+  componentDidCatch(error, errorInfo) {
     console.error("Erreur détectée par ErrorBoundary:", error, errorInfo);
     this.setState({ error, errorInfo });
   }
 
   render() {
     if (this.state.hasError) {
-      // Fallback UI for errors
       return (
         <div className="flex items-center justify-center min-h-screen bg-red-50 text-red-700 p-4 rounded-lg shadow-md">
           <div className="text-center">
@@ -100,7 +95,6 @@ const App = () => {
   const [queryClient] = useState(() => new QueryClient());
   const [loadingProgress, setLoadingProgress] = useState(0);
 
-  // Effect to simulate loading progress for Suspense fallback
   React.useEffect(() => {
     const interval = setInterval(() => {
       setLoadingProgress((prevProgress) => {
@@ -122,7 +116,6 @@ const App = () => {
         <BrowserRouter>
           <ErrorBoundary>
             <Suspense fallback={
-              // Fallback UI for lazy loaded components
               <div className="flex items-center justify-center min-h-screen bg-white">
                 <div className="relative w-28 h-28">
                   <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
@@ -170,6 +163,7 @@ const App = () => {
                 } />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/cart" element={<Cart />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
