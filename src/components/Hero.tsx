@@ -6,8 +6,13 @@ import { Link } from 'react-router-dom';
 const TEXTS = {
   IMAGE_ALT_PRIMARY: "Bureau moderne de Zetoun Labs avec équipements informatiques et professionnels en discussion à Kinshasa",
   IMAGE_ALT_FALLBACK: "Image de remplacement pour l'arrière-plan de Zetoun Labs",
+  
   HERO_TITLE: "Votre infrastructure, Notre expertise en IT à Kinshasa.",
+  HERO_TITLE_MOBILE: "Expertise IT à Kinshasa.",
+
   HERO_SUBTITLE: "Zetoun Labs offre des services informatiques sur mesure, des formations certifiantes et un support technique fiable pour particuliers et entreprises à Kinshasa, RDC. Nous sommes experts en ingénierie réseau, développement web, cybersécurité, infogérance et installation solaire.",
+  HERO_SUBTITLE_MOBILE: "Services IT sur mesure, formations certifiantes et support technique fiable pour particuliers et entreprises à Kinshasa.", // Version courte pour mobile
+  
   BUTTON_PROJECTS: "Découvrez nos projets IT",
   BUTTON_CONTACT: "Contactez-nous pour vos besoins IT",
 
@@ -78,10 +83,12 @@ const Hero = () => {
           <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center h-full">
             <motion.div className="w-full max-w-4xl text-center" variants={itemVariants}>
               <motion.h1 className="banner-title text-white text-3xl md:text-5xl lg:text-6xl font-bold" variants={itemVariants}>
-                {TEXTS.HERO_TITLE}
+                {/* MODIFIÉ : Affiche le titre court sur mobile, le titre long sinon */}
+                {isMobile ? TEXTS.HERO_TITLE_MOBILE : TEXTS.HERO_TITLE}
               </motion.h1>
               <motion.p className="banner-subtitle text-gray-300 mt-4 md:mt-6 text-sm md:text-base max-w-2xl mx-auto" variants={itemVariants}>
-                {TEXTS.HERO_SUBTITLE}
+                {/* MODIFIÉ : Affiche le sous-titre court sur mobile, le long sinon */}
+                {isMobile ? TEXTS.HERO_SUBTITLE_MOBILE : TEXTS.HERO_SUBTITLE}
               </motion.p>
               <motion.div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-6 md:mt-8 justify-center" variants={itemVariants}>
                 <Link
