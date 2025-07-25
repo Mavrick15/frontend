@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CalendarIcon, MapPin, Clock, Users, UserCircle, Search, Filter, AlertCircle, ArrowLeft, Loader2, DollarSign, ShoppingCart } from "lucide-react";
+import { CalendarIcon, MapPin, Clock, Users, UserCircle, Search, Filter, AlertCircle, ArrowLeft, Loader2, DollarSign, ShoppingCart, Star } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { motion, AnimatePresence } from "framer-motion";
 import PageLayout from '@/components/PageLayout';
@@ -10,7 +10,7 @@ import SEO from '@/components/SEO';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import useFormations, { Formation } from '@/hooks/useFormations';
 import { Skeleton } from "@/components/ui/skeleton";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from "@/components/ui/use-toast";
 import FloatingCart from '@/hooks/FloatingCart';
 import { CartProvider, useCart } from '@/hooks/CartContext';
@@ -42,7 +42,7 @@ const TEXT_CONSTANTS = {
   CUSTOM_FORMATION_SECTION_BUTTON_TEXT: "Demander une formation personnalisée",
   CUSTOM_FORMATION_SECTION_LINK: "/add/contact-nous",
   ICON_CLASS: "h-5 w-5 text-blue-600 mr-3 mt-0.5",
-  CARD_BOTTOM_BORDER_CLASS: "flex flex-wrap items-center justify-end gap-4 border-t border-gray-100 pt-4",
+  CARD_BOTTOM_BORDER_CLASS: "flex flex-wrap items-center justify-between gap-4 border-t border-gray-100 pt-4",
   SEO_TITLE: "Calendrier des formations - Zetoun Labs",
   SEO_DESCRIPTION: "Consultez notre calendrier de formations et trouvez la session qui vous convient.",
   BACK_TO_HOME: "Retour à l'accueil",
@@ -57,14 +57,21 @@ const TEXT_CONSTANTS = {
   AVAILABLE_SEATS_LABEL: "Places disponibles",
   PRICE_LABEL: "Prix",
   INSTRUCTOR_LABEL: "Formateur",
-  ADD_TO_CART_BUTTON: "+",
+  ADD_TO_CART_BUTTON: "+ panier",
   ADD_TO_CART_ICON_ALT: "Ajouter au panier",
   IMAGE_PLACEHOLDER_ALT: "Image de remplacement pour la formation",
+  VIEW_CART_BUTTON: "Voir panier",
+  RATING_LABEL: "Note",
+  REVIEWS_LABEL: "avis",
+  RATING_SUCCESS_TITLE: "Note enregistrée",
+  RATING_SUCCESS_DESCRIPTION: "Vous avez noté cette formation {rating} étoiles.",
 };
 
 const CalendarForm = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+  const [ratings, setRatings] = useState({});
+  const { toast } = useToast();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -85,6 +92,17 @@ const CalendarForm = () => {
     limit: TEXT_CONSTANTS.FORMATIONS_LIMIT_PER_PAGE,
     searchTerm: debouncedSearchTerm
   });
+
+  const handleRatingChange = (courseId, selectedRating) => {
+    setRatings(prevRatings => ({
+      ...prevRatings,
+      [courseId]: selectedRating,
+    }));
+    toast({
+      title: TEXT_CONSTANTS.RATING_SUCCESS_TITLE,
+      description: TEXT_CONSTANTS.RATING_SUCCESS_DESCRIPTION.replace('{rating}', selectedRating),
+    });
+  };
 
   const renderSkeletons = () => {
     return Array(TEXT_CONSTANTS.FORMATIONS_LIMIT_PER_PAGE).fill(0).map((_, index) => (
@@ -233,7 +251,14 @@ const CalendarForm = () => {
                     className="grid grid-cols-1 gap-8 mb-8"
                   >
                     {formations.map((course, index) => (
-                      <FormationCard key={course._id} course={course} index={index} />
+                      <FormationCard
+                        key={course._id}
+                        course={course}
+                        index={index}
+                        toast={toast}
+                        userRating={ratings[course._id] || 0}
+                        onRatingChange={handleRatingChange}
+                      />
                     ))}
                   </motion.div>
                 )}
@@ -369,9 +394,38 @@ const CalendarForm = () => {
   );
 };
 
-const FormationCard = ({ course, index }) => {
+const FormationCard = ({ course, index, toast, userRating, onRatingChange }) => {
   const { addToCart, isCourseInCart, enrollingId } = useCart();
+  const navigate = useNavigate();
   const alreadyInCart = isCourseInCart(course._id);
+
+  const handleViewCart = () => {
+    navigate('/cart');
+  };
+
+  const handleStarClick = (selectedRating) => {
+    onRatingChange(course._id, selectedRating);
+  };
+
+  const displayRating = userRating > 0 ? userRating : 4.5;
+  // Removed displayReviewsCount as it's no longer used in the display string
+  // const displayReviewsCount = userRating > 0 ? 120 + 1 : 120;
+
+  const renderStars = (currentRating, onStarClick) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <Star
+          key={i}
+          className={`h-4 w-4 cursor-pointer ${
+            currentRating >= i ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+          }`}
+          onClick={() => onStarClick(i)}
+        />
+      );
+    }
+    return stars;
+  };
 
   return (
     <motion.div
@@ -461,25 +515,48 @@ const FormationCard = ({ course, index }) => {
               </div>
 
               <div className={TEXT_CONSTANTS.CARD_BOTTOM_BORDER_CLASS}>
-                <Button
-                  onClick={() => addToCart(course._id)}
-                  disabled={alreadyInCart || course.isEnrolled || enrollingId === course._id}
-                  className="relative overflow-hidden group px-4 py-2"
-                >
-                  <span className="relative z-10 flex items-center justify-center">
-                    {enrollingId === course._id ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : alreadyInCart || course.isEnrolled ? (
-                      <ShoppingCart className="h-4 w-4" />
-                    ) : (
-                      <>
-                        <ShoppingCart className="h-4 w-4 mr-1" />
-                        <span className="font-bold text-lg">{TEXT_CONSTANTS.ADD_TO_CART_BUTTON}</span>
-                      </>
-                    )}
-                  </span>
-                  <div className="absolute inset-0 bg-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                </Button>
+                <div className="flex items-center">
+                  <span className="font-medium text-gray-700 mr-2">{TEXT_CONSTANTS.RATING_LABEL}:</span>
+                  <div className="flex items-center">
+                    {renderStars(displayRating, handleStarClick)}
+                  </div>
+                  <span className="text-sm text-gray-500 ml-2">({displayRating.toFixed(1)})</span>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    onClick={() => addToCart(course._id)}
+                    disabled={alreadyInCart || course.isEnrolled || enrollingId === course._id}
+                    className="relative overflow-hidden group px-4 py-2"
+                  >
+                    <span className="relative z-10 flex items-center justify-center">
+                      {enrollingId === course._id ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : alreadyInCart || course.isEnrolled ? (
+                        <>
+                          <ShoppingCart className="h-4 w-4 mr-1" />
+                          <span>Ajouté</span>
+                        </>
+                      ) : (
+                        <>
+                          <ShoppingCart className="h-4 w-4 mr-1" />
+                          <span>{TEXT_CONSTANTS.ADD_TO_CART_BUTTON}</span>
+                        </>
+                      )}
+                    </span>
+                    <div className="absolute inset-0 bg-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                  </Button>
+
+                  <Button
+                    onClick={handleViewCart}
+                    variant="outline"
+                    className="relative overflow-hidden group px-4 py-2 bg-white hover:bg-gray-100 text-blue-600 border-blue-600"
+                  >
+                    <span className="relative z-10 flex items-center justify-center">
+                      <ShoppingCart className="h-4 w-4 mr-1" />
+                      {TEXT_CONSTANTS.VIEW_CART_BUTTON}
+                    </span>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

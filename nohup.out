@@ -68,3 +68,73 @@ sh: ligne 1: vite : commande introuvable
 13:39:41 [vite] hmr update /src/index.css, /src/App.tsx
 14:27:26 [vite] hmr update /src/components/Navbar.tsx, /src/index.css
 14:28:43 [vite] hmr update /src/index.css, /src/components/PageLayout.tsx
+15:57:40 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+15:57:43 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:00:15 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:00:20 [vite] hmr update /src/App.tsx, /src/index.css
+16:05:15 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:05:17 [vite] hmr update /src/App.tsx, /src/index.css
+16:07:41 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:07:46 [vite] hmr update /src/App.tsx, /src/index.css
+16:09:41 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:09:51 [vite] hmr update /src/App.tsx, /src/index.css
+16:25:03 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:25:06 [vite] hmr update /src/App.tsx, /src/index.css
+16:28:55 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:28:57 [vite] hmr update /src/App.tsx, /src/index.css
+16:35:00 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:35:03 [vite] hmr update /src/App.tsx, /src/index.css
+16:41:14 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:41:17 [vite] hmr update /src/App.tsx, /src/index.css
+Error processing file src/pages/add/CalendarForm.tsx: SyntaxError: Unterminated string constant. (531:30)
+    at constructor (/home/rva/Zetoun/frontend/node_modules/@babel/parser/lib/index.js:362:19)
+    at TypeScriptParserMixin.raise (/home/rva/Zetoun/frontend/node_modules/@babel/parser/lib/index.js:3259:19)
+    at TypeScriptParserMixin.jsxReadString (/home/rva/Zetoun/frontend/node_modules/@babel/parser/lib/index.js:6550:20)
+    at TypeScriptParserMixin.getTokenFromCode (/home/rva/Zetoun/frontend/node_modules/@babel/parser/lib/index.js:6835:14)
+    at TypeScriptParserMixin.getTokenFromCode (/home/rva/Zetoun/frontend/node_modules/@babel/parser/lib/index.js:9634:11)
+    at TypeScriptParserMixin.nextToken (/home/rva/Zetoun/frontend/node_modules/@babel/parser/lib/index.js:2443:10)
+    at TypeScriptParserMixin.next (/home/rva/Zetoun/frontend/node_modules/@babel/parser/lib/index.js:2356:10)
+    at TypeScriptParserMixin.eat (/home/rva/Zetoun/frontend/node_modules/@babel/parser/lib/index.js:2360:12)
+    at TypeScriptParserMixin.jsxParseAttribute (/home/rva/Zetoun/frontend/node_modules/@babel/parser/lib/index.js:6700:23)
+    at TypeScriptParserMixin.jsxParseOpeningElementAfterName (/home/rva/Zetoun/frontend/node_modules/@babel/parser/lib/index.js:6714:28) {
+  code: 'BABEL_PARSER_SYNTAX_ERROR',
+  reasonCode: 'UnterminatedString',
+  loc: Position { line: 531, column: 30, index: 24006 },
+  pos: 24006,
+  syntaxPlugin: undefined
+}
+16:41:18 [vite] Internal server error:   x Unterminated string constant
+     ,-[/home/rva/Zetoun/frontend/src/pages/add/CalendarForm.tsx:531:1]
+ 528 |                   <Button
+ 529 |                     onClick={handleViewCart}
+ 530 |                     variant="outline"
+ 531 |                     className="relat
+     :                               ^^^^^^^
+     `----
+  x Unexpected eof
+     ,-[/home/rva/Zetoun/frontend/src/pages/add/CalendarForm.tsx:531:38]
+ 529 |                     onClick={handleViewCart}
+ 530 |                     variant="outline"
+ 531 |                     className="relat
+     `----
+
+
+Caused by:
+    Syntax Error
+  Plugin: vite:react-swc
+  File: /home/rva/Zetoun/frontend/src/pages/add/CalendarForm.tsx
+  
+16:42:36 [vite] hmr update /src/App.tsx, /src/index.css
+16:42:39 [vite] hmr update /src/App.tsx, /src/index.css
+16:52:21 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:52:22 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:52:25 [vite] hmr update /src/App.tsx, /src/index.css
+16:58:18 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:58:22 [vite] hmr update /src/App.tsx, /src/index.css
+17:47:56 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+17:48:00 [vite] hmr update /src/index.css, /src/App.tsx
+17:49:23 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+17:49:28 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+17:50:26 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+17:53:13 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+17:53:17 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
