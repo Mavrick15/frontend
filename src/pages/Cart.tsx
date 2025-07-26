@@ -140,7 +140,6 @@ const Cart = () => {
                     <CardTitle className="text-xl font-bold text-gray-900">{TEXT_CONSTANTS.ORDER_SUMMARY_TITLE}</CardTitle>
                   </CardHeader>
                   <CardContent className="p-6 pt-0">
-                    {/* Changé de h-[200px] à max-h-[200px] pour l'adaptation dynamique */}
                     <div className="space-y-3 mb-4 max-h-[200px] overflow-y-auto pr-2 custom-scrollbar">
                       {cartItems.map((item) => (
                         <div key={item._id + '-summary'} className="flex justify-between text-sm text-gray-700">

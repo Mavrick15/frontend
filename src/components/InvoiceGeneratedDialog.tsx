@@ -33,7 +33,7 @@ const InvoiceGeneratedDialog: React.FC<InvoiceGeneratedDialogProps> = ({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden">
-        <DialogHeader className="bg-gradient-to-r from-orange-500 to-orange-700 p-4 flex flex-row justify-between items-center">
+        <DialogHeader className="bg-gradient-to-r from-gray-700 to-gray-900 p-4 flex flex-row justify-between items-center">
           <DialogTitle className="text-white text-xl flex items-center">
             <FileText className="mr-2 h-6 w-6" /> Facture Générée
           </DialogTitle>
@@ -47,10 +47,10 @@ const InvoiceGeneratedDialog: React.FC<InvoiceGeneratedDialogProps> = ({
           <div className="text-left bg-gray-50 p-4 rounded-lg mb-6">
             <h4 className="font-semibold text-gray-800 mb-2">Détails de la facture</h4>
             
-            <div className="pb-4 mb-4 border-b border-gray-200 space-y-2">
-                {invoiceItems.map((item) => (
+            <div className="pb-4 mb-4 border-b border-gray-200 space-y-2 overflow-y-auto max-h-[80px] pr-2">
+                {invoiceItems.map((item, index) => ( // Ajout de 'index' ici
                     <div key={item._id} className="flex justify-between items-center text-gray-700 text-sm">
-                        <span>{item.title}</span>
+                        <span>{index + 1}. {item.title}</span> {/* Affichage du numéro d'ordre */}
                         <span className="font-medium">
                             {item.price === 0 ? "Gratuit" : `${(item.price * (item.quantity || 1)).toFixed(2)}$`}
                         </span>
@@ -67,7 +67,7 @@ const InvoiceGeneratedDialog: React.FC<InvoiceGeneratedDialogProps> = ({
             </div>
             
             <div className="col-span-2 text-right text-lg font-bold text-gray-900 mt-2">
-                Montant TTC: <span className="text-green-600">{totalAmount.toFixed(2)}$</span>
+                Montant : <span className="text-gray-700">{totalAmount.toFixed(2)}$</span>
             </div>
           </div>
 
