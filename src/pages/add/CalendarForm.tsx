@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CalendarIcon, MapPin, Clock, Users, UserCircle, Search, Filter, AlertCircle, ArrowLeft, Loader2, DollarSign, ShoppingCart, Star } from "lucide-react";
+import { CalendarIcon, MapPin, Clock, Users, UserCircle, Search, Filter, AlertCircle, ArrowLeft, DollarSign, ShoppingCart, Star } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { motion, AnimatePresence } from "framer-motion";
 import PageLayout from '@/components/PageLayout';
@@ -12,8 +12,7 @@ import useFormations, { Formation } from '@/hooks/useFormations';
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from "@/components/ui/use-toast";
-import FloatingCart from '@/hooks/FloatingCart';
-import { CartProvider, useCart } from '@/hooks/CartContext';
+import { useCart, CartItem as ICartItem } from '@/hooks/CartContext';
 
 const containerVariants = {
   initial: { opacity: 0 },
@@ -59,18 +58,19 @@ const TEXT_CONSTANTS = {
   INSTRUCTOR_LABEL: "Formateur",
   ADD_TO_CART_BUTTON: "+ panier",
   ADD_TO_CART_ICON_ALT: "Ajouter au panier",
-  IMAGE_PLACEHOLDER_ALT: "Image de remplacement pour la formation",
   VIEW_CART_BUTTON: "Voir panier",
   RATING_LABEL: "Note",
   REVIEWS_LABEL: "avis",
   RATING_SUCCESS_TITLE: "Note enregistrée",
   RATING_SUCCESS_DESCRIPTION: "Vous avez noté cette formation {rating} étoiles.",
+  ADD_TO_CART_SUCCESS: "Formation ajoutée au panier !",
+  ALREADY_IN_CART: "Cette formation est déjà dans votre panier.",
 };
 
 const CalendarForm = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
-  const [ratings, setRatings] = useState({});
+  const [ratings, setRatings] = useState<{ [key: string]: number }>({});
   const { toast } = useToast();
 
   useEffect(() => {
@@ -93,14 +93,14 @@ const CalendarForm = () => {
     searchTerm: debouncedSearchTerm
   });
 
-  const handleRatingChange = (courseId, selectedRating) => {
+  const handleRatingChange = (courseId: string, selectedRating: number) => {
     setRatings(prevRatings => ({
       ...prevRatings,
       [courseId]: selectedRating,
     }));
     toast({
       title: TEXT_CONSTANTS.RATING_SUCCESS_TITLE,
-      description: TEXT_CONSTANTS.RATING_SUCCESS_DESCRIPTION.replace('{rating}', selectedRating),
+      description: TEXT_CONSTANTS.RATING_SUCCESS_DESCRIPTION.replace('{rating}', selectedRating.toString()),
     });
   };
 
@@ -147,7 +147,6 @@ const CalendarForm = () => {
         title={TEXT_CONSTANTS.SEO_TITLE}
         description={TEXT_CONSTANTS.SEO_DESCRIPTION}
       />
-      <CartProvider allFormations={formations}>
         <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto">
             <div className="max-w-6xl mx-auto">
@@ -194,8 +193,6 @@ const CalendarForm = () => {
                   </div>
                 </div>
               </div>
-
-              <FloatingCart allFormations={formations} />
 
               <AnimatePresence mode="wait">
                 {loading ? (
@@ -389,29 +386,52 @@ const CalendarForm = () => {
             </div>
           </div>
         </section>
-      </CartProvider>
     </PageLayout>
   );
 };
 
-const FormationCard = ({ course, index, toast, userRating, onRatingChange }) => {
-  const { addToCart, isCourseInCart, enrollingId } = useCart();
+interface FormationCardProps {
+  course: Formation;
+  index: number;
+  toast: any;
+  userRating: number;
+  onRatingChange: (courseId: string, rating: number) => void;
+}
+
+const FormationCard = ({ course, index, toast, userRating, onRatingChange }: FormationCardProps) => {
   const navigate = useNavigate();
+  const { addToCart, isCourseInCart } = useCart();
   const alreadyInCart = isCourseInCart(course._id);
+
+  const handleAddToCart = () => {
+    const itemToAdd: ICartItem = {
+      _id: course._id,
+      title: course.title,
+      price: course.price,
+      image: course.image,
+      formateur: course.instructor,
+      level: course.level,
+      duration: course.duration,
+    };
+
+    addToCart(itemToAdd);
+    toast({
+      title: alreadyInCart ? TEXT_CONSTANTS.ALREADY_IN_CART : TEXT_CONSTANTS.ADD_TO_CART_SUCCESS,
+      description: alreadyInCart ? `${course.title} est déjà dans votre panier.` : `${course.title} a été ajoutée à votre panier.`,
+    });
+  };
 
   const handleViewCart = () => {
     navigate('/cart');
   };
 
-  const handleStarClick = (selectedRating) => {
+  const handleStarClick = (selectedRating: number) => {
     onRatingChange(course._id, selectedRating);
   };
 
   const displayRating = userRating > 0 ? userRating : 4.5;
-  // Removed displayReviewsCount as it's no longer used in the display string
-  // const displayReviewsCount = userRating > 0 ? 120 + 1 : 120;
 
-  const renderStars = (currentRating, onStarClick) => {
+  const renderStars = (currentRating: number, onStarClick: (rating: number) => void) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       stars.push(
@@ -446,7 +466,7 @@ const FormationCard = ({ course, index, toast, userRating, onRatingChange }) => 
                 onError={(e) => {
                   e.currentTarget.onerror = null;
                   e.currentTarget.src = `https://placehold.co/300x200/e2e8f0/64748b?text=${course.title.split(' ').map(n => n[0]).join('')}`;
-                  e.currentTarget.alt = TEXT_CONSTANTS.IMAGE_PLACEHOLDER_ALT;
+                  e.currentTarget.alt = "Image placeholder";
                 }}
               />
               <div className="absolute top-4 left-4">
@@ -456,7 +476,9 @@ const FormationCard = ({ course, index, toast, userRating, onRatingChange }) => 
               </div>
               <div className="absolute bottom-4 left-4 right-4 md:hidden">
                 <div className="bg-white/95 backdrop-blur-sm rounded-lg p-3">
-                  <p className="font-semibold text-blue-600">{typeof course.price === 'number' ? `${course.price.toFixed(2)}$` : course.price}</p>
+                  <p className="font-semibold text-blue-600">
+                    {course.price === 0 ? "Gratuit" : typeof course.price === 'number' ? `${course.price.toFixed(2)}$` : course.price}
+                  </p>
                   <p className="text-sm text-gray-700">{course.seats} places disponibles</p>
                 </div>
               </div>
@@ -502,7 +524,9 @@ const FormationCard = ({ course, index, toast, userRating, onRatingChange }) => 
                   <DollarSign className={TEXT_CONSTANTS.ICON_CLASS} />
                   <div>
                     <p className="font-medium">{TEXT_CONSTANTS.PRICE_LABEL}</p>
-                    <p className="text-gray-700">{typeof course.price === 'number' ? `${course.price.toFixed(2)}$` : course.price}</p>
+                    <p className="text-gray-700">
+                      {course.price === 0 ? "Gratuit" : typeof course.price === 'number' ? `${course.price.toFixed(2)}$` : course.price}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -524,14 +548,12 @@ const FormationCard = ({ course, index, toast, userRating, onRatingChange }) => 
                 </div>
                 <div className="flex gap-2">
                   <Button
-                    onClick={() => addToCart(course._id)}
-                    disabled={alreadyInCart || course.isEnrolled || enrollingId === course._id}
+                    onClick={handleAddToCart}
+                    disabled={alreadyInCart}
                     className="relative overflow-hidden group px-4 py-2"
                   >
                     <span className="relative z-10 flex items-center justify-center">
-                      {enrollingId === course._id ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                      ) : alreadyInCart || course.isEnrolled ? (
+                      {alreadyInCart ? (
                         <>
                           <ShoppingCart className="h-4 w-4 mr-1" />
                           <span>Ajouté</span>

@@ -1,199 +1,194 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCart } from '@/hooks/CartContext';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { ArrowLeft, ShoppingCart, Trash2, UserCircle, Star, Clock, ListOrdered, CreditCard } from 'lucide-react';
 import PageLayout from '@/components/PageLayout';
 import SEO from '@/components/SEO';
-import { motion } from "framer-motion";
 
 const TEXT_CONSTANTS = {
-  NAV_HOME: '/',
-  NAV_FORMATIONS: '/add/calendar-form',
-
-  MESSAGES: {
-    PAGE_TITLE: "Mon Panier - Zetoun Labs",
-    PAGE_DESCRIPTION: "Visualisez et gérez les articles de votre panier.",
-    HEADING: "Mon Panier",
-    SUBHEADING: "Les articles que vous avez ajoutés",
-    EMPTY_CART: "Votre panier est vide",
-    EMPTY_CART_SUBTEXT: "Découvrez nos cours et formations pour commencer votre apprentissage",
-    RETURN_TO_HOME: "Retour à l'accueil",
-    RETURN_TO_FORMATIONS: "Retour aux formations",
-    ITEM_NAME: "Nom de l'article",
-    ITEM_PRICE: "Prix",
-    ITEM_QUANTITY: "Quantité",
-    ITEM_TOTAL: "Total",
-    TOTAL_AMOUNT: "Montant total",
-    CHECKOUT_BUTTON: "Passer à la caisse",
-  },
+  SEO_TITLE: "Votre panier - Zetoun Labs",
+  SEO_DESCRIPTION: "Consultez et gérez les formations dans votre panier.",
+  CART_TITLE: "Mon panier",
+  CART_SUBTITLE: "{count} article(s) dans votre panier",
+  EMPTY_CART_TITLE: "Votre panier est vide.",
+  EMPTY_CART_DESCRIPTION: "Ajoutez des formations depuis le calendrier pour commencer.",
+  GO_TO_CALENDAR_BUTTON: "Aller au calendrier des formations",
+  CONTINUE_SHOPPING_BUTTON: "Continuer les achats",
+  ORDER_SUMMARY_TITLE: "Résumé de la commande",
+  TOTAL_LABEL: "Total",
+  CHECKOUT_BUTTON: "Procéder au paiement",
+  REMOVE_ITEM_BUTTON: "Supprimer",
+  CLEAR_CART_BUTTON: "Vider le panier",
+  BACK_TO_HOME: "Retour à l'accueil",
+  PRICE_LABEL: "Prix",
+  FORMATEUR_LABEL: "Instructeur",
+  LEVEL_LABEL: "Niveau",
+  DURATION_LABEL: "Durée",
+  DELIVERY_FEES_LABEL: "Frais de livraison calculés à l'étape suivante",
 };
 
 const Cart = () => {
+  const { cartItems, removeFromCart, clearCart, getCartTotal } = useCart();
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState([]);
 
-  const calculateTotal = () => {
-    return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const handleRemoveClick = (itemId: string) => {
+    removeFromCart(itemId);
   };
 
-  const handleReturnToHome = () => {
-    navigate(TEXT_CONSTANTS.NAV_HOME);
-  };
-
-  const handleReturnToFormations = () => {
-    navigate(TEXT_CONSTANTS.NAV_FORMATIONS);
-  };
-
-  const handleCheckout = () => {
-    console.log("Procédure de paiement avec les articles :", cartItems);
-    setCartItems([]);
-    navigate(TEXT_CONSTANTS.NAV_HOME);
-    alert("Votre commande a été passée avec succès !");
+  const handleClearCart = () => {
+    clearCart();
   };
 
   return (
-    <PageLayout showContact={false}>
+    <PageLayout>
       <SEO
-        title={TEXT_CONSTANTS.MESSAGES.PAGE_TITLE}
-        description={TEXT_CONSTANTS.MESSAGES.PAGE_DESCRIPTION}
+        title={TEXT_CONSTANTS.SEO_TITLE}
+        description={TEXT_CONSTANTS.SEO_DESCRIPTION}
       />
+      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50 min-h-screen">
+        <div className="container mx-auto max-w-6xl">
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="pt-24 pb-16 py-16 px-4 sm:px-6 lg:px-8 min-h-[80vh] flex flex-col items-center justify-center bg-gray-50"
-      >
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="w-full max-w-2xl space-y-8"
-        >
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{TEXT_CONSTANTS.CART_TITLE}</h1>
+            <p className="text-gray-600">{TEXT_CONSTANTS.CART_SUBTITLE.replace('{count}', cartItems.length.toString())}</p>
+          </div>
+
           {cartItems.length === 0 ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center py-20"
-            >
-              <div className="mb-6">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-24 h-24 text-gray-400 mx-auto"
-                >
-                  <circle cx="9" cy="21" r="1" />
-                  <circle cx="20" cy="21" r="1" />
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                </svg>
-              </div>
-              <p className="text-gray-900 text-3xl font-bold mb-2">
-                {TEXT_CONSTANTS.MESSAGES.EMPTY_CART}
-              </p>
-              <p className="text-gray-600 text-lg mb-8">
-                {TEXT_CONSTANTS.MESSAGES.EMPTY_CART_SUBTEXT}
-              </p>
-              <div className="flex space-x-4">
-                <Button
-                  onClick={handleReturnToHome}
-                  className="px-6 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-md shadow-md"
-                >
-                  {TEXT_CONSTANTS.MESSAGES.RETURN_TO_HOME}
-                </Button>
-                <Button
-                  onClick={handleReturnToFormations}
-                  variant="outline"
-                  className="px-6 py-3 border border-gray-300 text-gray-700 hover:bg-gray-100 rounded-md shadow-sm"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-4 h-4 mr-2"
-                  >
-                    <path d="M19 12H5" />
-                    <path d="M12 19l-7-7 7-7" />
-                  </svg>
-                  {TEXT_CONSTANTS.MESSAGES.RETURN_TO_FORMATIONS}
-                </Button>
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-8 rounded-xl shadow-sm border border-gray-100"
-            >
-              <div className="text-center mb-6">
-                <h1 className="text-3xl font-bold text-gray-900 font-space">
-                  {TEXT_CONSTANTS.MESSAGES.HEADING}
-                </h1>
-                <p className="mt-2 text-sm text-gray-600">
-                  {TEXT_CONSTANTS.MESSAGES.SUBHEADING}
-                </p>
-              </div>
-              <div className="space-y-6">
-                <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          {TEXT_CONSTANTS.MESSAGES.ITEM_NAME}
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          {TEXT_CONSTANTS.MESSAGES.ITEM_PRICE}
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          {TEXT_CONSTANTS.MESSAGES.ITEM_QUANTITY}
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          {TEXT_CONSTANTS.MESSAGES.ITEM_TOTAL}
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {cartItems.map((item) => (
-                        <tr key={item.id}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            {item.name}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            ${item.price.toFixed(2)}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {item.quantity}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            ${(item.price * item.quantity).toFixed(2)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <div className="flex justify-end items-center pt-4 border-t border-gray-200">
-                  <p className="text-lg font-bold text-gray-900 mr-4">
-                    {TEXT_CONSTANTS.MESSAGES.TOTAL_AMOUNT}: ${calculateTotal().toFixed(2)}
-                  </p>
-                  <Button onClick={handleCheckout} className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white">
-                    {TEXT_CONSTANTS.MESSAGES.CHECKOUT_BUTTON}
+            <Card className="shadow-lg border-none">
+              <CardContent className="p-6">
+                <div className="text-center py-12">
+                  <ListOrdered className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+                  <h3 className="text-2xl font-semibold text-gray-800 mb-2">{TEXT_CONSTANTS.EMPTY_CART_TITLE}</h3>
+                  <p className="text-gray-600 mb-6">{TEXT_CONSTANTS.EMPTY_CART_DESCRIPTION}</p>
+                  <Button onClick={() => navigate('/add/calendar-form')} className="bg-blue-600 hover:bg-blue-700 transition-colors">
+                    {TEXT_CONSTANTS.GO_TO_CALENDAR_BUTTON}
                   </Button>
                 </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="md:col-span-2">
+                <Card className="shadow-lg border-none">
+                  <CardContent className="p-6">
+                    <div className="space-y-6 h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                      {cartItems.map((item) => (
+                        <div key={item._id} className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-4 border-b last:border-b-0">
+                          <div className="flex items-start sm:items-center space-x-4 w-full sm:w-auto">
+                            {item.image && (
+                              <img
+                                src={item.image}
+                                alt={item.title}
+                                className="w-24 h-24 object-cover rounded-md shadow-sm flex-shrink-0"
+                                onError={(e) => {
+                                  e.currentTarget.onerror = null;
+                                  e.currentTarget.src = `https://placehold.co/96x96/e2e8f0/64748b?text=${item.title.split(' ').map(n => n[0]).join('')}`;
+                                  e.currentTarget.alt = "Image placeholder";
+                                }}
+                              />
+                            )}
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-lg font-semibold text-gray-800 truncate mb-1">{item.title}</h4>
+                              {item.formateur && (
+                                <p className="text-sm text-gray-600 flex items-center mb-0.5">
+                                  {TEXT_CONSTANTS.FORMATEUR_LABEL}: {item.formateur}
+                                </p>
+                              )}
+                              {item.level && (
+                                  <p className="text-sm text-gray-600 flex items-center mb-0.5">
+                                      {TEXT_CONSTANTS.LEVEL_LABEL}: {item.level}
+                                  </p>
+                              )}
+                              {item.duration && (
+                                  <p className="text-sm text-gray-600 flex items-center">
+                                      {TEXT_CONSTANTS.DURATION_LABEL}: {item.duration}
+                                  </p>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="flex items-center space-x-4 mt-4 sm:mt-0 w-full sm:w-auto justify-between sm:justify-end">
+                            <p className="font-bold text-gray-800 min-w-[70px] text-right">
+                              {item.price === 0 ? "Gratuit" : typeof item.price === 'number' ? `${item.price.toFixed(2)}$` : item.price}
+                            </p>
+                            <Button
+                              variant="destructive"
+                              size="sm"
+                              onClick={() => handleRemoveClick(item._id)}
+                              className="ml-4 px-3 py-1.5 text-xs sm:text-sm"
+                              title={TEXT_CONSTANTS.REMOVE_ITEM_BUTTON}
+                            >
+                              <Trash2 className="mr-1 h-4 w-4" />
+                              {TEXT_CONSTANTS.REMOVE_ITEM_BUTTON}
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                  </CardContent>
+                </Card>
               </div>
-            </motion.div>
+
+              <div className="md:col-span-1">
+                <Card className="shadow-lg border-none">
+                  <CardHeader className="p-6 pb-4">
+                    <CardTitle className="text-xl font-bold text-gray-900">{TEXT_CONSTANTS.ORDER_SUMMARY_TITLE}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-6 pt-0">
+                    {/* Ajout des classes h-[200px] overflow-y-auto pr-2 custom-scrollbar ici */}
+                    <div className="space-y-3 mb-4 h-[200px] overflow-y-auto pr-2 custom-scrollbar">
+                      {cartItems.map((item) => (
+                        <div key={item._id + '-summary'} className="flex justify-between text-sm text-gray-700">
+                          <span>{item.title}</span>
+                          <span>
+                            {item.price === 0 ? "Gratuit" : typeof item.price === 'number' ? `${item.price.toFixed(2)}$` : item.price}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <Separator className="my-4" />
+                    <div className="flex justify-between items-center text-lg font-bold text-gray-900 mb-2">
+                      <span>{TEXT_CONSTANTS.TOTAL_LABEL}</span>
+                      <span>{getCartTotal().toFixed(2)}$</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mb-6">{TEXT_CONSTANTS.DELIVERY_FEES_LABEL}</p>
+                    <Button
+                      onClick={() => console.log("Procéder au paiement")}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition-colors"
+                    >
+                      <CreditCard className="mr-2 h-5 w-5" />
+                      {TEXT_CONSTANTS.CHECKOUT_BUTTON}
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           )}
-        </motion.div>
-      </motion.div>
+
+          <div className="flex justify-between mt-8">
+            <Link to="/calendar">
+              <Button variant="outline" className="flex items-center text-gray-700 hover:text-gray-900 hover:bg-gray-100">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                {TEXT_CONSTANTS.CONTINUE_SHOPPING_BUTTON}
+              </Button>
+            </Link>
+            {cartItems.length > 0 && (
+              <Button
+                variant="destructive"
+                onClick={handleClearCart}
+                className="flex items-center"
+              >
+                <Trash2 className="mr-2 h-4 w-4" />
+                {TEXT_CONSTANTS.CLEAR_CART_BUTTON}
+              </Button>
+            )}
+          </div>
+        </div>
+      </section>
     </PageLayout>
   );
 };

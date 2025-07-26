@@ -138,3 +138,74 @@ Caused by:
 17:50:26 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
 17:53:13 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
 17:53:17 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+14:58:01 [vite] hmr update /src/hooks/CartContext.jsx
+14:58:08 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css, /src/hooks/FloatingCart.jsx
+14:58:28 [vite] hmr update /src/hooks/CartContext.jsx
+14:58:29 [vite] hmr invalidate /src/hooks/CartContext.jsx Could not Fast Refresh ("useCart" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react-swc#consistent-components-exports
+14:58:29 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css, /src/hooks/FloatingCart.jsx
+14:59:35 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+14:59:39 [vite] hmr update /src/App.tsx, /src/index.css
+14:59:53 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+15:00:14 [vite] hmr update /src/index.css, /src/App.tsx
+15:03:05 [vite] hmr update /src/App.tsx, /src/index.css
+15:03:11 [vite] page reload src/App.tsx
+15:13:47 [vite] hmr update /src/index.css, /src/pages/add/CalendarForm.tsx, /src/App.tsx
+15:13:52 [vite] hmr update /src/index.css, /src/pages/add/CalendarForm.tsx, /src/App.tsx
+15:18:21 [vite] hmr update /src/hooks/CartContext.jsx
+15:18:21 [vite] hmr update /src/hooks/FloatingCart.jsx
+15:18:21 [vite] Pre-transform error: Failed to load url /src/hooks/CartContext.jsx (resolved id: /home/rva/Zetoun/frontend/src/hooks/CartContext.jsx) in /home/rva/Zetoun/frontend/src/pages/add/CalendarForm.tsx. Does the file exist?
+15:18:30 [vite] Pre-transform error: Failed to load url /src/hooks/CartContext.jsx (resolved id: /home/rva/Zetoun/frontend/src/hooks/CartContext.jsx) in /home/rva/Zetoun/frontend/src/pages/add/CalendarForm.tsx. Does the file exist?
+15:19:29 [vite] hmr update /src/App.tsx, /src/index.css
+15:19:36 [vite] page reload src/App.tsx
+15:20:48 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+15:20:52 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+15:24:36 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+15:24:40 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+15:30:14 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+15:30:18 [vite] hmr update /src/App.tsx, /src/index.css
+15:45:51 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+15:45:56 [vite] hmr update /src/App.tsx, /src/index.css
+15:46:30 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+15:46:35 [vite] hmr update /src/index.css, /src/App.tsx
+15:49:46 [vite] hmr update /src/App.tsx, /src/index.css
+15:49:52 [vite] page reload src/App.tsx
+15:50:01 [vite] hmr update /src/App.tsx, /src/index.css
+15:56:05 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+15:56:09 [vite] hmr update /src/index.css, /src/App.tsx
+16:07:06 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:08:38 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:09:51 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:10:04 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:10:05 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:19:05 [vite] hmr update /src/hooks/CartContext.tsx, /src/index.css
+16:19:10 [vite] hmr update /src/index.css, /src/pages/add/CalendarForm.tsx, /src/App.tsx, /src/pages/Cart.tsx
+16:19:20 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:19:37 [vite] hmr update /src/index.css, /src/App.tsx
+16:19:47 [vite] hmr update /src/pages/add/CalendarForm.tsx, /src/index.css
+16:19:59 [vite] hmr update /src/App.tsx, /src/index.css
+16:29:16 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:29:20 [vite] hmr update /src/index.css, /src/App.tsx
+16:31:29 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:31:31 [vite] hmr update /src/index.css, /src/App.tsx
+16:33:08 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:33:10 [vite] hmr update /src/index.css, /src/App.tsx
+16:35:44 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:35:47 [vite] hmr update /src/index.css, /src/App.tsx
+16:36:28 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:36:30 [vite] hmr update /src/index.css, /src/App.tsx
+16:43:43 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:43:47 [vite] hmr update /src/index.css, /src/App.tsx
+16:46:05 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:46:07 [vite] hmr update /src/index.css, /src/App.tsx
+16:48:56 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:48:58 [vite] hmr update /src/index.css, /src/App.tsx
+16:50:46 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:50:48 [vite] hmr update /src/index.css, /src/App.tsx
+16:52:47 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:52:49 [vite] hmr update /src/index.css, /src/App.tsx
+16:54:12 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:55:39 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:55:53 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:56:44 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:58:22 [vite] hmr update /src/pages/Cart.tsx, /src/index.css
+16:58:24 [vite] hmr update /src/pages/Cart.tsx, /src/index.css

@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from './hooks/CartContext';
 
 const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -44,22 +45,22 @@ const APP_MESSAGES = {
 };
 
 class ErrorBoundary extends React.Component {
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
     this.state = { hasError: false, error: null, errorInfo: null };
   }
 
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error("Erreur détectée par ErrorBoundary:", error, errorInfo);
     this.setState({ error, errorInfo });
   }
 
   render() {
-    if (this.state.hasError) {
+    if ((this.state as any).hasError) {
       return (
         <div className="flex items-center justify-center min-h-screen bg-red-50 text-red-700 p-4 rounded-lg shadow-md">
           <div className="text-center">
@@ -76,9 +77,9 @@ class ErrorBoundary extends React.Component {
               <details className="mt-4 text-left p-2 bg-red-100 rounded">
                 <summary>{APP_MESSAGES.ERROR_DETAILS_SUMMARY}</summary>
                 <pre className="whitespace-pre-wrap break-all text-xs">
-                  {this.state.error && this.state.error.toString()}
+                  {(this.state as any).error && (this.state as any).error.toString()}
                   <br />
-                  {this.state.errorInfo && this.state.errorInfo.componentStack}
+                  {(this.state as any).errorInfo && (this.state as any).errorInfo.componentStack}
                 </pre>
               </details>
             )}
@@ -87,7 +88,7 @@ class ErrorBoundary extends React.Component {
       );
     }
 
-    return this.props.children;
+    return (this.props as any).children;
   }
 }
 
@@ -134,38 +135,41 @@ const App = () => {
                 </div>
               </div>
             }>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/projects/realisations/police-judiciaire" element={<PoliceJudiciaire />} />
-                <Route path="/projects/realisations/eyano-security" element={<EyanoSecurity />} />
-                <Route path="/projects/realisations/credit-shop-africa" element={<CreditShopAfrica />} />
-                <Route path="/development-process" element={<DevelopmentProcess />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPostDetail />} />
-                <Route path="/services/network-engineering" element={<NetworkEngineering />} />
-                <Route path="/services/video-surveillance" element={<VideoSurveillance />} />
-                <Route path="/services/web-development" element={<WebDevelopment />} />
-                <Route path="/services/it-management" element={<ITManagement />} />
-                <Route path="/services/technical-support" element={<TechnicalSupport />} />
-                <Route path="/services/solar-installation" element={<SolarInstallation />} />
-                <Route path="/formations/linux-administration" element={<LinuxAdministration />} />
-                <Route path="/formations/windows-administration" element={<WindowsAdministration />} />
-                <Route path="/formations/virtualization-training" element={<VirtualizationTraining />} />
-                <Route path="/formations/network-administration" element={<NetworkAdministration />} />
-                <Route path="/formations/computer-maintenance" element={<ComputerMaintenance />} />
-                <Route path="/add/contact-nous" element={<ContactNous />} />
-                <Route path="/add/calendar-form" element={
-                  <ProtectedRoute>
-                    <CalendarForm />
-                  </ProtectedRoute>
-                } />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+              {/* Le CartProvider doit envelopper les Routes ici */}
+              <CartProvider>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/projects/realisations/police-judiciaire" element={<PoliceJudiciaire />} />
+                  <Route path="/projects/realisations/eyano-security" element={<EyanoSecurity />} />
+                  <Route path="/projects/realisations/credit-shop-africa" element={<CreditShopAfrica />} />
+                  <Route path="/development-process" element={<DevelopmentProcess />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:slug" element={<BlogPostDetail />} />
+                  <Route path="/services/network-engineering" element={<NetworkEngineering />} />
+                  <Route path="/services/video-surveillance" element={<VideoSurveillance />} />
+                  <Route path="/services/web-development" element={<WebDevelopment />} />
+                  <Route path="/services/it-management" element={<ITManagement />} />
+                  <Route path="/services/technical-support" element={<TechnicalSupport />} />
+                  <Route path="/services/solar-installation" element={<SolarInstallation />} />
+                  <Route path="/formations/linux-administration" element={<LinuxAdministration />} />
+                  <Route path="/formations/windows-administration" element={<WindowsAdministration />} />
+                  <Route path="/formations/virtualization-training" element={<VirtualizationTraining />} />
+                  <Route path="/formations/network-administration" element={<NetworkAdministration />} />
+                  <Route path="/formations/computer-maintenance" element={<ComputerMaintenance />} />
+                  <Route path="/add/contact-nous" element={<ContactNous />} />
+                  <Route path="/add/calendar-form" element={
+                    <ProtectedRoute>
+                      <CalendarForm />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/signup" element={<SignUp />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </CartProvider>
             </Suspense>
           </ErrorBoundary>
         </BrowserRouter>

@@ -9,7 +9,7 @@ export interface Formation {
   location: string;
   duration: string;
   instructor: string;
-  price: string; // Keeping as string based on your schema and seeder
+  price: string;
   seats: number;
   level: string;
   image?: string;
@@ -54,11 +54,10 @@ const useFormations = ({
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const abortControllerRef = useRef<AbortController | null>(null);
 
-  // Effect for debouncing search term
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
-    }, 500); // Debounce for 500ms
+    }, 500);
 
     return () => {
       clearTimeout(handler);
@@ -66,7 +65,6 @@ const useFormations = ({
   }, [searchTerm]);
 
   const fetchFormations = useCallback(async (offset: number) => {
-    // Abort any ongoing fetch requests
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
@@ -75,7 +73,7 @@ const useFormations = ({
 
     try {
       setLoading(true);
-      setError(null); // Clear previous errors
+      setError(null);
 
       const params = new URLSearchParams();
       params.append('limit', limit.toString());
@@ -100,8 +98,7 @@ const useFormations = ({
       setPagination(data.pagination);
     } catch (err: any) {
       if (err.name === 'AbortError') {
-        console.log('Fetch aborted:', err.message);
-        return; // Do not set error state if fetch was intentionally aborted
+        return;
       }
       console.error('Erreur lors du chargement des formations:', err);
 
@@ -112,31 +109,29 @@ const useFormations = ({
       } else {
         setError(err.message || 'Une erreur est survenue lors du chargement des formations.');
       }
-      setFormations([]); // Clear formations on error
+      setFormations([]);
     } finally {
       setLoading(false);
-      abortControllerRef.current = null; // Reset controller after fetch completes or aborts
+      abortControllerRef.current = null;
     }
-  }, [limit, debouncedSearchTerm, levelFilter, locationFilter]); // Dependencies for useCallback
+  }, [limit, debouncedSearchTerm, levelFilter, locationFilter]);
 
   const goToPage = useCallback((page: number) => {
     const newOffset = (page - 1) * pagination.limit;
-    if (newOffset !== pagination.offset) { // Only fetch if offset actually changes
+    if (newOffset !== pagination.offset) {
       fetchFormations(newOffset);
     }
   }, [pagination.limit, pagination.offset, fetchFormations]);
 
-  // Initial fetch and re-fetch on filter/limit changes
   useEffect(() => {
     fetchFormations(initialOffset);
 
-    // Cleanup function to abort fetch on unmount
     return () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
     };
-  }, [fetchFormations, initialOffset]); // Dependencies for initial fetch
+  }, [fetchFormations, initialOffset]);
 
   return {
     formations,
@@ -144,7 +139,7 @@ const useFormations = ({
     error,
     pagination,
     goToPage,
-    refetch: () => fetchFormations(pagination.offset), // Refetch current page
+    refetch: () => fetchFormations(pagination.offset),
   };
 };
 
