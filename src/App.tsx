@@ -159,11 +159,7 @@ const App = () => {
                   <Route path="/formations/network-administration" element={<NetworkAdministration />} />
                   <Route path="/formations/computer-maintenance" element={<ComputerMaintenance />} />
                   <Route path="/add/contact-nous" element={<ContactNous />} />
-                  <Route path="/add/calendar-form" element={
-                    <ProtectedRoute>
-                      <CalendarForm />
-                    </ProtectedRoute>
-                  } />
+                  <Route path="/add/calendar-form" element={ <ProtectedRoute> <CalendarForm /> </ProtectedRoute>} />
                   <Route path="/signup" element={<SignUp />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/cart" element={<Cart />} />

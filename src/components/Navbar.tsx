@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from './ui/navigation-menu';
+import { useCart } from '@/hooks/CartContext';
 
 const NAV_LINKS = {
   HOME: { text: "Accueil", path: "/" },
@@ -124,6 +125,9 @@ const Navbar = () => {
   const [isAchievementsOpen, setIsAchievementsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isFormationsOpen, setIsFormationsOpen] = useState(false);
+
+  const { cartItems } = useCart();
+  const cartItemCount = cartItems.length;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -290,6 +294,11 @@ const Navbar = () => {
                   <NavigationMenuLink asChild>
                     <Link to={NAV_LINKS.CART.path} className={cn(linkClasses(isScrolled), "relative")}>
                       <ShoppingCart size={20} />
+                      {cartItemCount > 0 && (
+                        <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-[0.6rem] font-bold rounded-full h-3.5 w-3.5 flex items-center justify-center">
+                          {cartItemCount}
+                        </span>
+                      )}
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
@@ -303,6 +312,11 @@ const Navbar = () => {
           <div className="md:hidden flex items-center space-x-4">
             <Link to={NAV_LINKS.CART.path} className={cn(isScrolled ? "text-gray-700" : "text-white", "relative")}>
               <ShoppingCart size={24} />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 bg-red-500 text-[0.6rem] font-bold rounded-full h-3.5 w-3.5 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
             </Link>
             <button onClick={toggleMenu} className={cn("focus:outline-none", isScrolled ? "text-gray-700" : "text-white")}>
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -394,6 +408,11 @@ const Navbar = () => {
           <Link to={NAV_LINKS.CART.path} className={cn(mobileLinkClasses(isScrolled), "flex items-center")} onClick={handleMobileNavLinkClick}>
             <ShoppingCart size={20} className="mr-2" />
             {NAV_LINKS.CART.text}
+            {cartItemCount > 0 && (
+              <span className="ml-2 bg-red-500 text-[0.6rem] font-bold rounded-full h-3.5 w-3.5 flex items-center justify-center">
+                {cartItemCount}
+              </span>
+            )}
           </Link>
 
           <Link to={NAV_LINKS.CONTACT_US.path} className={cn("block w-full text-center px-3 py-2 rounded-md", isScrolled ? "text-gray-900 bg-gray-200 hover:bg-gray-300" : "text-white bg-gray-700 hover:bg-gray-600")} onClick={handleMobileNavLinkClick}>
