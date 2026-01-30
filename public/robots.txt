@@ -1,0 +1,46 @@
+# Robots.txt pour Zetoun Labs
+# Optimisé pour Google, Bing et autres moteurs de recherche
+
+# Règles pour tous les robots
+User-agent: *
+Allow: /
+Disallow: /add/calendar-form
+Disallow: /signup
+Disallow: /login
+Disallow: /cart
+Disallow: /invoices
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /_next/
+Disallow: /admin/
+
+# Règles spécifiques pour Googlebot
+User-agent: Googlebot
+Allow: /
+Disallow: /add/calendar-form
+Disallow: /signup
+Disallow: /login
+Disallow: /cart
+Disallow: /invoices
+Disallow: /api/
+Crawl-delay: 0
+
+# Règles spécifiques pour Googlebot-Image
+User-agent: Googlebot-Image
+Allow: /lovable-uploads/
+Allow: /public/
+Disallow: /api/
+
+# Règles spécifiques pour Bingbot
+User-agent: Bingbot
+Allow: /
+Disallow: /add/calendar-form
+Disallow: /signup
+Disallow: /login
+Disallow: /cart
+Disallow: /invoices
+Disallow: /api/
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://www.zetounlabs.com/sitemap.xml
