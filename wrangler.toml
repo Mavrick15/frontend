@@ -1,0 +1,5 @@
+name = "frontend"
+compatibility_date = "2026-01-30"
+
+# Déploiement des assets statiques (sortie Vite: ./dist)
+# La commande de déploiement utilise: npx wrangler deploy --assets=./dist
