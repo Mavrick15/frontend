@@ -1,9 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { ENDPOINTS } from '@/config/api.config';
-import { getNetworkErrorMessage, parseApiResponse } from '@/utils/apiMessages';
-import { Users, Briefcase, GraduationCap, Award, Calendar, TrendingUp } from 'lucide-react';
-import type { Statistic, StatisticsResponse } from '@/types/api';
+import { Skeleton } from "@/components/ui/skeleton";
+import { ENDPOINTS } from "@/config/api.config";
+import type { Statistic, StatisticsResponse } from "@/types/api";
+import { getNetworkErrorMessage, parseApiResponse } from "@/utils/apiMessages";
+import { motion } from "framer-motion";
+import {
+  Award,
+  Briefcase,
+  Calendar,
+  GraduationCap,
+  TrendingUp,
+  Users,
+} from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 const TEXT_CONSTANTS = {
   TITLE: "Zetoun Labs en Chiffres",
@@ -46,7 +54,7 @@ const Statistics = () => {
       const res = data as StatisticsResponse;
       setStatistics(res.statistics || []);
     } catch (err) {
-      console.error('Erreur:', err);
+      console.error("Erreur:", err);
       setError(err instanceof Error ? err.message : getNetworkErrorMessage());
     } finally {
       setLoading(false);
@@ -79,8 +87,23 @@ const Statistics = () => {
     return (
       <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-gray-600">{TEXT_CONSTANTS.LOADING}</p>
+          <div className="text-center mb-12">
+            <Skeleton className="h-10 w-72 mx-auto mb-4" />
+            <Skeleton className="h-6 w-96 mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {[1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50"
+              >
+                <Skeleton className="w-16 h-16 rounded-xl mx-auto mb-4" />
+                <div className="space-y-2 text-center">
+                  <Skeleton className="h-10 w-24 mx-auto" />
+                  <Skeleton className="h-5 w-32 mx-auto" />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -130,11 +153,19 @@ const Statistics = () => {
                   <div className="text-center">
                     <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
                       {stat.value.toLocaleString()}
-                      {stat.unit && <span className="text-xl text-gray-600 ml-1">{stat.unit}</span>}
+                      {stat.unit && (
+                        <span className="text-xl text-gray-600 ml-1">
+                          {stat.unit}
+                        </span>
+                      )}
                     </h3>
-                    <p className="text-gray-700 font-bold mb-1 text-base">{stat.label}</p>
+                    <p className="text-gray-700 font-bold mb-1 text-base">
+                      {stat.label}
+                    </p>
                     {stat.description && (
-                      <p className="text-sm text-gray-500 leading-relaxed">{stat.description}</p>
+                      <p className="text-sm text-gray-500 leading-relaxed">
+                        {stat.description}
+                      </p>
                     )}
                   </div>
                 </motion.div>

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { ENDPOINTS } from '@/config/api.config';
-import { getNetworkErrorMessage, parseApiResponse } from '@/utils/apiMessages';
-import { Quote, Star } from 'lucide-react';
-import type { Testimonial, TestimonialsResponse } from '@/types/api';
+import { Skeleton } from "@/components/ui/skeleton";
+import { ENDPOINTS } from "@/config/api.config";
+import type { Testimonial, TestimonialsResponse } from "@/types/api";
+import { getNetworkErrorMessage, parseApiResponse } from "@/utils/apiMessages";
+import { motion } from "framer-motion";
+import { Quote, Star } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const TEXT_CONSTANTS = {
   TITLE: "Ce que disent nos clients",
@@ -27,7 +28,9 @@ const Testimonials = () => {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`${ENDPOINTS.TESTIMONIALS.LIST}?featured=true&limit=6`);
+      const response = await fetch(
+        `${ENDPOINTS.TESTIMONIALS.LIST}?featured=true&limit=6`,
+      );
       const { ok, data, errorMessage } = await parseApiResponse(response);
 
       if (!ok) {
@@ -38,7 +41,7 @@ const Testimonials = () => {
       const res = data as TestimonialsResponse;
       setTestimonials(res.testimonials || []);
     } catch (err) {
-      console.error('Erreur:', err);
+      console.error("Erreur:", err);
       setError(err instanceof Error ? err.message : getNetworkErrorMessage());
     } finally {
       setLoading(false);
@@ -50,9 +53,7 @@ const Testimonials = () => {
       <Star
         key={i}
         className={`w-4 h-4 ${
-          i < rating
-            ? 'text-gray-900 fill-gray-900'
-            : 'text-gray-300'
+          i < rating ? "text-gray-900 fill-gray-900" : "text-gray-300"
         }`}
       />
     ));
@@ -84,8 +85,34 @@ const Testimonials = () => {
     return (
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-gray-600">{TEXT_CONSTANTS.LOADING}</p>
+          <div className="text-center mb-12">
+            <Skeleton className="h-10 w-64 mx-auto mb-4" />
+            <Skeleton className="h-6 w-80 mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div
+                key={i}
+                className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50"
+              >
+                <div className="flex items-start mb-4">
+                  <Skeleton className="w-8 h-8 rounded mr-2" />
+                  <div className="flex gap-1">
+                    {[1, 2, 3, 4, 5].map((j) => (
+                      <Skeleton key={j} className="w-4 h-4 rounded" />
+                    ))}
+                  </div>
+                </div>
+                <Skeleton className="h-20 w-full mb-6" />
+                <div className="flex items-center">
+                  <Skeleton className="w-12 h-12 rounded-full mr-4" />
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-32" />
+                    <Skeleton className="h-3 w-24" />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -133,11 +160,11 @@ const Testimonials = () => {
                     {renderStars(testimonial.rating)}
                   </div>
                 </div>
-                
+
                 <p className="text-gray-700 mb-6 italic line-clamp-4 leading-relaxed">
                   "{testimonial.content}"
                 </p>
-                
+
                 <div className="flex items-center">
                   {testimonial.clientAvatar ? (
                     <img
@@ -151,12 +178,18 @@ const Testimonials = () => {
                     </div>
                   )}
                   <div>
-                    <p className="font-bold text-gray-900">{testimonial.clientName}</p>
+                    <p className="font-bold text-gray-900">
+                      {testimonial.clientName}
+                    </p>
                     {testimonial.clientRole && (
-                      <p className="text-sm text-gray-600 font-medium">{testimonial.clientRole}</p>
+                      <p className="text-sm text-gray-600 font-medium">
+                        {testimonial.clientRole}
+                      </p>
                     )}
                     {testimonial.clientCompany && (
-                      <p className="text-sm text-gray-500">{testimonial.clientCompany}</p>
+                      <p className="text-sm text-gray-500">
+                        {testimonial.clientCompany}
+                      </p>
                     )}
                   </div>
                 </div>
