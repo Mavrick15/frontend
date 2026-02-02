@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { ENDPOINTS } from '@/config/api.config';
+import { ENDPOINTS } from "@/config/api.config";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface Formation {
   _id: string;
@@ -38,9 +38,9 @@ interface UseFormationsProps {
 const useFormations = ({
   limit = 10,
   initialOffset = 0,
-  searchTerm = '',
-  levelFilter = '',
-  locationFilter = '',
+  searchTerm = "",
+  levelFilter = "",
+  locationFilter = "",
 }: UseFormationsProps = {}) => {
   const [formations, setFormations] = useState<Formation[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -64,66 +64,87 @@ const useFormations = ({
     };
   }, [searchTerm]);
 
-  const fetchFormations = useCallback(async (offset: number) => {
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-    }
-    abortControllerRef.current = new AbortController();
-    const signal = abortControllerRef.current.signal;
-
-    try {
-      setLoading(true);
-      setError(null);
-
-      const params = new URLSearchParams();
-      params.append('limit', limit.toString());
-      params.append('offset', offset.toString());
-
-      if (debouncedSearchTerm) params.append('search', debouncedSearchTerm);
-      if (levelFilter) params.append('level', levelFilter);
-      if (locationFilter) params.append('location', locationFilter);
-
-      const response = await fetch(`${ENDPOINTS.FORMATIONS}?${params.toString()}`, { signal });
-
-      if (!response.ok) {
-        const errorBody = await response.json().catch(() => ({ message: 'Erreur inconnue' }));
-        const errorMessage = errorBody.message || `Erreur du serveur (${response.status})`;
-        console.error(`Erreur HTTP ${response.status}:`, errorBody);
-        throw new Error(errorMessage);
+  const fetchFormations = useCallback(
+    async (offset: number) => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
       }
+      abortControllerRef.current = new AbortController();
+      const signal = abortControllerRef.current.signal;
 
-      const data: FormationsResponse = await response.json();
+      try {
+        setLoading(true);
+        setError(null);
 
-      setFormations(data.formations);
-      setPagination(data.pagination);
-    } catch (err: unknown) {
-      if (err instanceof Error && err.name === 'AbortError') {
-        return;
+        const params = new URLSearchParams();
+        params.append("limit", limit.toString());
+        params.append("offset", offset.toString());
+
+        if (debouncedSearchTerm) params.append("search", debouncedSearchTerm);
+        if (levelFilter) params.append("level", levelFilter);
+        if (locationFilter) params.append("location", locationFilter);
+
+        const url = new URL(ENDPOINTS.FORMATIONS);
+        url.search = params.toString();
+        const response = await fetch(url.toString(), { signal });
+
+        if (!response.ok) {
+          const errorBody = await response
+            .json()
+            .catch(() => ({ message: "Erreur inconnue" }));
+          const errorMessage =
+            errorBody.message || `Erreur du serveur (${response.status})`;
+          console.error(`Erreur HTTP ${response.status}:`, errorBody);
+          throw new Error(errorMessage);
+        }
+
+        const data: FormationsResponse = await response.json();
+
+        setFormations(data.formations);
+        setPagination(data.pagination);
+      } catch (err: unknown) {
+        if (err instanceof Error && err.name === "AbortError") {
+          return;
+        }
+        console.error("Erreur lors du chargement des formations:", err);
+
+        if (err instanceof SyntaxError) {
+          setError(
+            "Impossible de lire la réponse du serveur. Format de données inattendu.",
+          );
+        } else if (
+          err instanceof TypeError &&
+          err.message.includes("Failed to fetch")
+        ) {
+          setError("Erreur réseau: Impossible de se connecter au serveur API.");
+        } else if (err instanceof Error) {
+          setError(
+            err.message ||
+              "Une erreur est survenue lors du chargement des formations.",
+          );
+        } else {
+          setError(
+            "Une erreur est survenue lors du chargement des formations.",
+          );
+        }
+        setFormations([]);
+      } finally {
+        setLoading(false);
+        abortControllerRef.current = null;
       }
-      console.error('Erreur lors du chargement des formations:', err);
+    },
+    [limit, debouncedSearchTerm, levelFilter, locationFilter],
+  );
 
-      if (err instanceof SyntaxError) {
-        setError('Impossible de lire la réponse du serveur. Format de données inattendu.');
-      } else if (err instanceof TypeError && err.message.includes('Failed to fetch')) {
-        setError('Erreur réseau: Impossible de se connecter au serveur API.');
-      } else if (err instanceof Error) {
-        setError(err.message || 'Une erreur est survenue lors du chargement des formations.');
-      } else {
-        setError('Une erreur est survenue lors du chargement des formations.');
+  const goToPage = useCallback(
+    (page: number) => {
+      const newOffset = (page - 1) * pagination.limit;
+      if (newOffset !== pagination.offset) {
+        fetchFormations(newOffset);
       }
-      setFormations([]);
-    } finally {
-      setLoading(false);
-      abortControllerRef.current = null;
-    }
-  }, [limit, debouncedSearchTerm, levelFilter, locationFilter]);
-
-  const goToPage = useCallback((page: number) => {
-    const newOffset = (page - 1) * pagination.limit;
-    if (newOffset !== pagination.offset) {
-      fetchFormations(newOffset);
-    }
-  }, [pagination.limit, pagination.offset, fetchFormations]);
+    },
+    [pagination.limit, pagination.offset, fetchFormations],
+  );
 
   useEffect(() => {
     fetchFormations(initialOffset);

@@ -141,8 +141,8 @@ const Features = () => {
 
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-200/50 p-8 sm:p-10 lg:p-12 mb-10 transition-all duration-300 hover:shadow-3xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-              {TEXT_CONSTANTS.STEP_FLOW_ITEMS.map((item, index) => (
-                <HoverCard key={index} openDelay={100} closeDelay={100}>
+              {TEXT_CONSTANTS.STEP_FLOW_ITEMS.map((item) => (
+                <HoverCard key={item.title} openDelay={100} closeDelay={100}>
                   <HoverCardTrigger asChild>
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200/50 h-full cursor-pointer flex flex-col items-center text-center hover:-translate-y-2 group">
                       <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-full p-5 mb-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -200,7 +200,7 @@ const Features = () => {
 
                 <div className={cn("grid gap-2 mt-6", isMobile ? "grid-cols-2 gap-y-3" : "grid-cols-4")}>
                   {TEXT_CONSTANTS.SPRINT_PHASES.map((phase, index) => (
-                    <div key={index} className={cn(
+                    <div key={phase.name} className={cn(
                       "text-center p-3 rounded-xl transition-all duration-300 border shadow-md",
                       progressValue >= (index / TEXT_CONSTANTS.SPRINT_PHASES.length) * 100 && progressValue < ((index + 1) / TEXT_CONSTANTS.SPRINT_PHASES.length) * 100
                         ? "bg-gray-900 border-gray-800 text-white shadow-lg"

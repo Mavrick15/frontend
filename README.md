@@ -24,14 +24,14 @@ npm run preview
 
 ## Scripts
 
-| Commande | Description |
-|----------|-------------|
-| `npm run dev` | Serveur de développement |
-| `npm run build` | Build de production (sortie dans `dist/`) |
-| `npm run preview` | Prévisualiser le build |
-| `npm run lint` | Vérification ESLint |
-| `npm test` | Tests Vitest |
-| `npm run type-check` | Vérification TypeScript |
+| Commande             | Description                               |
+| -------------------- | ----------------------------------------- |
+| `npm run dev`        | Serveur de développement                  |
+| `npm run build`      | Build de production (sortie dans `dist/`) |
+| `npm run preview`    | Prévisualiser le build                    |
+| `npm run lint`       | Vérification ESLint                       |
+| `npm test`           | Tests Vitest                              |
+| `npm run type-check` | Vérification TypeScript                   |
 
 ## Déploiement (Cloudflare Pages)
 
