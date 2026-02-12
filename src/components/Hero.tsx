@@ -173,7 +173,7 @@ const Hero = () => {
                 variants={itemVariants}
               >
                 <Link
-                  to="/projects"
+                  to="/#projects"
                   className="px-6 md:px-8 py-3 md:py-4 bg-white/90 backdrop-blur-sm text-gray-900 rounded-xl hover:bg-white transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center group text-sm md:text-base font-semibold border border-gray-200/50"
                 >
                   {TEXTS.BUTTON_PROJECTS}
@@ -236,7 +236,7 @@ const Hero = () => {
 
           <motion.div key="formation-it" variants={itemVariants}>
             <Link
-              to="/formations"
+              to="/formations/linux-administration"
               className="bg-white/90 backdrop-blur-sm p-5 md:p-6 rounded-2xl shadow-lg border border-gray-200/50 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl block group"
               aria-label={`Découvrir nos ${TEXTS.FORMATION_IT_TITLE}`}
             >

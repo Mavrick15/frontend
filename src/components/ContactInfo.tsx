@@ -76,10 +76,6 @@ const TEXT_CONSTANTS = {
         "Prêt à maîtriser la virtualisation pour des infrastructures agiles ?",
       text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
-    "/formations/web-development-training": {
-      title: "Prêt à devenir un expert en développement web ?",
-      text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
-    },
   },
 };
 

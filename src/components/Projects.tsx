@@ -27,7 +27,7 @@ const projects = [
     description: "Modernisation et déploiement étendu de la vidéosurveillance pour une sécurité optimale.",
     tags: ["Vidéosurveillance", "Sécurité", "Hikvision", "Santé"],
     imageUrl: "/lovable-uploads/img/Eyano.png",
-    link: "/projects/realistions/eyano-security"
+    link: "/projects/realisations/eyano-security"
   },
   {
     id: 3,
