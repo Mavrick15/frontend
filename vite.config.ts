@@ -16,6 +16,10 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
+  build: {
+    outDir: '/var/www/zetounlabs.cd/html',
+    emptyOutDir: true,
+  },
   plugins: [
     react(),
     mode === 'development' &&

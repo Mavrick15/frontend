@@ -1,82 +1,136 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
-import { ArrowLeft, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, CheckCircle, ChevronLeft, ChevronRight, Mail, Linkedin, Twitter, Award, Users, Target, Zap } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import SEO from '@/components/SEO';
 import PageLayout from '@/components/PageLayout';
 import { useCompany } from '@/hooks/useCompany';
 
-const TEXT_CONSTANTS = {
-  SCROLL_AMOUNT: 300,
-  IMAGE_PLACEHOLDER_BASE_URL: "https://placehold.co/128x128/e2e8f0/64748b?text=",
-  HOME_PATH: "/",
-
-  RETURN_HOME: "Retour à l'accueil",
-  PAGE_TITLE_MAIN: "À propos de Zetoun Labs",
-  PAGE_DESCRIPTION_INTRO: "Nous sommes une équipe d’innovateurs engagés à transformer le quotidien des entreprises et des particuliers en alliant technologies intelligentes, services informatiques sur mesure, formations adaptées et support technique complet.",
-  VISION_TITLE: "Notre vision",
-  VISION_P1: "Être le partenaire de confiance qui comble le fossé entre les technologies émergentes et les besoins du monde réel, en transformant les idées en solutions robustes et intelligentes qui stimulent la croissance et l’innovation des entreprises.",
-  VISION_P2: "Notre vision est de devenir le catalyseur de la transformation numérique en démocratisant l’accès aux technologies intelligentes : nous imaginons un futur où chaque entreprise et chaque particulier bénéficient d’infrastructures IT flexibles, de savoir-faire pointus et d’un support infaillible, pour libérer tout leur potentiel d’innovation et de croissance.",
-  VALUES_TITLE: "Nos valeurs",
-  VALUE_INNOVATION: "Innovation:",
-  VALUE_INNOVATION_DESC: "Nous franchissons les limites technologiques pour donner vie à des solutions inédites.",
-  VALUE_QUALITY: "Qualité:",
-  VALUE_QUALITY_DESC: "Nous nous engageons à atteindre l’excellence dans chaque projet que nous entreprenons.",
-  VALUE_COLLABORATION: "Collaboration:",
-  VALUE_COLLABORATION_DESC: "Nous coopérons étroitement avec nos clients pour concevoir des solutions sur mesure.",
-  VALUE_IMPACT: "Impact:",
-  VALUE_IMPACT_DESC: "Le véritable indicateur de notre réussite, ce sont les bénéfices tangibles que nos interventions apportent à nos clients.",
-  HISTORY_TITLE: "Notre histoire",
-  HISTORY_P1: "Nous sommes partis d’un constat simple : le paysage des services IT et de la formation était trop morcelé et complexe. Dès début 2024, notre ambition était de rassembler ces offres – infrastructures, déploiement logiciel, cybersécurité, support – en modules modulaires et intuitifs, accessibles aussi bien aux entreprises qu’aux particuliers.",
-  HISTORY_P2: "Grâce à notre premier tour de table, nous avons consacré les six premiers mois au “full code” : concevoir, tester et peaufiner chaque brique logicielle et chaque composant de notre plateforme. Pour valider notre approche, nous avons rapidement mis en œuvre des prototypes chez nos premiers clients pilotes – PME locales, start-ups et associations – en leur fournissant des environnements réseau clés en main et des modules de formation adaptés à leurs besoins réels.",
-  HISTORY_P3: "À l’aube de 2025, notre plateforme était assez robuste pour passer à l’échelle : nous avons alors élargi notre offre aux grands comptes, en intégrant des solutions de monitoring, d’automatisation et de formation certifiante.",
-  TEAM_TITLE: "Notre équipe",
-  TEAM_DESCRIPTION: "Notre équipe se compose d’un ingénieur réseaux certifié Cisco, d’un ingénieur vidéosurveillance et d’ingénieurs télécom, prêts à concevoir et déployer des solutions IT complètes.",
-  SCROLL_LEFT_ARIA: "Défiler les membres de l'équipe vers la gauche",
-  SCROLL_RIGHT_ARIA: "Défiler les membres de l'équipe vers la droite",
-  SEO_TITLE: "À propos de Zetoun Labs - Innovation et expertise technologique",
-  SEO_DESCRIPTION: "Découvrez l'équipe, la vision, les valeurs et l'histoire de Zetoun Labs, votre partenaire en transformation numérique.",
-  SEO_KEYWORDS: ["Zetoun Labs", "à propos", "équipe", "vision", "valeurs", "histoire", "innovation", "technologie"],
-  TEAM_MEMBER_IMAGE_ALT: "Image de l'équipe",
-};
-
 const teamMembersData = [
   {
     name: "Benjamin Baki",
-    role: "Co-Founder and CEO",
-    bio: "Acteur innovant de Zetoun Labs: avec une vision pour transformer le numérique des entreprises.",
-    image: "/lovable-uploads/img/moi.png"
+    role: "Co-Founder & CEO",
+    bio: "Visionnaire stratégique avec plus de 8 ans d'expérience en transformation digitale. Passionné par l'innovation technologique et l'entrepreneuriat.",
+    image: "/lovable-uploads/img/moi.png",
+    expertise: ["Leadership", "Stratégie", "Innovation", "Business Development"],
+    achievements: ["+50 projets menés", "Expert Cloud Computing", "Certifié AWS Solutions Architect"],
+    social: { linkedin: "https://www.linkedin.com/in/benjamin-baki", twitter: "https://www.twitter.com/BenyaminBaki", email: "admin@zetounlabs.com" }
   },
   {
     name: "Evra Lashe",
-    role: "Co-Founder and COO",
-    bio: "Administrateur réseau et systèmes, garant de la stabilité technique.",
-    image: "/lovable-uploads/img/evra.png"
+    role: "Co-Founder & COO",
+    bio: "Ingénieur réseau certifié Cisco (CCNP) avec 7 ans d'expérience en conception d'infrastructures complexes et en optimisation des performances réseau.",
+    image: "/lovable-uploads/img/evra.png",
+    expertise: ["Cisco Networking", "Sécurité Réseau", "Cloud Infrastructure", "DevOps"],
+    achievements: ["Certifié CCNP", "Expert en cybersécurité", "Architecte de 20+ réseaux d'entreprise"],
+    social: { linkedin: "#", twitter: "#", email: "evra@zetounlabs.cd" }
   },
   {
     name: "Kevine Etanaka",
-    role: "Co-Founder and CFO",
-    bio: "Ingénieure télécom, experte en transmission de données sol-sol.",
-    image: "/lovable-uploads/img/kevine.png"
+    role: "Co-Founder & CFO",
+    bio: "Ingénieure télécom spécialisée en transmission de données et en gestion de projet. Expertise en systèmes de communication sans fil et fibre optique.",
+    image: "/lovable-uploads/img/kevine.png",
+    expertise: ["Télécommunications", "Fibre Optique", "Gestion de Projet", "RF Engineering"],
+    achievements: ["+15 km de fibre déployée", "Expert 5G/4G", "Certifiée PMP"],
+    social: { linkedin: "#", twitter: "#", email: "kevine@zetounlabs.cd" }
   },
   {
     name: "Glody Nzuzi",
-    role: "Co-Founder and COO",
-    bio: "Spécialiste réseau & systèmes, garant de la stabilité technique.",
-    image: "/lovable-uploads/img/glody.png"
+    role: "Co-Founder & CTO",
+    bio: "Spécialiste en systèmes et réseaux avec une expertise approfondie en virtualisation, conteneurisation et automatisation des infrastructures IT.",
+    image: "/lovable-uploads/img/glody.png",
+    expertise: ["Virtualisation", "Docker/Kubernetes", "Automatisation", "Monitoring"],
+    achievements: ["Architecte Cloud", "Expert DevOps", "Certifié VMware vSphere"],
+    social: { linkedin: "#", twitter: "#", email: "glody@zetounlabs.cd" }
   },
   {
     name: "Grace Moke",
-    role: "Co-Founder and CMO",
-    bio: "Ingénieure télécom, expert en montage de systèmes PV.",
-    image: "/lovable-uploads/img/grace.png"
+    role: "Co-Founder & CMO",
+    bio: "Ingénieure télécom et experte en systèmes photovoltaïques. Spécialisée dans les solutions hybrides IT-énergie pour les entreprises durables.",
+    image: "/lovable-uploads/img/grace.png",
+    expertise: ["Énergie Solaire", "Marketing Tech", "Développement Durable", "Solutions Hybrides"],
+    achievements: ["+50 installations solaires", "Expert en marketing B2B", "Certifiée en énergies renouvelables"],
+    social: { linkedin: "#", twitter: "#", email: "grace@zetounlabs.cd" }
+  },
+  {
+    name: "David Matungulu",
+    role: "Senior Network Engineer",
+    bio: "Ingénieur réseau spécialisé en sécurité informatique et en architecture cloud. Expert en conception d'infrastructures sécurisées et en gestion des systèmes distribués.",
+    image: "/lovable-uploads/img/David.jpeg",
+    expertise: ["Sécurité Réseau", "Monitoring", "Cybersécurité", "Systèmes Distribués"],
+    achievements: ["Certifié CISSP", "Architecte de 30+ infrastructures cloud", "Expert en audit de sécurité"],
+    social: { linkedin: "https://www.linkedin.com/in/david-matungulu", twitter: "#", email: "david@zetounlabs.cd" }
+  },
+  {
+    name: "Jeanick Ilondji",
+    role: "System & Network Administrator",
+    bio: "Administrateur réseau et système expert en gestion d'infrastructures, sécurité informatique et optimisation des performances.",
+    image: "/lovable-uploads/img/jeanick.png",
+    expertise: ["Administration Système", "Réseaux", "Sécurité IT", "Monitoring"],
+    achievements: ["Administration de 10+ serveurs", "Expert en sécurité réseau", "Optimisation des performances système", "Gestion des infrastructures cloud"],
+    social: { linkedin: "#", twitter: "#", email: "jeanick@zetounlabs.cd" }
   }
 ];
 
 const About = () => {
   const { company, loading: companyLoading } = useCompany();
+  
+  // Calcul dynamique de l'expérience depuis le 11 novembre 2023
+  const getYearsOfExperience = () => {
+    const startDate = new Date('2023-11-11');
+    const currentDate = new Date();
+    const years = currentDate.getFullYear() - startDate.getFullYear();
+    const monthDiff = currentDate.getMonth() - startDate.getMonth();
+    const dayDiff = currentDate.getDate() - startDate.getDate();
+    
+    // Si la date actuelle est avant le 11 novembre, on ne compte pas l'année en cours
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      return years;
+    }
+    return years + 1;
+  };
+
+  const yearsOfExperience = getYearsOfExperience();
+
+  // Définir les constantes ici pour accéder à yearsOfExperience
+  const TEXT_CONSTANTS = {
+    SCROLL_AMOUNT: 300,
+    IMAGE_PLACEHOLDER_BASE_URL: "https://placehold.co/128x128/e2e8f0/64748b?text=",
+    HOME_PATH: "/",
+
+    RETURN_HOME: "Retour à l'accueil",
+    PAGE_TITLE_MAIN: "À propos de Zetoun Labs",
+    PAGE_DESCRIPTION_INTRO: "Nous sommes une équipe d'innovateurs engagés à transformer le quotidien des entreprises et des particuliers en alliant technologies intelligentes, services informatiques sur mesure, formations adaptées et support technique complet.",
+    VISION_TITLE: "Notre vision",
+    VISION_P1: "Être le partenaire de confiance qui comble le fossé entre les technologies émergentes et les besoins du monde réel, en transformant les idées en solutions robustes et intelligentes qui stimulent la croissance et l'innovation des entreprises.",
+    VISION_P2: "Notre vision est de devenir le catalyseur de la transformation numérique en démocratisant l'accès aux technologies intelligentes : nous imaginons un futur où chaque entreprise et chaque particulier bénéficient d'infrastructures IT flexibles, de savoir-faire pointus et d'un support infaillible, pour libérer tout leur potentiel d'innovation et de croissance.",
+    VALUES_TITLE: "Nos valeurs",
+    VALUE_INNOVATION: "Innovation:",
+    VALUE_INNOVATION_DESC: "Nous franchissons les limites technologiques pour donner vie à des solutions inédites.",
+    VALUE_QUALITY: "Qualité:",
+    VALUE_QUALITY_DESC: "Nous nous engageons à atteindre l'excellence dans chaque projet que nous entreprenons.",
+    VALUE_COLLABORATION: "Collaboration:",
+    VALUE_COLLABORATION_DESC: "Nous coopérons étroitement avec nos clients pour concevoir des solutions sur mesure.",
+    VALUE_IMPACT: "Impact:",
+    VALUE_IMPACT_DESC: "Le véritable indicateur de notre réussite, ce sont les bénéfices tangibles que nos interventions apportent à nos clients.",
+    HISTORY_TITLE: "Notre histoire",
+    HISTORY_P1: "Nous sommes partis d'un constat simple : le paysage des services IT et de la formation était trop morcelé et complexe. Dès début 2024, notre ambition était de rassembler ces offres – infrastructures, déploiement logiciel, cybersécurité, support – en modules modulaires et intuitifs, accessibles aussi bien aux entreprises qu'aux particuliers.",
+    HISTORY_P2: "Grâce à notre premier tour de table, nous avons consacré les six premiers mois au 'full code' : concevoir, tester et peaufiner chaque brique logicielle et chaque composant de notre plateforme. Pour valider notre approche, nous avons rapidement mis en œuvre des prototypes chez nos premiers clients pilotes – PME locales, start-ups et associations – en leur fournissant des environnements réseau clés en main et des modules de formation adaptés à leurs besoins réels.",
+    HISTORY_P3: "À l'aube de 2025, notre plateforme était assez robuste pour passer à l'échelle : nous avons alors élargi notre offre aux grands comptes, en intégrant des solutions de monitoring, d'automatisation et de formation certifiante.",
+    TEAM_TITLE: "Notre équipe",
+    TEAM_DESCRIPTION: "Une équipe d'experts passionnés, unie par la vision de transformer le paysage technologique africain.",
+    TEAM_SUBTITLE: "Rencontrez les talents qui façonnent votre avenir numérique",
+    TEAM_EXPERTISE_TITLE: "Notre expertise collective",
+    TEAM_EXPERTISE_DESC: `Plus de ${yearsOfExperience} an${yearsOfExperience > 1 ? 's' : ''} d'expérience cumulée dans les domaines de l'ingénierie réseau, des télécommunications, de la cybersécurité, du développement web et de l'énergie solaire.`,
+    SCROLL_LEFT_ARIA: "Défiler les membres de l'équipe vers la gauche",
+    SCROLL_RIGHT_ARIA: "Défiler les membres de l'équipe vers la droite",
+    SEO_TITLE: "À propos de Zetoun Labs - Innovation et expertise technologique",
+    SEO_DESCRIPTION: "Découvrez l'équipe, la vision, les valeurs et l'histoire de Zetoun Labs, votre partenaire en transformation numérique.",
+    SEO_KEYWORDS: ["Zetoun Labs", "à propos", "équipe", "vision", "valeurs", "histoire", "innovation", "technologie"],
+    TEAM_MEMBER_IMAGE_ALT: "Image de l'équipe",
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -256,64 +310,184 @@ const About = () => {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 className="mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                  {TEXT_CONSTANTS.TEAM_TITLE}
-                </h2>
+                {/* Section Header */}
+                <div className="text-center mb-12">
+                  <motion.h2 
+                    className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    {TEXT_CONSTANTS.TEAM_TITLE}
+                  </motion.h2>
+                  <motion.p 
+                    className="text-xl text-gray-600 mb-2 max-w-3xl mx-auto"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    {TEXT_CONSTANTS.TEAM_DESCRIPTION}
+                  </motion.p>
+                  <motion.p 
+                    className="text-lg text-gray-500 max-w-2xl mx-auto"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    {TEXT_CONSTANTS.TEAM_SUBTITLE}
+                  </motion.p>
+                </div>
 
+                {/* Expertise Collective */}
+                <motion.div 
+                  className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8 mb-12 border border-gray-200/50 shadow-lg"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <div className="flex items-center justify-center mb-4">
+                    <Users className="w-8 h-8 mr-3 text-gray-700" />
+                    <h3 className="text-2xl font-bold text-gray-900">{TEXT_CONSTANTS.TEAM_EXPERTISE_TITLE}</h3>
+                  </div>
+                  <p className="text-center text-lg text-gray-600 mb-6">
+                    {TEXT_CONSTANTS.TEAM_EXPERTISE_DESC}
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    {[
+                      { icon: Target, text: `${yearsOfExperience}+ Ans d'expérience` },
+                      { icon: Award, text: "5+ Certifications" },
+                      { icon: Zap, text: "7+ Projets livrés" },
+                      { icon: Users, text: "7 Experts spécialisés" }
+                    ].map((stat, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 + index * 0.1 }}
+                        className="flex flex-col items-center"
+                      >
+                        <stat.icon className="w-8 h-8 mb-2 text-gray-600" />
+                        <span className="text-sm font-medium text-gray-700">{stat.text}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Team Members Grid */}
                 <div className="relative">
-                  <div ref={teamRef} className="flex overflow-x-auto gap-6 py-4 scroll-smooth scrollbar-hide">
+                  <div ref={teamRef} className="flex overflow-x-auto gap-8 py-4 scroll-smooth scrollbar-hide">
                     {teamMembersData.map((member, i) => (
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.1 * i }}
-                        className="w-72 sm:w-80 flex-shrink-0"
+                        className="w-80 sm:w-96 flex-shrink-0"
                       >
-                        <div className="relative p-[1px] rounded-lg bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group h-full">
-                          <Card className="bg-white/90 backdrop-blur-sm overflow-hidden h-full flex flex-col">
-                            <CardContent className="p-8 flex flex-col h-full">
-                            <div className="flex flex-col items-center text-center h-full justify-start">
-                              <div className="w-36 h-36 relative mb-6 rounded-full overflow-hidden shadow-lg mx-auto flex-shrink-0">
-                                <div className="w-full h-full rounded-full overflow-hidden">
-                                  <img
-                                    src={member.image}
-                                    alt={`${member.name} - ${TEXT_CONSTANTS.TEAM_MEMBER_IMAGE_ALT}`}
-                                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
-                                    style={{ 
-                                      objectPosition: 'center center',
-                                      objectFit: 'cover',
-                                      width: '100%',
-                                      height: '100%',
-                                      display: 'block',
-                                      margin: 0,
-                                      padding: 0,
-                                      WebkitMaskImage: 'radial-gradient(circle, black 75%, transparent 100%)',
-                                      maskImage: 'radial-gradient(circle, black 75%, transparent 100%)'
-                                    }}
-                                    onError={(e) => {
-                                      e.currentTarget.onerror = null;
-                                      e.currentTarget.src = `${TEXT_CONSTANTS.IMAGE_PLACEHOLDER_BASE_URL}${member.name.split(' ').map(n => n[0]).join('')}`;
-                                    }}
-                                  />
+                        <div className="relative group">
+                          {/* Glow Effect */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300 blur-xl"></div>
+                          
+                          <Card className="relative bg-white/95 backdrop-blur-sm border border-gray-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden h-full">
+                            <CardContent className="p-0">
+                              {/* Header avec image */}
+                              <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                                <div className="absolute inset-0 bg-black/10"></div>
+                                <img
+                                  src={member.image}
+                                  alt={`${member.name} - ${TEXT_CONSTANTS.TEAM_MEMBER_IMAGE_ALT}`}
+                                  className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                  onError={(e) => {
+                                    e.currentTarget.onerror = null;
+                                    e.currentTarget.src = `${TEXT_CONSTANTS.IMAGE_PLACEHOLDER_BASE_URL}${member.name.split(' ').map(n => n[0]).join('')}`;
+                                  }}
+                                />
+                                <div className="absolute bottom-4 left-4 right-4">
+                                  <h3 className="text-2xl font-bold text-white mb-1">{member.name}</h3>
+                                  <p className="text-gray-100 font-medium">{member.role}</p>
                                 </div>
                               </div>
-                              <h3 className="font-bold text-xl text-gray-900 mb-2 w-full">{member.name}</h3>
-                              <p className="text-gray-900 font-semibold text-sm mb-4 px-4 py-2 bg-gray-100 rounded-full inline-block">{member.role}</p>
-                              <p className="text-gray-600 text-sm leading-relaxed w-full">{member.bio}</p>
-                            </div>
-                          </CardContent>
-                        </Card>
+
+                              {/* Contenu */}
+                              <div className="p-6">
+                                {/* Bio */}
+                                <p className="text-gray-600 leading-relaxed mb-6">{member.bio}</p>
+
+                                {/* Expertise */}
+                                <div className="mb-6">
+                                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                                    <Award className="w-4 h-4 mr-2 text-gray-600" />
+                                    Expertise
+                                  </h4>
+                                  <div className="flex flex-wrap gap-2">
+                                    {member.expertise.map((skill, index) => (
+                                      <span
+                                        key={index}
+                                        className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full font-medium border border-gray-200"
+                                      >
+                                        {skill}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+
+                                {/* Réalisations */}
+                                <div className="mb-6">
+                                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                                    <Target className="w-4 h-4 mr-2 text-gray-600" />
+                                    Réalisations
+                                  </h4>
+                                  <ul className="space-y-2">
+                                    {member.achievements.map((achievement, index) => (
+                                      <li key={index} className="flex items-center text-sm text-gray-600">
+                                        <CheckCircle className="w-3 h-3 mr-2 text-gray-500 flex-shrink-0" />
+                                        {achievement}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+
+                                {/* Social Links */}
+                                <div className="flex justify-center pt-4 border-t border-gray-200">
+                                  <div className="flex items-center space-x-3">
+                                    <a
+                                      href={member.social.linkedin}
+                                      className="w-10 h-10 bg-gray-700 text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
+                                      aria-label={`LinkedIn de ${member.name}`}
+                                    >
+                                      <Linkedin className="w-4 h-4" />
+                                    </a>
+                                    <a
+                                      href={member.social.twitter}
+                                      className="w-10 h-10 bg-gray-600 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+                                      aria-label={`Twitter de ${member.name}`}
+                                    >
+                                      <Twitter className="w-4 h-4" />
+                                    </a>
+                                    <a
+                                      href={`mailto:${member.social.email}`}
+                                      className="w-10 h-10 bg-gray-500 text-white rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors"
+                                      aria-label={`Email de ${member.name}`}
+                                    >
+                                      <Mail className="w-4 h-4" />
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
                         </div>
                       </motion.div>
                     ))}
                   </div>
+
+                  {/* Navigation Buttons */}
                   <div className="absolute top-1/2 left-2 transform -translate-y-1/2 z-10">
                     <Button
                       size="icon"
                       variant="outline"
                       onClick={handleScrollLeft}
-                      className="rounded-full border-2 border-gray-300 shadow-lg bg-white/95 backdrop-blur-sm text-gray-900 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                      className="rounded-full border-2 border-gray-300 shadow-lg bg-white/95 backdrop-blur-sm text-gray-900 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed w-12 h-12"
                       disabled={!canScrollLeft}
                       aria-label={TEXT_CONSTANTS.SCROLL_LEFT_ARIA}
                     >
@@ -325,7 +499,7 @@ const About = () => {
                       size="icon"
                       variant="outline"
                       onClick={handleScrollRight}
-                      className="rounded-full border-2 border-gray-300 shadow-lg bg-white/95 backdrop-blur-sm text-gray-900 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                      className="rounded-full border-2 border-gray-300 shadow-lg bg-white/95 backdrop-blur-sm text-gray-900 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed w-12 h-12"
                       disabled={!canScrollRight}
                       aria-label={TEXT_CONSTANTS.SCROLL_RIGHT_ARIA}
                     >
