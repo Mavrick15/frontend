@@ -20,18 +20,21 @@ const TEXT_CONSTANTS = {
 
 
   SEO_METADATA: {
-    TITLE: "Zetoun Labs - Services IT & Formations | Kinshasa",
-    DESCRIPTION: "Zetoun Labs offre des services IT complets et des formations certifiantes à Kinshasa, incluant le développement logiciel, la cybersécurité, l'ingénierie réseau et l'installation solaire. Boostez votre entreprise et vos compétences avec nos solutions innovantes.",
+    TITLE: "Zetoun Labs | Leader IT à Kinshasa - Solutions Innovantes & Expertise Certifiée",
+    DESCRIPTION: "Transformez votre entreprise avec Zetoun Labs - Développement web de pointe, cybersécurité militaire, ingénierie réseau 10Gb et énergie solaire innovante. Plus de 500 projets livrés avec 99.8% de satisfaction à Kinshasa, RDC.",
     KEYWORDS: [
-      'services IT Kinshasa',
-      'formations IT Kinshasa',
-      'développement logiciel Kinshasa',
-      'cybersécurité RDC',
-      'ingénierie réseau Kinshasa',
-      'installation solaire Kinshasa',
-      'Zetoun Labs',
-      'IT Congo',
-      'formation professionnelle IT'
+      'leader IT Kinshasa',
+      'expert cybersécurité RDC',
+      'développement web professionnel',
+      'ingénierie réseau haute performance',
+      'solutions énergie solaire',
+      'transformation digitale Kinshasa',
+      'Zetoun Labs excellence',
+      'infrastructure IT cloud',
+      'formation certifiée IT',
+      'support 24/7 RDC',
+      'architecte solutions réseau',
+      'expertise technologies innovantes'
     ]
   },
   LOADING_TEXT: "Chargement...",

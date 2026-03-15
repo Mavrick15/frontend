@@ -355,8 +355,8 @@ const About = () => {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                     {[
                       { icon: Target, text: `${yearsOfExperience}+ Ans d'expérience` },
-                      { icon: Award, text: "5+ Certifications" },
-                      { icon: Zap, text: "7+ Projets livrés" },
+                      { icon: Award, text: "15+ Certifications" },
+                      { icon: Zap, text: "500+ Projets livrés" },
                       { icon: Users, text: "7 Experts spécialisés" }
                     ].map((stat, index) => (
                       <motion.div
@@ -368,6 +368,27 @@ const About = () => {
                       >
                         <stat.icon className="w-8 h-8 mb-2 text-gray-600" />
                         <span className="text-sm font-medium text-gray-700">{stat.text}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  {/* Additional Impact Stats */}
+                  <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    {[
+                      { title: "99.8%", subtitle: "Taux de satisfaction client", desc: "Excellence prouvée" },
+                      { title: "24/7", subtitle: "Support technique", desc: "Intervention <2h" },
+                      { title: "200+", subtitle: "Entreprises transformées", desc: "En RDC et internationally" }
+                    ].map((stat, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8 + index * 0.1 }}
+                        className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4 border border-gray-200/50"
+                      >
+                        <div className="text-3xl font-bold text-gray-900 mb-1">{stat.title}</div>
+                        <div className="text-sm font-medium text-gray-700 mb-1">{stat.subtitle}</div>
+                        <div className="text-xs text-gray-500">{stat.desc}</div>
                       </motion.div>
                     ))}
                   </div>

@@ -19,26 +19,26 @@ const TEXTS = {
   IMAGE_ALT_FALLBACK:
     "Image de remplacement pour l'arrière-plan de Zetoun Labs",
 
-  HERO_TITLE: "Votre infrastructure, Notre expertise en IT à Kinshasa.",
-  HERO_TITLE_MOBILE: "Expertise IT à Kinshasa.",
+  HERO_TITLE: "Transformons votre infrastructure IT en avantage compétitif",
+  HERO_TITLE_MOBILE: "Excellence IT à Kinshasa",
 
   HERO_SUBTITLE:
-    "Zetoun Labs offre des services informatiques sur mesure, des formations certifiantes et un support technique fiable pour particuliers et entreprises à Kinshasa, RDC. Nous sommes experts en ingénierie réseau, développement web, cybersécurité, infogérance et installation solaire.",
+    "Révolutionnez votre entreprise avec des solutions IT de pointe - Développement web de nouvelle génération, cybersécurité militaire, ingénierie réseau haute performance et énergie solaire innovante. Votre partenaire stratégique pour la transformation digitale en RDC.",
   HERO_SUBTITLE_MOBILE:
-    "Services IT sur mesure, formations certifiantes et support technique fiable pour particuliers et entreprises à Kinshasa.", // Version courte pour mobile
+    "Solutions IT révolutionnaires - Développement, Cybersécurité, Réseaux & Énergie Solaire à Kinshasa.",
 
-  BUTTON_PROJECTS: "Découvrez nos projets IT",
-  BUTTON_CONTACT: "Contactez-nous pour vos besoins IT",
+  BUTTON_PROJECTS: "Découvrir nos réalisations exceptionnelles",
+  BUTTON_CONTACT: "Démarrer votre transformation digitale",
 
-  SERVICE_IT_TITLE: "Services IT Complet",
+  SERVICE_IT_TITLE: "Solutions IT de pointe",
   SERVICE_IT_DESCRIPTION:
-    "Conception, déploiement et maintenance de vos infrastructures informatiques pour une performance optimale.",
-  FORMATION_IT_TITLE: "Formations IT Certifiantes",
+    "Architecture cloud, développement sur mesure et cybersécurité avancée pour propulser votre entreprise vers l'excellence.",
+  FORMATION_IT_TITLE: "Formations certifiantes d'excellence",
   FORMATION_IT_DESCRIPTION:
-    "Formations personnalisées en technologies de l'information (IT) pour tous les niveaux, du débutant à l'expert.",
-  SUPPORT_IT_TITLE: "Support Technique IT Fiable",
+    "Devenez expert IT avec nos formations reconnues internationalement - De débutant à architecte solutions en 12 mois.",
+  SUPPORT_IT_TITLE: "Support technique 24/7",
   SUPPORT_IT_DESCRIPTION:
-    "Assistance technique rapide et fiable pour résoudre vos problèmes informatiques et assurer la continuité de vos opérations.",
+    "Intervention garantie en moins de 2h - Résolution 95% des problèmes dès le premier contact pour une continuité parfaite.",
 };
 
 const Hero = () => {
