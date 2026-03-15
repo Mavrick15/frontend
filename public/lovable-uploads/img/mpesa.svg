@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" rx="40" fill="#E60000"/>
+  <path d="M40 140V70l30 35 30-35v70" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="110" y="85" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="22" fill="#fff">PESA</text>
+  <path d="M108 95h62" stroke="#00A859" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="150" cy="130" r="25" fill="none" stroke="#00A859" stroke-width="5"/>
+  <path d="M142 130h16M150 122v16" stroke="#00A859" stroke-width="5" stroke-linecap="round"/>
+</svg>

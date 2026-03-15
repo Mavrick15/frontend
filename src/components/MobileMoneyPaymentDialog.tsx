@@ -47,7 +47,7 @@ const PROVIDERS: {
     bgColor: "bg-red-50 hover:bg-red-100",
     borderColor: "border-red-200 hover:border-red-400",
     prefix: "+243 81/82/83",
-    icon: "🔴",
+    icon: "/lovable-uploads/img/mpesa.svg",
   },
   {
     id: "orange_money",
@@ -56,7 +56,7 @@ const PROVIDERS: {
     bgColor: "bg-orange-50 hover:bg-orange-100",
     borderColor: "border-orange-200 hover:border-orange-400",
     prefix: "+243 84/85",
-    icon: "🟠",
+    icon: "/lovable-uploads/img/orange-money.svg",
   },
   {
     id: "airtel_money",
@@ -65,7 +65,7 @@ const PROVIDERS: {
     bgColor: "bg-rose-50 hover:bg-rose-100",
     borderColor: "border-rose-200 hover:border-rose-400",
     prefix: "+243 99/97",
-    icon: "🔵",
+    icon: "/lovable-uploads/img/airtel-money.svg",
   },
   {
     id: "africell_money",
@@ -74,7 +74,7 @@ const PROVIDERS: {
     bgColor: "bg-purple-50 hover:bg-purple-100",
     borderColor: "border-purple-200 hover:border-purple-400",
     prefix: "+243 90",
-    icon: "🟣",
+    icon: "/lovable-uploads/img/africell-money.svg",
   },
 ];
 
@@ -301,7 +301,7 @@ const MobileMoneyPaymentDialog: React.FC<MobileMoneyPaymentDialogProps> = ({
             onClick={() => setSelectedProvider(provider.id)}
           >
             <CardContent className="p-4 flex items-center gap-3">
-              <span className="text-2xl">{provider.icon}</span>
+              <img src={provider.icon} alt={provider.name} className="w-10 h-10 rounded-lg object-contain" />
               <div className="flex-1">
                 <p className={`font-bold ${provider.color}`}>{provider.name}</p>
                 <p className="text-xs text-gray-500">{provider.prefix}</p>
@@ -342,7 +342,7 @@ const MobileMoneyPaymentDialog: React.FC<MobileMoneyPaymentDialogProps> = ({
       </div>
 
       <div className="bg-gray-50 rounded-xl p-4 flex items-center gap-3 mb-4">
-        <span className="text-2xl">{providerInfo?.icon}</span>
+        <img src={providerInfo?.icon} alt={providerInfo?.name} className="w-10 h-10 rounded-lg object-contain" />
         <div>
           <p className={`font-bold ${providerInfo?.color}`}>{providerInfo?.name}</p>
           <p className="text-sm text-gray-500">{totalAmount.toFixed(2)} $ à payer</p>
@@ -400,7 +400,7 @@ const MobileMoneyPaymentDialog: React.FC<MobileMoneyPaymentDialogProps> = ({
       <div className="text-center mb-4">
         <div className="relative inline-block">
           <Smartphone className="h-12 w-12 mx-auto text-gray-700 mb-3" />
-          <span className="absolute -top-1 -right-1 text-lg">{providerInfo?.icon}</span>
+          <img src={providerInfo?.icon} alt={providerInfo?.name} className="absolute -top-1 -right-1 w-8 h-8 rounded-md" />
         </div>
         <h3 className="text-xl font-bold text-gray-900">{TEXT.INSTRUCTIONS_TITLE}</h3>
         <p className="text-sm text-gray-500 mt-1">{TEXT.INSTRUCTIONS_DESC}</p>
@@ -477,7 +477,7 @@ const MobileMoneyPaymentDialog: React.FC<MobileMoneyPaymentDialogProps> = ({
       </div>
 
       <div className="bg-gray-50 rounded-xl p-4 flex items-center gap-3 mb-4">
-        <span className="text-2xl">{providerInfo?.icon}</span>
+        <img src={providerInfo?.icon} alt={providerInfo?.name} className="w-10 h-10 rounded-lg object-contain" />
         <div>
           <p className={`font-bold ${providerInfo?.color}`}>{providerInfo?.name}</p>
           <p className="text-sm text-gray-500">
