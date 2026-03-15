@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <linearGradient id="trunkGrad" x1="200" y1="380" x2="200" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#333333"/>
+    </linearGradient>
+    <linearGradient id="branchGrad" x1="100" y1="200" x2="300" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2d2d2d"/>
+      <stop offset="100%" stop-color="#4a4a4a"/>
+    </linearGradient>
+    <linearGradient id="leafGrad1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </linearGradient>
+    <linearGradient id="leafGrad2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#66BB6A"/>
+      <stop offset="100%" stop-color="#388E3C"/>
+    </linearGradient>
+    <linearGradient id="nodeGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E0E0E0"/>
+      <stop offset="100%" stop-color="#BDBDBD"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Roots (digital/circuit style) -->
+  <path d="M200 340 L200 370" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M200 355 L170 380" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M200 355 L230 380" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M200 365 L185 390" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/>
+  <path d="M200 365 L215 390" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/>
+  <!-- Root circuit nodes -->
+  <circle cx="170" cy="380" r="3" fill="#1a1a1a"/>
+  <circle cx="230" cy="380" r="3" fill="#1a1a1a"/>
+  <circle cx="185" cy="390" r="2.5" fill="#333"/>
+  <circle cx="215" cy="390" r="2.5" fill="#333"/>
+
+  <!-- Main trunk -->
+  <path d="M200 340 L200 210" stroke="url(#trunkGrad)" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Main branches (network connections) -->
+  <!-- Left main branch -->
+  <path d="M200 250 L140 190" stroke="url(#branchGrad)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M140 190 L95 155" stroke="url(#branchGrad)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M140 190 L110 130" stroke="url(#branchGrad)" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M140 190 L155 135" stroke="url(#branchGrad)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Right main branch -->
+  <path d="M200 240 L260 185" stroke="url(#branchGrad)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M260 185 L305 150" stroke="url(#branchGrad)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M260 185 L290 125" stroke="url(#branchGrad)" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M260 185 L245 130" stroke="url(#branchGrad)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Top center branch -->
+  <path d="M200 220 L200 140" stroke="url(#branchGrad)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M200 140 L175 85" stroke="url(#branchGrad)" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M200 140 L225 85" stroke="url(#branchGrad)" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M200 140 L200 70" stroke="url(#branchGrad)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Sub-branches (smaller connections) -->
+  <path d="M95 155 L65 125" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+  <path d="M95 155 L75 175" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+  <path d="M110 130 L80 100" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+  <path d="M305 150 L335 120" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+  <path d="M305 150 L325 170" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+  <path d="M290 125 L320 95" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+  <path d="M200 70 L185 42" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+  <path d="M200 70 L215 42" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Network connection lines (dashed - digital feel) -->
+  <path d="M95 155 L155 135" stroke="#777" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.5"/>
+  <path d="M305 150 L245 130" stroke="#777" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.5"/>
+  <path d="M175 85 L155 135" stroke="#777" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.5"/>
+  <path d="M225 85 L245 130" stroke="#777" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.5"/>
+  <path d="M110 130 L155 135" stroke="#777" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+  <path d="M290 125 L245 130" stroke="#777" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+
+  <!-- Leaf-nodes (olive leaves as network nodes) -->
+  <!-- Large leaf-nodes (main junctions) -->
+  <ellipse cx="140" cy="190" rx="10" ry="6" transform="rotate(-40 140 190)" fill="url(#leafGrad1)" opacity="0.9"/>
+  <ellipse cx="260" cy="185" rx="10" ry="6" transform="rotate(40 260 185)" fill="url(#leafGrad1)" opacity="0.9"/>
+  <ellipse cx="200" cy="140" rx="8" ry="5" fill="url(#leafGrad1)" opacity="0.9"/>
+
+  <!-- Medium leaf-nodes -->
+  <ellipse cx="95" cy="155" rx="8" ry="5" transform="rotate(-30 95 155)" fill="url(#leafGrad2)" opacity="0.85"/>
+  <ellipse cx="110" cy="130" rx="7" ry="4.5" transform="rotate(-50 110 130)" fill="url(#leafGrad2)" opacity="0.85"/>
+  <ellipse cx="155" cy="135" rx="7" ry="4.5" transform="rotate(-20 155 135)" fill="url(#leafGrad1)" opacity="0.85"/>
+  <ellipse cx="305" cy="150" rx="8" ry="5" transform="rotate(30 305 150)" fill="url(#leafGrad2)" opacity="0.85"/>
+  <ellipse cx="290" cy="125" rx="7" ry="4.5" transform="rotate(50 290 125)" fill="url(#leafGrad2)" opacity="0.85"/>
+  <ellipse cx="245" cy="130" rx="7" ry="4.5" transform="rotate(20 245 130)" fill="url(#leafGrad1)" opacity="0.85"/>
+  <ellipse cx="175" cy="85" rx="7" ry="4.5" transform="rotate(-35 175 85)" fill="url(#leafGrad2)" opacity="0.85"/>
+  <ellipse cx="225" cy="85" rx="7" ry="4.5" transform="rotate(35 225 85)" fill="url(#leafGrad2)" opacity="0.85"/>
+  <ellipse cx="200" cy="70" rx="7" ry="4.5" fill="url(#leafGrad1)" opacity="0.85"/>
+
+  <!-- Small leaf-nodes (endpoints) -->
+  <ellipse cx="65" cy="125" rx="6" ry="3.5" transform="rotate(-40 65 125)" fill="url(#leafGrad2)" opacity="0.7"/>
+  <ellipse cx="75" cy="175" rx="6" ry="3.5" transform="rotate(20 75 175)" fill="url(#leafGrad2)" opacity="0.7"/>
+  <ellipse cx="80" cy="100" rx="6" ry="3.5" transform="rotate(-55 80 100)" fill="url(#leafGrad1)" opacity="0.7"/>
+  <ellipse cx="335" cy="120" rx="6" ry="3.5" transform="rotate(40 335 120)" fill="url(#leafGrad2)" opacity="0.7"/>
+  <ellipse cx="325" cy="170" rx="6" ry="3.5" transform="rotate(-20 325 170)" fill="url(#leafGrad2)" opacity="0.7"/>
+  <ellipse cx="320" cy="95" rx="6" ry="3.5" transform="rotate(55 320 95)" fill="url(#leafGrad1)" opacity="0.7"/>
+  <ellipse cx="185" cy="42" rx="6" ry="3.5" transform="rotate(-25 185 42)" fill="url(#leafGrad2)" opacity="0.7"/>
+  <ellipse cx="215" cy="42" rx="6" ry="3.5" transform="rotate(25 215 42)" fill="url(#leafGrad2)" opacity="0.7"/>
+
+  <!-- Network node dots (digital connection points) -->
+  <circle cx="140" cy="190" r="4" fill="url(#nodeGlow)" stroke="#333" stroke-width="1.5"/>
+  <circle cx="260" cy="185" r="4" fill="url(#nodeGlow)" stroke="#333" stroke-width="1.5"/>
+  <circle cx="200" cy="140" r="4" fill="url(#nodeGlow)" stroke="#333" stroke-width="1.5"/>
+  <circle cx="95" cy="155" r="3" fill="url(#nodeGlow)" stroke="#444" stroke-width="1"/>
+  <circle cx="110" cy="130" r="3" fill="url(#nodeGlow)" stroke="#444" stroke-width="1"/>
+  <circle cx="155" cy="135" r="3" fill="url(#nodeGlow)" stroke="#444" stroke-width="1"/>
+  <circle cx="305" cy="150" r="3" fill="url(#nodeGlow)" stroke="#444" stroke-width="1"/>
+  <circle cx="290" cy="125" r="3" fill="url(#nodeGlow)" stroke="#444" stroke-width="1"/>
+  <circle cx="245" cy="130" r="3" fill="url(#nodeGlow)" stroke="#444" stroke-width="1"/>
+  <circle cx="175" cy="85" r="3" fill="url(#nodeGlow)" stroke="#444" stroke-width="1"/>
+  <circle cx="225" cy="85" r="3" fill="url(#nodeGlow)" stroke="#444" stroke-width="1"/>
+  <circle cx="200" cy="70" r="3" fill="url(#nodeGlow)" stroke="#444" stroke-width="1"/>
+  <!-- Endpoint dots -->
+  <circle cx="65" cy="125" r="2" fill="#4CAF50" opacity="0.8"/>
+  <circle cx="75" cy="175" r="2" fill="#4CAF50" opacity="0.8"/>
+  <circle cx="80" cy="100" r="2" fill="#4CAF50" opacity="0.8"/>
+  <circle cx="335" cy="120" r="2" fill="#4CAF50" opacity="0.8"/>
+  <circle cx="325" cy="170" r="2" fill="#4CAF50" opacity="0.8"/>
+  <circle cx="320" cy="95" r="2" fill="#4CAF50" opacity="0.8"/>
+  <circle cx="185" cy="42" r="2" fill="#4CAF50" opacity="0.8"/>
+  <circle cx="215" cy="42" r="2" fill="#4CAF50" opacity="0.8"/>
+
+  <!-- Trunk base node (main hub) -->
+  <circle cx="200" cy="210" r="6" fill="#1a1a1a" stroke="#4CAF50" stroke-width="2"/>
+  <circle cx="200" cy="210" r="3" fill="#4CAF50"/>
+</svg>

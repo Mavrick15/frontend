@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="tGrad" x1="100" y1="190" x2="100" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#333"/>
+    </linearGradient>
+    <linearGradient id="bGrad" x1="40" y1="100" x2="160" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2d2d2d"/>
+      <stop offset="100%" stop-color="#4a4a4a"/>
+    </linearGradient>
+    <linearGradient id="lG1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </linearGradient>
+    <linearGradient id="lG2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#66BB6A"/>
+      <stop offset="100%" stop-color="#388E3C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Roots -->
+  <path d="M100 170 L100 185" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M100 178 L85 192" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+  <path d="M100 178 L115 192" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="85" cy="192" r="2" fill="#1a1a1a"/>
+  <circle cx="115" cy="192" r="2" fill="#1a1a1a"/>
+
+  <!-- Main trunk -->
+  <path d="M100 170 L100 100" stroke="url(#tGrad)" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Branches -->
+  <path d="M100 125 L65 90" stroke="url(#bGrad)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M65 90 L40 65" stroke="url(#bGrad)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M65 90 L50 55" stroke="url(#bGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M65 90 L78 60" stroke="url(#bGrad)" stroke-width="2.5" stroke-linecap="round"/>
+
+  <path d="M100 120 L135 88" stroke="url(#bGrad)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M135 88 L160 62" stroke="url(#bGrad)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M135 88 L150 52" stroke="url(#bGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M135 88 L122 58" stroke="url(#bGrad)" stroke-width="2.5" stroke-linecap="round"/>
+
+  <path d="M100 108 L100 60" stroke="url(#bGrad)" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M100 60 L88 30" stroke="url(#bGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M100 60 L112 30" stroke="url(#bGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M100 60 L100 22" stroke="url(#bGrad)" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Sub-branches -->
+  <path d="M40 65 L25 48" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M160 62 L175 45" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Cross-connections (dashed digital lines) -->
+  <path d="M40 65 L78 60" stroke="#777" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+  <path d="M160 62 L122 58" stroke="#777" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+  <path d="M88 30 L78 60" stroke="#777" stroke-width="1" stroke-dasharray="3 3" opacity="0.35"/>
+  <path d="M112 30 L122 58" stroke="#777" stroke-width="1" stroke-dasharray="3 3" opacity="0.35"/>
+
+  <!-- Leaf-nodes -->
+  <ellipse cx="65" cy="90" rx="7" ry="4" transform="rotate(-40 65 90)" fill="url(#lG1)" opacity="0.9"/>
+  <ellipse cx="135" cy="88" rx="7" ry="4" transform="rotate(40 135 88)" fill="url(#lG1)" opacity="0.9"/>
+  <ellipse cx="100" cy="60" rx="6" ry="3.5" fill="url(#lG1)" opacity="0.9"/>
+  <ellipse cx="40" cy="65" rx="6" ry="3.5" transform="rotate(-30 40 65)" fill="url(#lG2)" opacity="0.85"/>
+  <ellipse cx="50" cy="55" rx="5" ry="3" transform="rotate(-50 50 55)" fill="url(#lG2)" opacity="0.8"/>
+  <ellipse cx="78" cy="60" rx="5" ry="3" transform="rotate(-20 78 60)" fill="url(#lG1)" opacity="0.8"/>
+  <ellipse cx="160" cy="62" rx="6" ry="3.5" transform="rotate(30 160 62)" fill="url(#lG2)" opacity="0.85"/>
+  <ellipse cx="150" cy="52" rx="5" ry="3" transform="rotate(50 150 52)" fill="url(#lG2)" opacity="0.8"/>
+  <ellipse cx="122" cy="58" rx="5" ry="3" transform="rotate(20 122 58)" fill="url(#lG1)" opacity="0.8"/>
+  <ellipse cx="88" cy="30" rx="5" ry="3" transform="rotate(-35 88 30)" fill="url(#lG2)" opacity="0.8"/>
+  <ellipse cx="112" cy="30" rx="5" ry="3" transform="rotate(35 112 30)" fill="url(#lG2)" opacity="0.8"/>
+  <ellipse cx="100" cy="22" rx="5" ry="3" fill="url(#lG1)" opacity="0.8"/>
+  <ellipse cx="25" cy="48" rx="4" ry="2.5" transform="rotate(-40 25 48)" fill="url(#lG2)" opacity="0.7"/>
+  <ellipse cx="175" cy="45" rx="4" ry="2.5" transform="rotate(40 175 45)" fill="url(#lG2)" opacity="0.7"/>
+
+  <!-- Network node dots -->
+  <circle cx="65" cy="90" r="3" fill="#E0E0E0" stroke="#333" stroke-width="1"/>
+  <circle cx="135" cy="88" r="3" fill="#E0E0E0" stroke="#333" stroke-width="1"/>
+  <circle cx="100" cy="60" r="3" fill="#E0E0E0" stroke="#333" stroke-width="1"/>
+  <circle cx="40" cy="65" r="2.5" fill="#E0E0E0" stroke="#444" stroke-width="0.8"/>
+  <circle cx="78" cy="60" r="2.5" fill="#E0E0E0" stroke="#444" stroke-width="0.8"/>
+  <circle cx="160" cy="62" r="2.5" fill="#E0E0E0" stroke="#444" stroke-width="0.8"/>
+  <circle cx="122" cy="58" r="2.5" fill="#E0E0E0" stroke="#444" stroke-width="0.8"/>
+  <circle cx="88" cy="30" r="2" fill="#4CAF50" opacity="0.8"/>
+  <circle cx="112" cy="30" r="2" fill="#4CAF50" opacity="0.8"/>
+  <circle cx="100" cy="22" r="2" fill="#4CAF50" opacity="0.8"/>
+  <circle cx="25" cy="48" r="1.5" fill="#4CAF50" opacity="0.7"/>
+  <circle cx="175" cy="45" r="1.5" fill="#4CAF50" opacity="0.7"/>
+
+  <!-- Trunk hub node -->
+  <circle cx="100" cy="100" r="5" fill="#1a1a1a" stroke="#4CAF50" stroke-width="1.5"/>
+  <circle cx="100" cy="100" r="2.5" fill="#4CAF50"/>
+</svg>

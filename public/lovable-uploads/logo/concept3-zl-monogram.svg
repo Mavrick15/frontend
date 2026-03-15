@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="300" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+    <linearGradient id="zGrad" x1="60" y1="60" x2="170" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E0E0E0"/>
+      <stop offset="100%" stop-color="#BDBDBD"/>
+    </linearGradient>
+    <linearGradient id="lGrad" x1="130" y1="100" x2="240" y2="250" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect x="15" y="15" width="270" height="270" rx="50" fill="url(#bgGrad)"/>
+
+  <!-- Circuit traces in background -->
+  <path d="M50 50 L50 75" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M50 75 L75 75" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="50" cy="50" r="3" fill="#333"/>
+  <circle cx="75" cy="75" r="2" fill="#4CAF50" opacity="0.5"/>
+
+  <path d="M250 50 L250 68" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M250 68 L232 68" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="250" cy="50" r="3" fill="#333"/>
+  <circle cx="232" cy="68" r="2" fill="#4CAF50" opacity="0.5"/>
+
+  <path d="M50 250 L68 250" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M68 250 L68 232" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="50" cy="250" r="3" fill="#333"/>
+  <circle cx="68" cy="232" r="2" fill="#4CAF50" opacity="0.5"/>
+
+  <path d="M250 250 L232 250" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M232 250 L232 232" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="250" cy="250" r="3" fill="#333"/>
+  <circle cx="232" cy="232" r="2" fill="#4CAF50" opacity="0.5"/>
+
+  <!-- Letter Z (white/silver) -->
+  <!-- Top bar -->
+  <path d="M65 82 L175 82" stroke="url(#zGrad)" stroke-width="14" stroke-linecap="round"/>
+  <!-- Diagonal -->
+  <path d="M170 82 L70 192" stroke="url(#zGrad)" stroke-width="12" stroke-linecap="round"/>
+  <!-- Bottom bar -->
+  <path d="M65 192 L175 192" stroke="url(#zGrad)" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Circuit nodes on Z -->
+  <circle cx="65" cy="82" r="5" fill="#E0E0E0" stroke="#4CAF50" stroke-width="2"/>
+  <circle cx="175" cy="82" r="5" fill="#E0E0E0" stroke="#4CAF50" stroke-width="2"/>
+  <circle cx="120" cy="137" r="4" fill="#4CAF50" stroke="#E0E0E0" stroke-width="1.5"/>
+  <circle cx="65" cy="192" r="5" fill="#E0E0E0" stroke="#4CAF50" stroke-width="2"/>
+  <circle cx="175" cy="192" r="5" fill="#E0E0E0" stroke="#4CAF50" stroke-width="2"/>
+
+  <!-- Letter L (green) -->
+  <!-- Vertical bar -->
+  <path d="M145 108 L145 228" stroke="url(#lGrad)" stroke-width="14" stroke-linecap="round"/>
+  <!-- Horizontal bar -->
+  <path d="M145 228 L240 228" stroke="url(#lGrad)" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Circuit nodes on L -->
+  <circle cx="145" cy="108" r="5" fill="#4CAF50" stroke="#E0E0E0" stroke-width="2"/>
+  <circle cx="145" cy="168" r="4" fill="#E0E0E0" stroke="#4CAF50" stroke-width="1.5"/>
+  <circle cx="145" cy="228" r="5" fill="#4CAF50" stroke="#E0E0E0" stroke-width="2"/>
+  <circle cx="240" cy="228" r="5" fill="#4CAF50" stroke="#E0E0E0" stroke-width="2"/>
+
+  <!-- Connection traces from Z to L -->
+  <path d="M175 82 L145 108" stroke="#4CAF50" stroke-width="2" stroke-dasharray="4 3" opacity="0.6"/>
+  <path d="M175 192 L145 192" stroke="#4CAF50" stroke-width="2" stroke-dasharray="4 3" opacity="0.5"/>
+  <circle cx="145" cy="192" r="3" fill="#4CAF50" opacity="0.7"/>
+
+  <!-- Intersection highlight -->
+  <circle cx="145" cy="137" r="6" fill="#1a1a1a" stroke="#4CAF50" stroke-width="2.5"/>
+  <circle cx="145" cy="137" r="3" fill="#4CAF50"/>
+
+  <!-- Small decorative circuit traces -->
+  <path d="M65 82 L65 60 L85 60" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="85" cy="60" r="2" fill="#4CAF50" opacity="0.6"/>
+  <path d="M240 228 L240 248 L220 248" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="220" cy="248" r="2" fill="#4CAF50" opacity="0.6"/>
+  <path d="M145 108 L125 108 L125 92" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="125" cy="92" r="2" fill="#4CAF50" opacity="0.6"/>
+</svg>
