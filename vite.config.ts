@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: '/var/www/zetounlabs.cd/html',
+    outDir: 'dist',
     emptyOutDir: true,
   },
   plugins: [
