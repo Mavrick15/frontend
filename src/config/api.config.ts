@@ -36,6 +36,14 @@ export const ENDPOINTS = {
         LIST: `${API_BASE_URL}/api/statistics`,
         GET: (id: string) => `${API_BASE_URL}/api/statistics/${id}`,
     },
+    PAYMENTS: {
+        BASE: `${API_BASE_URL}/api/payments`,
+        INITIATE: `${API_BASE_URL}/api/payments`,
+        LIST: `${API_BASE_URL}/api/payments`,
+        GET: (id: string) => `${API_BASE_URL}/api/payments/${id}`,
+        CONFIRM: (id: string) => `${API_BASE_URL}/api/payments/${id}/confirm`,
+        CANCEL: (id: string) => `${API_BASE_URL}/api/payments/${id}/cancel`,
+    },
     COMPANY: {
         BASE: `${API_BASE_URL}/api/company`,
         GET: `${API_BASE_URL}/api/company`,

@@ -16,11 +16,13 @@ import {
   FileText,
   Loader2,
   Share2,
+  Smartphone,
   Sparkles,
 } from "lucide-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import MobileMoneyPaymentDialog from "./MobileMoneyPaymentDialog";
 
 interface CartItem {
   _id: string;
@@ -32,6 +34,7 @@ interface CartItem {
 interface InvoiceGeneratedDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  invoiceId: string;
   invoiceNumber: string;
   clientName: string;
   clientEmail: string;
@@ -42,6 +45,7 @@ interface InvoiceGeneratedDialogProps {
 const InvoiceGeneratedDialog: React.FC<InvoiceGeneratedDialogProps> = ({
   isOpen,
   onClose,
+  invoiceId,
   invoiceNumber,
   clientName,
   clientEmail,
@@ -49,6 +53,8 @@ const InvoiceGeneratedDialog: React.FC<InvoiceGeneratedDialogProps> = ({
   totalAmount,
 }) => {
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isPaymentDialogOpen, setIsPaymentDialogOpen] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
   const { clearCart } = useCart();
   const navigate = useNavigate();
 
@@ -314,6 +320,7 @@ const InvoiceGeneratedDialog: React.FC<InvoiceGeneratedDialogProps> = ({
   };
 
   return (
+    <>
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="w-[95%] max-w-[600px] p-0 rounded-2xl md:w-full max-h-[90vh] flex flex-col border border-gray-200/50 shadow-2xl overflow-hidden">
         <DialogHeader className="bg-gradient-to-br from-gray-900 via-gray-800 to-black p-6 flex flex-row justify-between items-center relative overflow-hidden">
@@ -431,6 +438,21 @@ const InvoiceGeneratedDialog: React.FC<InvoiceGeneratedDialogProps> = ({
             transition={{ delay: 0.7 }}
             className="space-y-4"
           >
+            {!isPaid && totalAmount > 0 && (
+              <Button
+                onClick={() => setIsPaymentDialogOpen(true)}
+                className="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center text-base group"
+              >
+                <Smartphone className="mr-3 h-5 w-5 group-hover:scale-110 transition-transform" />
+                Payer par Mobile Money
+              </Button>
+            )}
+            {isPaid && (
+              <div className="w-full bg-green-50 border border-green-200 text-green-800 font-bold py-4 px-6 rounded-xl flex items-center justify-center text-base">
+                <CheckCircle2 className="mr-3 h-5 w-5 text-green-600" />
+                Paiement confirmé avec succès
+              </div>
+            )}
             <Button
               onClick={handleDownloadPDF}
               disabled={isDownloading}
@@ -467,6 +489,19 @@ const InvoiceGeneratedDialog: React.FC<InvoiceGeneratedDialogProps> = ({
         </motion.div>
       </DialogContent>
     </Dialog>
+
+    <MobileMoneyPaymentDialog
+      isOpen={isPaymentDialogOpen}
+      onClose={() => setIsPaymentDialogOpen(false)}
+      invoiceId={invoiceId}
+      invoiceNumber={invoiceNumber}
+      totalAmount={totalAmount}
+      onPaymentComplete={() => {
+        setIsPaid(true);
+        setIsPaymentDialogOpen(false);
+      }}
+    />
+    </>
   );
 };
 

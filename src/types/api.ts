@@ -285,6 +285,50 @@ export interface CompanyResponse extends ApiResponse {
   company: Company;
 }
 
+// Payment Types
+export type MobileMoneyProvider = 'mpesa' | 'orange_money' | 'airtel_money' | 'africell_money';
+export type PaymentStatus = 'pending' | 'processing' | 'completed' | 'failed' | 'cancelled' | 'expired';
+
+export interface Payment {
+  _id: string;
+  transactionReference: string;
+  provider: MobileMoneyProvider;
+  providerDisplayName: string;
+  phoneNumber: string;
+  amount: number;
+  currency: string;
+  status: PaymentStatus;
+  paymentInstructions: string;
+  providerTransactionId?: string;
+  confirmedAt?: string;
+  expiresAt?: string;
+  invoice?: {
+    invoiceNumber: string;
+    total: number;
+    status: string;
+  };
+  createdAt?: string;
+}
+
+export interface InitiatePaymentRequest {
+  invoiceId: string;
+  provider: MobileMoneyProvider;
+  phoneNumber: string;
+}
+
+export interface ConfirmPaymentRequest {
+  providerTransactionId: string;
+}
+
+export interface PaymentResponse extends ApiResponse {
+  payment: Payment;
+}
+
+export interface PaymentsResponse extends ApiResponse {
+  payments: Payment[];
+  pagination?: PaginationMeta;
+}
+
 // Health Check Types
 export interface HealthCheckResponse {
   status: 'ok' | 'degraded';

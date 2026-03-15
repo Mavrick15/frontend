@@ -61,6 +61,7 @@ const ClientInformationDialog = () => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
+  const [generatedInvoiceId, setGeneratedInvoiceId] = useState("");
   const [generatedInvoiceNumber, setGeneratedInvoiceNumber] = useState("");
   const [generatedClientName, setGeneratedClientName] = useState("");
   const [generatedClientEmail, setGeneratedClientEmail] = useState("");
@@ -198,6 +199,7 @@ const ClientInformationDialog = () => {
 
       const invoice: Invoice = data.invoice as Invoice;
 
+      setGeneratedInvoiceId(invoice._id);
       setGeneratedInvoiceNumber(invoice.invoiceNumber);
       setGeneratedClientName(invoice.clientInfo.name);
       setGeneratedClientEmail(invoice.clientInfo.email);
@@ -638,6 +640,7 @@ const ClientInformationDialog = () => {
       <InvoiceGeneratedDialog
         isOpen={isInvoiceGeneratedDialogOpen}
         onClose={handleCloseInvoiceGeneratedDialog}
+        invoiceId={generatedInvoiceId}
         invoiceNumber={generatedInvoiceNumber}
         clientName={generatedClientName}
         clientEmail={generatedClientEmail}
