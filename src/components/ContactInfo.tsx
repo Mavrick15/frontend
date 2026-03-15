@@ -2,20 +2,20 @@ import { useLocation } from "react-router-dom";
 
 const COMMON_TEXTS = {
   SECURITY_DESCRIPTION: (projectName: string) =>
-    `Comme pour ${projectName}, nous sommes dédiés à fournir des solutions de sécurité informatique sur mesure qui protègent vos actifs les plus précieux. Que vous soyez une entreprise ou une institution, nous avons l'expertise pour concevoir et déployer des systèmes de surveillance et de protection adaptés à vos besoins spécifiques.`,
+    `Comme pour ${projectName}, nous déployons des solutions de sécurité de grade professionnel qui protègent vos actifs critiques 24/7. Nos experts certifiés conçoivent des systèmes sur mesure avec une couverture à 100% et zéro angle mort - Demandez votre audit de sécurité gratuit dès aujourd'hui.`,
   FORMATION_CALL_TO_ACTION:
-    "Contactez notre équipe des formateurs dès aujourd'hui pour obtenir plus d'informations sur les dates de formation, les tarifs et les modalités d'inscription. Nous sommes là pour vous accompagner.",
+    "Places limitées à 12 participants par session pour garantir un accompagnement personnalisé. Contactez-nous maintenant pour réserver votre place et bénéficier de notre offre de lancement. Certification incluse.",
 };
 
 const TEXT_CONSTANTS = {
-  DEFAULT_TITLE: "Une question, n'hésitez pas à nous contacter !",
+  DEFAULT_TITLE: "Prêt à transformer votre entreprise ? Parlons-en.",
   DEFAULT_TEXT:
-    "Nous sommes là pour vous aider à chaque étape. Que ce soit pour un projet, une consultation ou simplement pour discuter de vos besoins, notre équipe est à votre écoute.",
-  CONTACT_US_LABEL: "Contactez-nous",
-  MAIN_HEADING: "Transformez vos idées en solutions concrètes",
+    "Consultation gratuite de 30 minutes avec un expert certifié. Obtenez un diagnostic personnalisé et une proposition chiffrée sous 48h. Plus de 500 projets livrés avec 99.8% de satisfaction.",
+  CONTACT_US_LABEL: "Démarrez votre transformation",
+  MAIN_HEADING: "Votre succès technologique commence ici",
   MAIN_DESCRIPTION:
-    "Découvrez comment Zetoun Labs peut devenir le partenaire de votre croissance digitale. Notre équipe est prête à répondre à toutes vos questions et à construire l'avenir de votre entreprise.",
-  CONTACT_BUTTON_TEXT: "Contactez nous !",
+    "Rejoignez les 200+ entreprises qui ont déjà choisi Zetoun Labs pour leur transformation digitale. Consultation gratuite, audit personnalisé et proposition sous 48h.",
+  CONTACT_BUTTON_TEXT: "Obtenir ma consultation gratuite",
   CONTACT_PAGE_PATH: "/add/contact-nous",
   PATH_CONTENT_MAP: {
     "/projects/realisations/eyano-security": {
@@ -23,57 +23,57 @@ const TEXT_CONSTANTS = {
       text: COMMON_TEXTS.SECURITY_DESCRIPTION("le Centre de Diagnostic EYANO"),
     },
     "/projects/realisations/police-judiciaire": {
-      title: "Transformez Votre Infrastructure IT",
-      text: "Forts de notre expérience avec la Police Judiciaire, nous sommes prêts à moderniser et sécuriser votre infrastructure IT. Que vous ayez besoin d'une refonte complète, d'une amélioration de la sécurité ou d'une haute disponibilité, nos experts sont à votre écoute pour des solutions sur mesure.",
+      title: "Votre infrastructure mérite la même excellence",
+      text: "Performance réseau x10, sécurité militaire et disponibilité 99.9% - C'est ce que nous avons livré à la Police Judiciaire. Nos architectes certifiés Cisco et Microsoft sont prêts à transformer votre infrastructure avec la même rigueur et le même niveau d'excellence.",
     },
     "/projects/realisations/credit-shop-africa": {
       title: "Votre sécurité, notre engagement",
       text: COMMON_TEXTS.SECURITY_DESCRIPTION("Credit Shop Africa"),
     },
     "/services/network-engineering": {
-      title: "Un réseau adapté à vos enjeux",
-      text: "Que vous soyez une PME en pleine croissance ou une grande entreprise avec des besoins complexes, nous concevons des architectures réseau qui s'adaptent à vos contraintes techniques et budgétaires. Notre objectif est de vous offrir une infrastructure fiable, performante et évolutive.",
+      title: "Votre réseau mérite la performance 10Gb",
+      text: "Architectures LAN/WAN ultra-rapides avec latence <1ms et disponibilité 99.9%. Nos ingénieurs certifiés CCNP conçoivent des réseaux sur mesure qui accompagnent votre croissance - De la PME au datacenter d'entreprise. Audit réseau gratuit inclus.",
     },
     "/services/video-surveillance": {
-      title: "Une sécurité sur mesure pour votre tranquillité d'esprit",
-      text: "Que vous cherchiez à protéger un commerce, un bureau, un entrepôt ou un site industriel, Zetoun Labs conçoit des systèmes de vidéosurveillance adaptés à vos enjeux spécifiques. Nos solutions sont conformes à la réglementation locale et respectueuses de la vie privée, vous offrant une sécurité complète et une tranquillité d'esprit totale.",
+      title: "Zéro intrusion, zéro compromis sur votre sécurité",
+      text: "Caméras 4K avec IA intégrée, détection comportementale 99.5% de précision et surveillance 360° sans angle mort. Plus de 300 sites sécurisés à Kinshasa. Obtenez votre audit de sécurité gratuit avec cartographie 3D des vulnérabilités.",
     },
     "/services/web-development": {
-      title: "Un site web professionnel à votre image avec Zetoun Labs",
-      text: "Que vous ayez besoin d'une simple vitrine numérique ou d'un site e-commerce complet, Zetoun Labs vous accompagne dans toutes les étapes de votre projet web. De la conception initiale à la mise en ligne, en passant par l'hébergement et la maintenance, nous garantissons une solution web qui renforce votre présence en ligne et atteint vos objectifs commerciaux.",
+      title: "Votre site web doit convertir, pas juste exister",
+      text: "Sites ultra-rapides (<1.5s), design primé et SEO Top 3 Google. Nos développeurs full-stack créent des plateformes qui génèrent en moyenne 40% de revenus supplémentaires. Score Lighthouse 95+ garanti. Demandez votre maquette gratuite.",
     },
     "/services/it-management": {
-      title: "Une infogérance sur mesure pour votre entreprise",
-      text: "Nos formules d'infogérance s'adaptent à vos besoins spécifiques, qu'il s'agisse d'une supervision ponctuelle ou d'une prise en charge complète de votre système d'information. Chez Zetoun Labs, nous élaborons avec vous un contrat de service (SLA) précis, détaillant les niveaux de disponibilité garantis et les temps de réponse en cas d'incident pour une tranquillité d'esprit totale.",
+      title: "Concentrez-vous sur votre métier, on gère votre IT",
+      text: "Monitoring IA 24/7, intervention <2h et 99.8% de disponibilité garantie. SLA sur mesure avec engagement contractuel de résolution. Plus de 500 entreprises nous font déjà confiance. Obtenez votre premier mois d'essai gratuit.",
     },
     "/services/solar-installation": {
-      title: "Passez à l'énergie solaire avec Zetoun Labs",
-      text: "Que vous soyez un particulier souhaitant réduire sa facture d'électricité ou une entreprise visant l'autonomie énergétique, Zetoun Labs est votre partenaire idéal. Nous vous accompagnons à chaque étape de votre projet solaire, de l'étude à la mise en service.",
+      title: "Zéro coupure, 100% autonomie - Passez au solaire",
+      text: "Réduisez votre facture de 60% à 80% dès la première année avec un ROI en 3 ans. Équipements Tier 1 garantis 25 ans. Plus de 500 installations réussies à Kinshasa. Demandez votre audit énergétique gratuit.",
     },
     "/services/technical-support": {
-      title: "Un support informatique adapté à vos besoins",
-      text: "Que vous soyez une petite entreprise avec quelques postes ou une structure plus importante avec des besoins spécifiques, Zetoun Labs propose des formules de support technique adaptées à votre taille et à vos contraintes opérationnelles. Nous sommes votre partenaire de confiance pour une informatique sans souci.",
+      title: "Zéro downtime, zéro stress - Support d'excellence",
+      text: "95% des incidents résolus dès le premier contact, intervention garantie <2h et réduction de 70% des tickets après 6 mois. Nos ingénieurs certifiés Microsoft, Cisco et CompTIA sont disponibles 24/7. Testez notre réactivité gratuitement.",
     },
     "/formations/linux-administration": {
-      title: "Prêt à devenir un expert en administration système Linux ?",
+      title: "Lancez votre carrière d'expert Linux - Certification LPIC-1 incluse",
       text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
     "/formations/windows-administration": {
       title:
-        "Prêt à devenir un expert en administration système Windows Server ?",
+        "Devenez architecte Windows Server certifié - Préparation MCSA incluse",
       text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
     "/formations/network-administration": {
-      title: "Prêt à devenir un expert en administration réseau cisco ?",
+      title: "Décrochez votre certification Cisco CCNA - Taux de réussite 89%",
       text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
     "/formations/computer-maintenance": {
-      title: "Prêt à devenir un expert en maintenance informatique ?",
+      title: "Devenez technicien hardware certifié CompTIA A+",
       text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
     "/formations/virtualization-training": {
       title:
-        "Prêt à maîtriser la virtualisation pour des infrastructures agiles ?",
+        "Maîtrisez VMware, Docker et Kubernetes - Compétences #1 du marché",
       text: COMMON_TEXTS.FORMATION_CALL_TO_ACTION,
     },
   },

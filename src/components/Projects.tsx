@@ -12,9 +12,9 @@ import BlogPostCard from "@/components/BlogPostCard";
 const projects = [
   {
     id: 1,
-    title: "Réhabilitation de l’infrastructure IT de la Police judiciaire",
-    brand: "Police judiciaire",
-    description: "Modernisation du réseau pour la performance, la sécurité et la haute disponibilité.",
+    title: "Transformation critique de l'infrastructure IT de la Police Judiciaire",
+    brand: "Police Judiciaire",
+    description: "De l'obsolescence à l'excellence - Performance réseau x10, sécurité militaire et disponibilité 99.9% pour les missions critiques.",
     tags: ["Réseau", "Sécurité IT", "Infrastructure", "Kinshasa"],
     imageUrl: "/lovable-uploads/img/police.png",
     isFeatured: true,
@@ -22,19 +22,19 @@ const projects = [
   },
   {
     id: 2,
-    title: "Sécurité renforcée Centre Diagnostic EYANO",
+    title: "Sécurisation intelligente du Centre Diagnostic EYANO",
     brand: "Centre de diagnostic EYANO",
-    description: "Modernisation et déploiement étendu de la vidéosurveillance pour une sécurité optimale.",
+    description: "Infrastructure HIKVISION de grade professionnel - Couverture 70m² sans angle mort et surveillance IA 24/7.",
     tags: ["Vidéosurveillance", "Sécurité", "Hikvision", "Santé"],
     imageUrl: "/lovable-uploads/img/Eyano.png",
     link: "/projects/realisations/eyano-security"
   },
   {
     id: 3,
-    title: "Installation d'un nouveau système de vidéosurveillance",
+    title: "Système de vidéosurveillance intelligent pour Credit Shop Africa",
     brand: "Credit Shop Africa",
-    description: "Déploiement d'un système de vidéosurveillance de pointe pour une protection optimale et une sérénité accrue.",
-    tags: ["Vidéosurveillance", "Sécurité", "CP+", "Santé"],
+    description: "Déploiement CP+ haute performance avec couverture 360°, zéro angle mort et monitoring temps réel centralisé.",
+    tags: ["Vidéosurveillance", "Sécurité", "CP+", "Finance"],
     imageUrl: "/lovable-uploads/img/credit-shop-africa.png",
     link: "/projects/realisations/credit-shop-africa"
   }

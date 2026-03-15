@@ -8,14 +8,14 @@ const PoliceJudiciaire = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const TEXT_CONSTANTS = {
-    FULL_TITLE: "Réhabilitation de l’infrastructure IT de la Police judiciaire",
-    MOBILE_TITLE: "Police judiciaire",
-    SUBTITLE: "Modernisation du réseau pour la performance, la sécurité et la haute disponibilité.",
+    FULL_TITLE: "Réhabilitation critique de l'infrastructure IT de la Police Judiciaire",
+    MOBILE_TITLE: "Police Judiciaire",
+    SUBTITLE: "Transformation complète du réseau - De l'obsolescence à une infrastructure haute performance, sécurisée et redondante.",
     IMAGE_URL: "/lovable-uploads/img/police.png",
     BRAND_NAME: "Zetoun Labs",
     IMAGE_PLACEHOLDER_ALT: "Image de remplacement pour l'infrastructure IT de la Police judiciaire en noir et blanc",
-    SEO_TITLE: "Infrastructure IT Police Judiciaire - Zetoun Labs",
-    SEO_DESCRIPTION: "Découvrez comment Zetoun Labs a modernisé l'infrastructure réseau de la Police judiciaire à Kinshasa, améliorant performances, sécurité et disponibilité des services IT.",
+    SEO_TITLE: "Infrastructure IT Police Judiciaire - Transformation Réseau | Zetoun Labs",
+    SEO_DESCRIPTION: "Étude de cas : Zetoun Labs modernise l'infrastructure réseau de la Police Judiciaire à Kinshasa - Performance x10, sécurité militaire et disponibilité 99.9%.",
     SEO_KEYWORDS: [
       'infrastructure IT',
       'réhabilitation réseau',

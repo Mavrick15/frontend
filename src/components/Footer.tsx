@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const TEXT_CONSTANTS = {
   COMPANY_NAME: "Zetoun Labs",
   COMPANY_DESCRIPTION:
-    "Zetoun Labs est une plateforme tout-en-un pour le développement et le déploiement de solutions informatiques intelligentes, offrant à ses clients une maîtrise totale de leurs outils tout en assurant la prise en charge complète du développement technologique.",
+    "Leader de la transformation digitale en RDC - Zetoun Labs conçoit, déploie et maintient des solutions IT de classe mondiale. De l'ingénierie réseau à la cybersécurité, en passant par le développement web et l'énergie solaire, nous propulsons votre entreprise vers l'excellence technologique.",
   COMPANY_LINKS_HEADING: "Company",
   ABOUT_US: "À propos de nous",
   CAREERS: "Parcours professionnel",

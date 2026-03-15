@@ -9,44 +9,43 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from "@/components/ui/button";
 
 const TEXT_CONSTANTS = {
-  OUR_APPROACH_LABEL: "Notre manière de transformer vos idées",
-  MAIN_HEADING: "Comprenez notre manière de travailler pour vous",
-  MAIN_DESCRIPTION: "Zetoun Labs guide ses clients à travers trois étapes essentielles : comprendre leurs exigences, concevoir des solutions personnalisées, et assurer un suivi constant pour optimiser leur efficacité.",
+  OUR_APPROACH_LABEL: "Notre méthodologie éprouvée en 3 phases",
+  MAIN_HEADING: "Une approche structurée qui garantit votre succès",
+  MAIN_DESCRIPTION: "Zetoun Labs transforme vos défis technologiques en avantages compétitifs grâce à une méthodologie rigoureuse : analyse stratégique approfondie, développement agile sur mesure et optimisation continue basée sur les données.",
   STEP_FLOW_ITEMS: [
     {
       icon: <BrainCog className="h-10 w-10 text-gray-700" />,
-      title: "Analyse & planification",
-      description: "Analyser les besoins du client afin de définir une solution sur-mesure, allouer les ressources adéquates et établir un planning clair.",
-      hoverDetail: "Comprendre les besoins du client et définir la solution, les ressources et le planning."
+      title: "Audit stratégique & architecture",
+      description: "Diagnostic approfondi de vos besoins avec cartographie complète de votre écosystème IT - Plan d'action chiffré livré en 48h.",
+      hoverDetail: "Analyse 360° de votre infrastructure, benchmark concurrentiel et roadmap technologique personnalisée."
     },
     {
       icon: <MonitorCog className="h-10 w-10 text-gray-700" />,
-      title: "Développement & déploiement",
-      description: "Concevoir l’architecture, implémenter les fonctionnalités et assurer le déploiement opérationnel de la solution adaptée",
-      hoverDetail: "Concevoir, réaliser et mettre en place la solution adaptée."
+      title: "Développement agile & déploiement",
+      description: "Sprints de 2 semaines avec démos régulières - Déploiement progressif zero-downtime et tests automatisés à chaque étape.",
+      hoverDetail: "CI/CD automatisé, tests unitaires 90%+ de couverture et déploiement blue-green pour zéro interruption."
     },
     {
       icon: <LifeBuoy className="h-10 w-10 text-gray-700" />,
-      title: "Support & optimisation",
-      description: "Garantir la pérennité des solutions à travers un support réactif, une maintenance fiable et une optimisation continue",
-      hoverDetail: "Assurer la maintenance, le support et l’amélioration continue."
+      title: "Support proactif & évolution continue",
+      description: "Monitoring 24/7 avec IA prédictive - Optimisation mensuelle des performances et mises à jour de sécurité automatiques.",
+      hoverDetail: "Dashboard temps réel, rapports mensuels de performance et roadmap d'évolution trimestrielle."
     }
   ],
-  ADAPTATION_HEADING: "Adaptation de nos projets",
-  INTERACTIVE_DEVELOPMENT_LABEL: "Développement interactif",
-  ADAPTATION_DESCRIPTION: "Nous adaptons chaque solution aux besoins du client, étape par étape, avec un cycle d'itération continu.",
+  ADAPTATION_HEADING: "Méthodologie Agile certifiée",
+  INTERACTIVE_DEVELOPMENT_LABEL: "Développement itératif de précision",
+  ADAPTATION_DESCRIPTION: "Chaque sprint livre de la valeur mesurable - Itérations rapides avec validation client intégrée pour un produit final parfaitement aligné sur vos objectifs.",
   SPRINT_PHASES: [
     { name: "Planification", icon: <CheckCircle className="h-4 w-4" /> },
     { name: "Développement", icon: <Code className="h-4 w-4" /> },
     { name: "Essais", icon: <Box className="h-4 w-4" /> },
     { name: "Examen", icon: <RefreshCcw className="h-4 w-4" /> }
   ],
-  CUSTOMER_FEEDBACK_LABEL: "Retour d'information à la clientèle intégré à chaque étape",
-  CONTINUOUS_IMPROVEMENT_LABEL: "Amélioration continue",
-  CONQUER_MARKET_HEADING: "Conquérir le marché",
-  CONQUER_MARKET_DESCRIPTION: "Prêts pour l’utilisation, la production et le déploiement.",
+  CUSTOMER_FEEDBACK_LABEL: "Feedback client intégré à chaque sprint pour une satisfaction garantie",
+  CONTINUOUS_IMPROVEMENT_LABEL: "Amélioration continue basée sur les métriques",
+  CONQUER_MARKET_HEADING: "Prêt pour le lancement",
+  CONQUER_MARKET_DESCRIPTION: "Solution testée, validée et optimisée - Prête à dominer votre marché.",
 };
-
 
 const Features = () => {
   const featuresRef = useRef<HTMLDivElement>(null);

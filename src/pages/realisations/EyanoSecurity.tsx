@@ -10,9 +10,9 @@ const EyanoSecurity = () => {
     MOBILE_TITLE: "Centre Diagnostic EYANO",
     BRAND_NAME: "Centre de Diagnostic EYANO",
     IMAGE_URL: "/lovable-uploads/img/Eyano.png",
-    SUBTITLE: "Modernisation et déploiement étendu de la vidéosurveillance pour une sécurité optimale.",
+    SUBTITLE: "Déploiement d'une infrastructure de sécurité HIKVISION de grade professionnel couvrant 70m² sans angle mort.",
     IMAGE_PLACEHOLDER_ALT: "Image de remplacement pour le Centre de Diagnostic EYANO en noir et blanc",
-    SEO_DESCRIPTION: "Découvrez l'extension et le renforcement du système de vidéosurveillance par Zetoun Labs pour le Centre de Diagnostic EYANO à Kinshasa, assurant une couverture étendue et une sécurité optimale de ses installations et de son personnel.",
+    SEO_DESCRIPTION: "Étude de cas : Zetoun Labs déploie un système HIKVISION haute performance pour le Centre EYANO à Kinshasa - Couverture 70m², surveillance 24/7 et zéro intrusion.",
     SEO_KEYWORDS: [
       'sécurité Centre EYANO',
       'vidéosurveillance Kinshasa',
