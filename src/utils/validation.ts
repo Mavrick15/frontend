@@ -85,16 +85,16 @@ export const validateName = (name: string, minLength: number = 2, maxLength: num
 };
 
 /**
- * Valide un numéro de téléphone (format français)
+ * Valide un numéro de téléphone (format RDC : +243 XXX XXX XXX)
  */
 export const validatePhone = (phone: string): ValidationResult => {
   const errors: string[] = [];
-  const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+  const phoneRegex = /^\+243\s?\d{3}\s?\d{3}\s?\d{3}$/;
 
   if (!phone) {
     errors.push('Le numéro de téléphone est requis');
-  } else if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
-    errors.push('Le numéro de téléphone n\'est pas valide');
+  } else if (!phoneRegex.test(phone.trim())) {
+    errors.push('Le numéro de téléphone n\'est pas valide. Format : +243 XXX XXX XXX');
   }
 
   return {

@@ -95,7 +95,7 @@ const TEXT = {
   SELECT_PROVIDER_DESC: "Sélectionnez l'opérateur Mobile Money que vous souhaitez utiliser pour payer.",
   ENTER_PHONE_TITLE: "Numéro de téléphone",
   ENTER_PHONE_DESC: "Entrez le numéro associé à votre compte",
-  PHONE_PLACEHOLDER: "Ex: 0812345678",
+  PHONE_PLACEHOLDER: "Ex: +243 812 345 678",
   PHONE_LABEL: "Numéro Mobile Money",
   INSTRUCTIONS_TITLE: "Instructions de paiement",
   INSTRUCTIONS_DESC: "Suivez ces étapes pour compléter votre paiement",
@@ -361,7 +361,10 @@ const MobileMoneyPaymentDialog: React.FC<MobileMoneyPaymentDialogProps> = ({
           placeholder={TEXT.PHONE_PLACEHOLDER}
           className="text-lg py-6 rounded-xl border-gray-300 focus:border-gray-500 focus:ring-gray-500"
         />
-        <p className="text-xs text-gray-400">Format : 0812345678 ou +243812345678</p>
+        <p className="text-xs text-gray-400">Format : +243 XXX XXX XXX</p>
+        {phoneNumber.trim() && !/^\+243\s?\d{3}\s?\d{3}\s?\d{3}$/.test(phoneNumber.trim()) && (
+          <p className="text-xs text-red-500 mt-1">Le numéro de téléphone n'est pas valide</p>
+        )}
       </div>
 
       <div className="flex gap-3 mt-6">
@@ -375,7 +378,7 @@ const MobileMoneyPaymentDialog: React.FC<MobileMoneyPaymentDialogProps> = ({
         </Button>
         <Button
           onClick={handleInitiatePayment}
-          disabled={!phoneNumber.trim() || phoneNumber.trim().length < 9 || isLoading}
+          disabled={!phoneNumber.trim() || !/^\+243\s?\d{3}\s?\d{3}\s?\d{3}$/.test(phoneNumber.trim()) || isLoading}
           className="flex-1 bg-gray-900 text-white hover:bg-gray-800 py-6 rounded-xl"
         >
           {isLoading ? (
