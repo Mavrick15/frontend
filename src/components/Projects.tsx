@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, TouchEvent } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, TrendingUp, Clock, Shield, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from "@/hooks/use-mobile";
 import React from 'react';
@@ -19,6 +19,11 @@ const projects = [
     imageUrl: "/lovable-uploads/img/police.png",
     isFeatured: true,
     link: "/projects/realisations/police-judiciaire",
+    metrics: [
+      { label: "Performance", value: "x10", icon: Zap, color: "text-amber-600 bg-amber-50" },
+      { label: "Disponibilité", value: "99.9%", icon: Clock, color: "text-emerald-600 bg-emerald-50" },
+      { label: "Sécurité", value: "Militaire", icon: Shield, color: "text-blue-600 bg-blue-50" },
+    ],
   },
   {
     id: 2,
@@ -27,7 +32,12 @@ const projects = [
     description: "Infrastructure HIKVISION de grade professionnel - Couverture 70m² sans angle mort et surveillance IA 24/7.",
     tags: ["Vidéosurveillance", "Sécurité", "Hikvision", "Santé"],
     imageUrl: "/lovable-uploads/img/Eyano.png",
-    link: "/projects/realisations/eyano-security"
+    link: "/projects/realisations/eyano-security",
+    metrics: [
+      { label: "Couverture", value: "70m²", icon: Shield, color: "text-violet-600 bg-violet-50" },
+      { label: "Surveillance", value: "24/7", icon: Clock, color: "text-emerald-600 bg-emerald-50" },
+      { label: "Angle mort", value: "0%", icon: TrendingUp, color: "text-blue-600 bg-blue-50" },
+    ],
   },
   {
     id: 3,
@@ -36,7 +46,12 @@ const projects = [
     description: "Déploiement CP+ haute performance avec couverture 360°, zéro angle mort et monitoring temps réel centralisé.",
     tags: ["Vidéosurveillance", "Sécurité", "CP+", "Finance"],
     imageUrl: "/lovable-uploads/img/credit-shop-africa.png",
-    link: "/projects/realisations/credit-shop-africa"
+    link: "/projects/realisations/credit-shop-africa",
+    metrics: [
+      { label: "Couverture", value: "360°", icon: Shield, color: "text-rose-600 bg-rose-50" },
+      { label: "Monitoring", value: "Temps réel", icon: Clock, color: "text-emerald-600 bg-emerald-50" },
+      { label: "Technologie", value: "CP+", icon: Zap, color: "text-amber-600 bg-amber-50" },
+    ],
   }
 ];
 
@@ -195,6 +210,22 @@ const Projects = () => {
                           </span>
                         ))}
                       </div>
+                      
+                      {/* Metrics */}
+                      {project.metrics && (
+                        <div className="grid grid-cols-3 gap-2 mb-4">
+                          {project.metrics.map((metric, idx) => (
+                            <div 
+                              key={idx} 
+                              className={`flex flex-col items-center p-2 rounded-lg ${metric.color} border border-current border-opacity-20`}
+                            >
+                              <metric.icon className="w-4 h-4 mb-1 opacity-70" />
+                              <span className="text-sm font-bold">{metric.value}</span>
+                              <span className="text-xs opacity-70">{metric.label}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                       
                       <Link 
                         to={project.link} 

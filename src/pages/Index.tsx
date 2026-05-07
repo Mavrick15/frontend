@@ -14,7 +14,6 @@ const SEO = lazy(() => import('@/components/SEO'));
 // New professional sections
 const TrustSection = lazy(() => import('@/components/TrustSection'));
 const ServicesShowcase = lazy(() => import('@/components/ServicesShowcase'));
-const CaseStudiesSection = lazy(() => import('@/components/CaseStudiesSection'));
 const ProfessionalCTA = lazy(() => import('@/components/ProfessionalCTA'));
 
 
@@ -89,7 +88,6 @@ const Index = () => {
         <TrustSection />
         <ServicesShowcase />
         <Features />
-        <CaseStudiesSection />
         <Projects />
         <Testimonials />
         <WhyWrlds />
