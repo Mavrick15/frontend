@@ -20,9 +20,9 @@ const projects = [
     isFeatured: true,
     link: "/projects/realisations/police-judiciaire",
     metrics: [
-      { label: "Performance", value: "x10", icon: Zap, color: "text-amber-600 bg-amber-50" },
-      { label: "Disponibilité", value: "99.9%", icon: Clock, color: "text-emerald-600 bg-emerald-50" },
-      { label: "Sécurité", value: "Militaire", icon: Shield, color: "text-blue-600 bg-blue-50" },
+      { label: "Performance", value: "x10", icon: Zap, color: "text-gray-700 bg-gray-100" },
+      { label: "Disponibilité", value: "99.9%", icon: Clock, color: "text-gray-700 bg-gray-100" },
+      { label: "Sécurité", value: "Militaire", icon: Shield, color: "text-gray-700 bg-gray-100" },
     ],
   },
   {
@@ -34,9 +34,9 @@ const projects = [
     imageUrl: "/lovable-uploads/img/Eyano.png",
     link: "/projects/realisations/eyano-security",
     metrics: [
-      { label: "Couverture", value: "70m²", icon: Shield, color: "text-violet-600 bg-violet-50" },
-      { label: "Surveillance", value: "24/7", icon: Clock, color: "text-emerald-600 bg-emerald-50" },
-      { label: "Angle mort", value: "0%", icon: TrendingUp, color: "text-blue-600 bg-blue-50" },
+      { label: "Couverture", value: "70m²", icon: Shield, color: "text-gray-700 bg-gray-100" },
+      { label: "Surveillance", value: "24/7", icon: Clock, color: "text-gray-700 bg-gray-100" },
+      { label: "Angle mort", value: "0%", icon: TrendingUp, color: "text-gray-700 bg-gray-100" },
     ],
   },
   {
@@ -48,9 +48,9 @@ const projects = [
     imageUrl: "/lovable-uploads/img/credit-shop-africa.png",
     link: "/projects/realisations/credit-shop-africa",
     metrics: [
-      { label: "Couverture", value: "360°", icon: Shield, color: "text-rose-600 bg-rose-50" },
-      { label: "Monitoring", value: "Temps réel", icon: Clock, color: "text-emerald-600 bg-emerald-50" },
-      { label: "Technologie", value: "CP+", icon: Zap, color: "text-amber-600 bg-amber-50" },
+      { label: "Couverture", value: "360°", icon: Shield, color: "text-gray-700 bg-gray-100" },
+      { label: "Monitoring", value: "Temps réel", icon: Clock, color: "text-gray-700 bg-gray-100" },
+      { label: "Technologie", value: "CP+", icon: Zap, color: "text-gray-700 bg-gray-100" },
     ],
   }
 ];
