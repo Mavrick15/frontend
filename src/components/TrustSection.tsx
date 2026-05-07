@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Award, Clock, Users, CheckCircle2, Building2 } from "lucide-react";
+import { Shield, Award, Clock, Users, CheckCircle2, Building2, Landmark, Factory, Briefcase, Server, Wifi, HardHat } from "lucide-react";
 
 const TRUST_DATA = {
   badges: [
@@ -9,12 +9,12 @@ const TRUST_DATA = {
     { icon: Users, label: "98% Satisfaction", description: "Clients satisfaits" },
   ],
   clients: [
-    { name: "Banque Commerciale", initials: "BC" },
-    { name: "Ministère Digital", initials: "MD" },
-    { name: "TechStart RDC", initials: "TS" },
-    { name: "Congo Telecom", initials: "CT" },
-    { name: "Kinshasa Business", initials: "KB" },
-    { name: "RDC Mining Corp", initials: "RM" },
+    { name: "Banque Commerciale", icon: Landmark },
+    { name: "Ministère Digital", icon: Building2 },
+    { name: "TechStart RDC", icon: Briefcase },
+    { name: "Congo Telecom", icon: Wifi },
+    { name: "Kinshasa Business", icon: Factory },
+    { name: "RDC Mining Corp", icon: HardHat },
   ],
   certifications: [
     "Cisco Partner",
@@ -75,36 +75,51 @@ const TrustSection = () => {
           ))}
         </motion.div>
 
-        {/* Client Logos */}
+        {/* Client Logos - Scrolling Marquee */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="bg-gradient-to-br from-gray-900 to-black rounded-3xl p-8 sm:p-12 mb-12"
+          className="bg-white rounded-3xl p-8 sm:p-12 mb-12 border border-gray-100 shadow-lg"
         >
-          <h3 className="text-white text-center text-lg font-semibold mb-8 opacity-80">
+          <h3 className="text-gray-900 text-center text-lg font-semibold mb-8">
             Ils nous font confiance
           </h3>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center">
-            {TRUST_DATA.clients.map((client, index) => (
-              <motion.div
-                key={client.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ scale: 1.05 }}
-                className="flex flex-col items-center group cursor-pointer"
-              >
-                <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center mb-2 border border-white/20 group-hover:bg-white/20 transition-all">
-                  <span className="text-xl font-bold text-white">{client.initials}</span>
+          
+          {/* Scrolling Marquee Container */}
+          <div className="relative overflow-hidden">
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+            
+            {/* Marquee */}
+            <motion.div
+              className="flex gap-12 items-center"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                x: {
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: "linear",
+                },
+              }}
+            >
+              {/* Double the items for seamless loop */}
+              {[...TRUST_DATA.clients, ...TRUST_DATA.clients].map((client, index) => (
+                <div
+                  key={`${client.name}-${index}`}
+                  className="flex flex-col items-center group cursor-pointer flex-shrink-0"
+                >
+                  <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mb-2 border border-gray-200 group-hover:bg-gray-200 group-hover:border-gray-300 transition-all">
+                    <client.icon className="w-8 h-8 text-gray-700" />
+                  </div>
+                  <span className="text-xs text-gray-600 text-center group-hover:text-gray-900 transition-colors whitespace-nowrap">
+                    {client.name}
+                  </span>
                 </div>
-                <span className="text-xs text-gray-400 text-center group-hover:text-white transition-colors">
-                  {client.name}
-                </span>
-              </motion.div>
-            ))}
+              ))}
+            </motion.div>
           </div>
         </motion.div>
 
