@@ -11,6 +11,11 @@ const BlogPreview = lazy(() => import('@/components/BlogPreview'));
 const Statistics = lazy(() => import('@/components/Statistics'));
 const Testimonials = lazy(() => import('@/components/Testimonials'));
 const SEO = lazy(() => import('@/components/SEO'));
+// New professional sections
+const TrustSection = lazy(() => import('@/components/TrustSection'));
+const ServicesShowcase = lazy(() => import('@/components/ServicesShowcase'));
+const CaseStudiesSection = lazy(() => import('@/components/CaseStudiesSection'));
+const ProfessionalCTA = lazy(() => import('@/components/ProfessionalCTA'));
 
 
 const TEXT_CONSTANTS = {
@@ -81,11 +86,15 @@ const Index = () => {
       >
         <Hero />
         <Statistics />
+        <TrustSection />
+        <ServicesShowcase />
         <Features />
-        <WhyWrlds />
+        <CaseStudiesSection />
         <Projects />
         <Testimonials />
+        <WhyWrlds />
         <BlogPreview />
+        <ProfessionalCTA />
       </motion.div>
     </PageLayout>
   );
