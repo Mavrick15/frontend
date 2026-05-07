@@ -160,7 +160,7 @@ const ServicesShowcase = () => {
             size="lg"
             className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-6 rounded-2xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all"
           >
-            <Link to="/contact">
+            <Link to="/add/contact-nous">
               Demander un devis gratuit
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>

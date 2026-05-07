@@ -57,7 +57,7 @@ const ProfessionalCTA = () => {
                 size="lg"
                 className="bg-white hover:bg-gray-100 text-gray-900 px-8 py-6 rounded-2xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all group"
               >
-                <Link to="/contact">
+                <Link to="/add/contact-nous">
                   <Calendar className="w-5 h-5 mr-2" />
                   Réserver un appel
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
