@@ -20,20 +20,16 @@ const SERVICES = [
     subtitle: "Applications sur mesure",
     description: "Solutions web et mobiles scalables avec les technologies les plus récentes. React, Node.js, cloud-native.",
     features: ["Applications React/Next.js", "APIs REST & GraphQL", "Apps Mobile React Native", "Architecture Cloud"],
-    color: "from-blue-500 to-blue-700",
-    bgColor: "bg-blue-50",
     link: "/services/web-development",
   },
   {
     id: "cybersecurite",
     icon: Shield,
-    title: "Cybersécurité",
+    title: "Cybersécurité & Vidéosurveillance",
     subtitle: "Protection avancée",
-    description: "Audit, pentesting et mise en place de stratégies de sécurité de niveau entreprise. Certification ISO 27001.",
-    features: ["Audit de sécurité", "Pentesting", "Conformité ISO 27001", "SOC & SIEM"],
-    color: "from-emerald-500 to-emerald-700",
-    bgColor: "bg-emerald-50",
-    link: "/services/cybersecurity",
+    description: "Audit de sécurité, pentesting, vidéosurveillance HD et stratégies de sécurité de niveau entreprise.",
+    features: ["Audit de sécurité", "Caméras HD", "Détection mouvement", "Contrôle accès"],
+    link: "/services/video-surveillance",
   },
   {
     id: "reseau",
@@ -42,8 +38,6 @@ const SERVICES = [
     subtitle: "Infrastructure haute performance",
     description: "Conception et déploiement d'infrastructures réseau 10Gb+ avec redondance et haute disponibilité.",
     features: ["Design réseau 10Gb+", "Cisco & Huawei", "SD-WAN", "Datacenter"],
-    color: "from-violet-500 to-violet-700",
-    bgColor: "bg-violet-50",
     link: "/services/network-engineering",
   },
   {
@@ -53,9 +47,7 @@ const SERVICES = [
     subtitle: "Solutions durables",
     description: "Installation de systèmes solaires pour data centers et entreprises. Autonomie énergétique garantie.",
     features: ["Installations 10-100kW", "Batteries lithium", "Monitoring IoT", "ROI optimisé"],
-    color: "from-amber-500 to-amber-700",
-    bgColor: "bg-amber-50",
-    link: "/services/solar-energy",
+    link: "/services/solar-installation",
   },
   {
     id: "formation",
@@ -64,20 +56,16 @@ const SERVICES = [
     subtitle: "Montée en compétences",
     description: "Programmes de formation professionnels avec certification reconnue internationalement.",
     features: ["Cisco CCNA/CCNP", "AWS/Azure", "Cybersécurité", "DevOps"],
-    color: "from-rose-500 to-rose-700",
-    bgColor: "bg-rose-50",
     link: "/formations",
   },
   {
     id: "support",
     icon: HeadphonesIcon,
-    title: "Support IT 24/7",
+    title: "Support IT & Infogérance",
     subtitle: "Assistance permanente",
-    description: "Support technique réactif avec SLA garanti. Résolution 95% des incidents dès le premier contact.",
-    features: ["Hotline 24/7", "SLA garanti", "Support sur site", "Monitoring proactif"],
-    color: "from-cyan-500 to-cyan-700",
-    bgColor: "bg-cyan-50",
-    link: "/services/support",
+    description: "Support technique réactif avec SLA garanti et infogérance IT. Résolution 95% des incidents dès le premier contact.",
+    features: ["Hotline 24/7", "SLA garanti", "Monitoring IA", "Supervision 24/7"],
+    link: "/services/technical-support",
   },
 ];
 
@@ -116,11 +104,11 @@ const ServicesShowcase = () => {
               whileHover={{ y: -8 }}
               className="group relative bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-500 overflow-hidden"
             >
-              {/* Background Gradient on Hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+              {/* Background on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
               
               {/* Icon */}
-              <div className={`relative w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+              <div className="relative w-16 h-16 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <service.icon className="w-8 h-8 text-white" />
               </div>
 
