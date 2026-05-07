@@ -118,21 +118,18 @@ const Features = () => {
       <section id="technology" className="bg-gradient-to-br from-white via-gray-50 to-gray-100 py-16 sm:py-20 lg:py-24">
         <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <motion.div 
-            className="text-center mb-12 sm:mb-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden"
+            className="text-center mb-12 sm:mb-16 bg-white text-gray-900 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden border border-gray-100"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="absolute inset-0 opacity-20" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}></div>
             <div className="relative z-10">
-              <div className="inline-block mb-4 px-5 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-bold tracking-wide border border-white/30 shadow-md">
+              <div className="inline-block mb-4 px-5 py-2 bg-gray-100 text-gray-900 rounded-full text-sm font-bold tracking-wide border border-gray-200 shadow-md">
                 {TEXT_CONSTANTS.OUR_APPROACH_LABEL}
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 text-white drop-shadow-lg">{TEXT_CONSTANTS.MAIN_HEADING}</h2>
-              <p className="text-gray-200 max-w-4xl mx-auto text-lg md:text-xl leading-relaxed">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 text-gray-900">{TEXT_CONSTANTS.MAIN_HEADING}</h2>
+              <p className="text-gray-600 max-w-4xl mx-auto text-lg md:text-xl leading-relaxed">
                 {TEXT_CONSTANTS.MAIN_DESCRIPTION}
               </p>
             </div>
